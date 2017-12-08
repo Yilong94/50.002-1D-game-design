@@ -1,0 +1,185 @@
+module ledmatrix #(
+    GND = 7 : GND > 0,
+    //VDD = 2 : VDD > 0,
+    DIV = 16 : DIV >= 0
+    
+    )
+  
+  (
+    input clk,  // clock
+    input rst,  // reset
+    input values[3][49],   //raw data of 49 bits for the 3 colours
+    
+    input blinking[49],  //raw data of 49 bits from blinking register
+    
+    output row[7],   // Row select (GND) which we will cycle through 
+    output columnred[7],  //data for RedVDD
+    output columngreen[7], //data for GreenVDD
+    output columnblue[7]  //data for BlueVDD
+    
+    //output blink_columnred[7],
+    //output blink_columngreen[7],
+    //output blink_columnblue[7]
+  ) {
+  
+  const GND_BITS = $clog2(GND);
+  
+  .clk(clk), .rst(rst){
+    //counter ctr(#DIV(DIV), #SIZE(GND_BITS-1), #TOP(GND-1));
+    counter ctr(#DIV(DIV), #SIZE(GND_BITS), #TOP(GND-1));
+    blinker myBlinker;
+    }
+  
+  ledmatrixdecoder ledDecoder; 
+  
+  //KIV: WTF why doesnt the digitDecoder work?
+  //decoder digitDecoder (#WIDTH(GND_BITS-1));
+  //decoder digitDecoder (#WIDTH(GND_BITS));
+  myDigitsDecoder digitDecoder;
+  
+  blinkingdecoder blinkDecoder;
+  
+  
+  
+
+  always {
+    ledDecoder.in = values;
+    columnred = ledDecoder.outred[ctr.value];
+    columngreen = ledDecoder.outgreen[ctr.value];
+    columnblue = ledDecoder.outblue[ctr.value];
+    
+    //should be the same 
+    digitDecoder.in = ctr.value;
+    row = digitDecoder.out;    
+    
+    blinkDecoder.in = blinking;
+    //blink_columnred = blinkDecoder.out[ctr.value];
+    //blink_columngreen = blinkDecoder.out[ctr.value];
+    //blink_columnblue = blinkDecoder.out[ctr.value];
+    
+    if (blinkDecoder.out[ctr.value][0]==1){
+      if(ledDecoder.outred[ctr.value][0]==1){
+        columnred[0] = myBlinker.blink;
+        }
+      else if(ledDecoder.outgreen[ctr.value][0]==1){
+        columngreen[0] = myBlinker.blink;
+        }
+      else if(ledDecoder.outblue[ctr.value][0]==1){
+        columnblue[0] = myBlinker.blink;
+        }
+      else{
+        columnred[0] = myBlinker.blink;
+        columngreen[0] = myBlinker.blink;
+        columnblue[0] = myBlinker.blink;
+      }
+    }
+    
+    
+    if (blinkDecoder.out[ctr.value][1]==1){
+      if(ledDecoder.outred[ctr.value][1]==1){
+        columnred[1] = myBlinker.blink;
+        }
+      else if(ledDecoder.outgreen[ctr.value][1]==1){
+        columngreen[1] = myBlinker.blink;
+        }
+      else if(ledDecoder.outblue[ctr.value][1]==1){
+        columnblue[1] = myBlinker.blink;
+        }
+      else{
+        columnred[1] = myBlinker.blink;
+        columngreen[1] = myBlinker.blink;
+        columnblue[1] = myBlinker.blink;
+      }
+    }
+    
+    
+    if (blinkDecoder.out[ctr.value][2]==1){
+      if(ledDecoder.outred[ctr.value][2]==1){
+        columnred[2] = myBlinker.blink;
+        }
+      else if(ledDecoder.outgreen[ctr.value][2]==1){
+        columngreen[2] = myBlinker.blink;
+        }
+      else if(ledDecoder.outblue[ctr.value][2]==1){
+        columnblue[2] = myBlinker.blink;
+        }
+      else{
+        columnred[2] = myBlinker.blink;
+        columngreen[2] = myBlinker.blink;
+        columnblue[2] = myBlinker.blink;
+      }
+    }
+    
+    
+    if (blinkDecoder.out[ctr.value][3]==1){
+      if(ledDecoder.outred[ctr.value][3]==1){
+        columnred[3] = myBlinker.blink;
+        }
+      else if(ledDecoder.outgreen[ctr.value][3]==1){
+        columngreen[3] = myBlinker.blink;
+        }
+      else if(ledDecoder.outblue[ctr.value][3]==1){
+        columnblue[3] = myBlinker.blink;
+        }
+      else{
+        columnred[3] = myBlinker.blink;
+        columngreen[3] = myBlinker.blink;
+        columnblue[3] = myBlinker.blink;
+      }
+    }
+    
+    
+    if (blinkDecoder.out[ctr.value][4]==1){
+      if(ledDecoder.outred[ctr.value][4]==1){
+        columnred[4] = myBlinker.blink;
+        }
+      else if(ledDecoder.outgreen[ctr.value][4]==1){
+        columngreen[4] = myBlinker.blink;
+        }
+      else if(ledDecoder.outblue[ctr.value][4]==1){
+        columnblue[4] = myBlinker.blink;
+        }
+      else{
+        columnred[4] = myBlinker.blink;
+        columngreen[4] = myBlinker.blink;
+        columnblue[4] = myBlinker.blink;
+      }
+    }
+    
+    
+    if (blinkDecoder.out[ctr.value][5]==1){
+      if(ledDecoder.outred[ctr.value][5]==1){
+        columnred[5] = myBlinker.blink;
+        }
+      else if(ledDecoder.outgreen[ctr.value][5]==1){
+        columngreen[5] = myBlinker.blink;
+        }
+      else if(ledDecoder.outblue[ctr.value][5]==1){
+        columnblue[5] = myBlinker.blink;
+        }
+      else{
+        columnred[5] = myBlinker.blink;
+        columngreen[5] = myBlinker.blink;
+        columnblue[5] = myBlinker.blink;
+      }
+    }
+    
+    
+    if (blinkDecoder.out[ctr.value][6]==1){
+      if(ledDecoder.outred[ctr.value][6]==1){
+        columnred[6] = myBlinker.blink;
+        }
+      else if(ledDecoder.outgreen[ctr.value][6]==1){
+        columngreen[6] = myBlinker.blink;
+        }
+      else if(ledDecoder.outblue[ctr.value][6]==1){
+        columnblue[6] = myBlinker.blink;
+        }
+      else{
+        columnred[6] = myBlinker.blink;
+        columngreen[6] = myBlinker.blink;
+        columnblue[6] = myBlinker.blink;
+      }
+    }
+  }
+}

@@ -1,0 +1,1971 @@
+Release 14.7 - xst P.20131013 (nt64)
+Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
+--> 
+
+Total REAL time to Xst completion: 0.00 secs
+Total CPU time to Xst completion: 0.07 secs
+ 
+--> Reading design: mojo_top_0.prj
+
+TABLE OF CONTENTS
+  1) Synthesis Options Summary
+  2) HDL Parsing
+  3) HDL Elaboration
+  4) HDL Synthesis
+       4.1) HDL Synthesis Report
+  5) Advanced HDL Synthesis
+       5.1) Advanced HDL Synthesis Report
+  6) Low Level Synthesis
+  7) Partition Report
+  8) Design Summary
+       8.1) Primitive and Black Box Usage
+       8.2) Device utilization summary
+       8.3) Partition Resource Summary
+       8.4) Timing Report
+            8.4.1) Clock Information
+            8.4.2) Asynchronous Control Signals Information
+            8.4.3) Timing Summary
+            8.4.4) Timing Details
+            8.4.5) Cross Clock Domains Report
+
+
+=========================================================================
+*                      Synthesis Options Summary                        *
+=========================================================================
+---- Source Parameters
+Input File Name                    : "mojo_top_0.prj"
+
+---- Target Parameters
+Target Device                      : xc6slx9tqg144-2
+Output File Name                   : "mojo_top_0.ngc"
+
+---- Source Options
+Top Module Name                    : mojo_top_0
+
+---- General Options
+Optimization Goal                  : speed
+Optimization Effort                : 1
+Netlist Hierarchy                  : rebuilt
+
+=========================================================================
+
+
+=========================================================================
+*                          HDL Parsing                                  *
+=========================================================================
+Analyzing Verilog file "C:/Users/dorette_ong/Documents/mojo/Comstruct/work/planAhead/Comstruct/Comstruct.srcs/sources_1/imports/verilog/pipeline_39.v" into library work
+Parsing module <pipeline_39>.
+Analyzing Verilog file "C:/Users/dorette_ong/Documents/mojo/Comstruct/work/planAhead/Comstruct/Comstruct.srcs/sources_1/imports/verilog/adjacencymat_35.v" into library work
+Parsing module <adjacencymat_35>.
+Analyzing Verilog file "C:/Users/dorette_ong/Documents/mojo/Comstruct/work/planAhead/Comstruct/Comstruct.srcs/sources_1/imports/verilog/myDigitsDecoder_11.v" into library work
+Parsing module <myDigitsDecoder_11>.
+Analyzing Verilog file "C:/Users/dorette_ong/Documents/mojo/Comstruct/work/planAhead/Comstruct/Comstruct.srcs/sources_1/imports/verilog/lightupbeforemove_37.v" into library work
+Parsing module <lightupbeforemove_37>.
+Analyzing Verilog file "C:/Users/dorette_ong/Documents/mojo/Comstruct/work/planAhead/Comstruct/Comstruct.srcs/sources_1/imports/verilog/ledmatrixdecoder_10.v" into library work
+Parsing module <ledmatrixdecoder_10>.
+Analyzing Verilog file "C:/Users/dorette_ong/Documents/mojo/Comstruct/work/planAhead/Comstruct/Comstruct.srcs/sources_1/imports/verilog/edge_detector_13.v" into library work
+Parsing module <edge_detector_13>.
+Analyzing Verilog file "C:/Users/dorette_ong/Documents/mojo/Comstruct/work/planAhead/Comstruct/Comstruct.srcs/sources_1/imports/verilog/counter_8.v" into library work
+Parsing module <counter_8>.
+Analyzing Verilog file "C:/Users/dorette_ong/Documents/mojo/Comstruct/work/planAhead/Comstruct/Comstruct.srcs/sources_1/imports/verilog/button_conditioner_14.v" into library work
+Parsing module <button_conditioner_14>.
+Analyzing Verilog file "C:/Users/dorette_ong/Documents/mojo/Comstruct/work/planAhead/Comstruct/Comstruct.srcs/sources_1/imports/verilog/blinkingdecoder_12.v" into library work
+Parsing module <blinkingdecoder_12>.
+Analyzing Verilog file "C:/Users/dorette_ong/Documents/mojo/Comstruct/work/planAhead/Comstruct/Comstruct.srcs/sources_1/imports/verilog/blinker_9.v" into library work
+Parsing module <blinker_9>.
+Analyzing Verilog file "C:/Users/dorette_ong/Documents/mojo/Comstruct/work/planAhead/Comstruct/Comstruct.srcs/sources_1/imports/verilog/start_4.v" into library work
+Parsing module <start_4>.
+Analyzing Verilog file "C:/Users/dorette_ong/Documents/mojo/Comstruct/work/planAhead/Comstruct/Comstruct.srcs/sources_1/imports/verilog/select_5.v" into library work
+Parsing module <select_5>.
+Analyzing Verilog file "C:/Users/dorette_ong/Documents/mojo/Comstruct/work/planAhead/Comstruct/Comstruct.srcs/sources_1/imports/verilog/reset_conditioner_1.v" into library work
+Parsing module <reset_conditioner_1>.
+Analyzing Verilog file "C:/Users/dorette_ong/Documents/mojo/Comstruct/work/planAhead/Comstruct/Comstruct.srcs/sources_1/imports/verilog/move_6.v" into library work
+Parsing module <move_6>.
+Analyzing Verilog file "C:/Users/dorette_ong/Documents/mojo/Comstruct/work/planAhead/Comstruct/Comstruct.srcs/sources_1/imports/verilog/ledmatrix_2.v" into library work
+Parsing module <ledmatrix_2>.
+Analyzing Verilog file "C:/Users/dorette_ong/Documents/mojo/Comstruct/work/planAhead/Comstruct/Comstruct.srcs/sources_1/imports/verilog/check_7.v" into library work
+Parsing module <check_7>.
+Analyzing Verilog file "C:/Users/dorette_ong/Documents/mojo/Comstruct/work/planAhead/Comstruct/Comstruct.srcs/sources_1/imports/verilog/buttons_3.v" into library work
+Parsing module <buttons_3>.
+Analyzing Verilog file "C:/Users/dorette_ong/Documents/mojo/Comstruct/work/planAhead/Comstruct/Comstruct.srcs/sources_1/imports/verilog/mojo_top_0.v" into library work
+Parsing module <mojo_top_0>.
+
+=========================================================================
+*                            HDL Elaboration                            *
+=========================================================================
+
+Elaborating module <mojo_top_0>.
+
+Elaborating module <reset_conditioner_1>.
+
+Elaborating module <ledmatrix_2>.
+
+Elaborating module <counter_8>.
+
+Elaborating module <blinker_9>.
+
+Elaborating module <ledmatrixdecoder_10>.
+
+Elaborating module <myDigitsDecoder_11>.
+
+Elaborating module <blinkingdecoder_12>.
+
+Elaborating module <buttons_3>.
+
+Elaborating module <edge_detector_13>.
+
+Elaborating module <button_conditioner_14>.
+
+Elaborating module <pipeline_39>.
+WARNING:HDLCompiler:1127 - "C:/Users/dorette_ong/Documents/mojo/Comstruct/work/planAhead/Comstruct/Comstruct.srcs/sources_1/imports/verilog/mojo_top_0.v" Line 120: Assignment to M_buttons_confirmbutton_1new ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "C:/Users/dorette_ong/Documents/mojo/Comstruct/work/planAhead/Comstruct/Comstruct.srcs/sources_1/imports/verilog/mojo_top_0.v" Line 125: Assignment to M_buttons_confirmbutton_2new ignored, since the identifier is never used
+
+Elaborating module <start_4>.
+
+Elaborating module <select_5>.
+
+Elaborating module <adjacencymat_35>.
+
+Elaborating module <move_6>.
+WARNING:HDLCompiler:1127 - "C:/Users/dorette_ong/Documents/mojo/Comstruct/work/planAhead/Comstruct/Comstruct.srcs/sources_1/imports/verilog/move_6.v" Line 36: Assignment to M_adjacencymat_adjmatrix ignored, since the identifier is never used
+
+Elaborating module <lightupbeforemove_37>.
+WARNING:HDLCompiler:1127 - "C:/Users/dorette_ong/Documents/mojo/Comstruct/work/planAhead/Comstruct/Comstruct.srcs/sources_1/imports/verilog/lightupbeforemove_37.v" Line 30: Assignment to M_adjacencymat_currentposition ignored, since the identifier is never used
+
+Elaborating module <check_7>.
+WARNING:HDLCompiler:1127 - "C:/Users/dorette_ong/Documents/mojo/Comstruct/work/planAhead/Comstruct/Comstruct.srcs/sources_1/imports/verilog/check_7.v" Line 48: Assignment to M_adjacencymat_currentposition ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "C:/Users/dorette_ong/Documents/mojo/Comstruct/work/planAhead/Comstruct/Comstruct.srcs/sources_1/imports/verilog/mojo_top_0.v" Line 203: Assignment to selectstart ignored, since the identifier is never used
+
+=========================================================================
+*                           HDL Synthesis                               *
+=========================================================================
+
+Synthesizing Unit <mojo_top_0>.
+    Related source file is "C:/Users/dorette_ong/Documents/mojo/Comstruct/work/planAhead/Comstruct/Comstruct.srcs/sources_1/imports/verilog/mojo_top_0.v".
+WARNING:Xst:647 - Input <io_button> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <cclk> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <spi_ss> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <spi_mosi> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <spi_sck> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <avr_tx> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <avr_rx_busy> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+INFO:Xst:3210 - "C:/Users/dorette_ong/Documents/mojo/Comstruct/work/planAhead/Comstruct/Comstruct.srcs/sources_1/imports/verilog/mojo_top_0.v" line 106: Output port <confirmbutton_1new> of the instance <buttons> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "C:/Users/dorette_ong/Documents/mojo/Comstruct/work/planAhead/Comstruct/Comstruct.srcs/sources_1/imports/verilog/mojo_top_0.v" line 106: Output port <confirmbutton_2new> of the instance <buttons> is unconnected or connected to loadless signal.
+    Found 49-bit register for signal <M_player1_q>.
+    Found 49-bit register for signal <M_player2_q>.
+    Found 49-bit register for signal <M_cursor_q>.
+    Found 49-bit register for signal <M_newcursor_q>.
+    Found 3-bit register for signal <M_state_q>.
+    Found 1-bit register for signal <M_playerinvolved_q>.
+    Found finite state machine <FSM_0> for signal <M_state_q>.
+    -----------------------------------------------------------------------
+    | States             | 7                                              |
+    | Transitions        | 39                                             |
+    | Inputs             | 16                                             |
+    | Outputs            | 3                                              |
+    | Clock              | clk (rising_edge)                              |
+    | Reset              | M_reset_cond_out (positive)                    |
+    | Reset type         | synchronous                                    |
+    | Reset State        | 000                                            |
+    | Power Up State     | 000                                            |
+    | Encoding           | auto                                           |
+    | Implementation     | LUT                                            |
+    -----------------------------------------------------------------------
+    Found 1-bit tristate buffer for signal <spi_miso> created at line 203
+    Found 1-bit tristate buffer for signal <spi_channel<3>> created at line 203
+    Found 1-bit tristate buffer for signal <spi_channel<2>> created at line 203
+    Found 1-bit tristate buffer for signal <spi_channel<1>> created at line 203
+    Found 1-bit tristate buffer for signal <spi_channel<0>> created at line 203
+    Found 1-bit tristate buffer for signal <avr_rx> created at line 203
+    Summary:
+	inferred 197 D-type flip-flop(s).
+	inferred  84 Multiplexer(s).
+	inferred   6 Tristate(s).
+	inferred   1 Finite State Machine(s).
+Unit <mojo_top_0> synthesized.
+
+Synthesizing Unit <reset_conditioner_1>.
+    Related source file is "C:/Users/dorette_ong/Documents/mojo/Comstruct/work/planAhead/Comstruct/Comstruct.srcs/sources_1/imports/verilog/reset_conditioner_1.v".
+    Found 4-bit register for signal <M_stage_q>.
+    Summary:
+	inferred   4 D-type flip-flop(s).
+Unit <reset_conditioner_1> synthesized.
+
+Synthesizing Unit <ledmatrix_2>.
+    Related source file is "C:/Users/dorette_ong/Documents/mojo/Comstruct/work/planAhead/Comstruct/Comstruct.srcs/sources_1/imports/verilog/ledmatrix_2.v".
+    Found 6-bit adder for signal <M_ctr_value[2]_GND_3_o_add_1_OUT> created at line 69.
+    Found 6-bit adder for signal <M_ctr_value[2]_GND_3_o_add_34_OUT> created at line 99.
+    Found 6-bit adder for signal <M_ctr_value[2]_GND_3_o_add_50_OUT> created at line 116.
+    Found 6-bit adder for signal <M_ctr_value[2]_GND_3_o_add_66_OUT> created at line 133.
+    Found 6-bit adder for signal <M_ctr_value[2]_GND_3_o_add_82_OUT> created at line 150.
+    Found 6-bit adder for signal <M_ctr_value[2]_GND_3_o_add_98_OUT> created at line 167.
+    Found 3x3-bit multiplier for signal <n0222> created at line 69.
+    Found 97-bit shifter logical right for signal <n0158> created at line 69
+    Found 97-bit shifter logical right for signal <n0161> created at line 75
+    Found 97-bit shifter logical right for signal <n0162> created at line 76
+    Found 97-bit shifter logical right for signal <n0163> created at line 79
+    Found 97-bit shifter logical right for signal <n0164> created at line 82
+    Found 97-bit shifter logical right for signal <n0165> created at line 92
+    Found 97-bit shifter logical right for signal <n0166> created at line 93
+    Found 97-bit shifter logical right for signal <n0167> created at line 96
+    Found 97-bit shifter logical right for signal <n0169> created at line 99
+    Found 97-bit shifter logical right for signal <n0170> created at line 109
+    Found 97-bit shifter logical right for signal <n0171> created at line 110
+    Found 97-bit shifter logical right for signal <n0172> created at line 113
+    Found 97-bit shifter logical right for signal <n0174> created at line 116
+    Found 97-bit shifter logical right for signal <n0175> created at line 126
+    Found 97-bit shifter logical right for signal <n0176> created at line 127
+    Found 97-bit shifter logical right for signal <n0177> created at line 130
+    Found 97-bit shifter logical right for signal <n0179> created at line 133
+    Found 97-bit shifter logical right for signal <n0180> created at line 143
+    Found 97-bit shifter logical right for signal <n0181> created at line 144
+    Found 97-bit shifter logical right for signal <n0182> created at line 147
+    Found 97-bit shifter logical right for signal <n0184> created at line 150
+    Found 97-bit shifter logical right for signal <n0185> created at line 160
+    Found 97-bit shifter logical right for signal <n0186> created at line 161
+    Found 97-bit shifter logical right for signal <n0187> created at line 164
+    Found 97-bit shifter logical right for signal <n0189> created at line 167
+    Found 97-bit shifter logical right for signal <n0190> created at line 177
+    Found 97-bit shifter logical right for signal <n0159> created at line 181
+    Found 97-bit shifter logical right for signal <n0160> created at line 184
+    Summary:
+	inferred   1 Multiplier(s).
+	inferred   6 Adder/Subtractor(s).
+	inferred  77 Multiplexer(s).
+	inferred  28 Combinational logic shifter(s).
+Unit <ledmatrix_2> synthesized.
+
+Synthesizing Unit <counter_8>.
+    Related source file is "C:/Users/dorette_ong/Documents/mojo/Comstruct/work/planAhead/Comstruct/Comstruct.srcs/sources_1/imports/verilog/counter_8.v".
+    Found 19-bit register for signal <M_ctr_q>.
+    Found 19-bit adder for signal <M_ctr_q[18]_GND_4_o_add_0_OUT> created at line 35.
+    Summary:
+	inferred   1 Adder/Subtractor(s).
+	inferred  19 D-type flip-flop(s).
+	inferred   1 Multiplexer(s).
+Unit <counter_8> synthesized.
+
+Synthesizing Unit <blinker_9>.
+    Related source file is "C:/Users/dorette_ong/Documents/mojo/Comstruct/work/planAhead/Comstruct/Comstruct.srcs/sources_1/imports/verilog/blinker_9.v".
+    Found 25-bit register for signal <M_counter_q>.
+    Found 25-bit adder for signal <M_counter_d> created at line 21.
+    Summary:
+	inferred   1 Adder/Subtractor(s).
+	inferred  25 D-type flip-flop(s).
+Unit <blinker_9> synthesized.
+
+Synthesizing Unit <ledmatrixdecoder_10>.
+    Related source file is "C:/Users/dorette_ong/Documents/mojo/Comstruct/work/planAhead/Comstruct/Comstruct.srcs/sources_1/imports/verilog/ledmatrixdecoder_10.v".
+    Summary:
+	no macro.
+Unit <ledmatrixdecoder_10> synthesized.
+
+Synthesizing Unit <myDigitsDecoder_11>.
+    Related source file is "C:/Users/dorette_ong/Documents/mojo/Comstruct/work/planAhead/Comstruct/Comstruct.srcs/sources_1/imports/verilog/myDigitsDecoder_11.v".
+    Found 8x7-bit Read Only RAM for signal <out>
+    Summary:
+	inferred   1 RAM(s).
+Unit <myDigitsDecoder_11> synthesized.
+
+Synthesizing Unit <blinkingdecoder_12>.
+    Related source file is "C:/Users/dorette_ong/Documents/mojo/Comstruct/work/planAhead/Comstruct/Comstruct.srcs/sources_1/imports/verilog/blinkingdecoder_12.v".
+    Summary:
+	no macro.
+Unit <blinkingdecoder_12> synthesized.
+
+Synthesizing Unit <buttons_3>.
+    Related source file is "C:/Users/dorette_ong/Documents/mojo/Comstruct/work/planAhead/Comstruct/Comstruct.srcs/sources_1/imports/verilog/buttons_3.v".
+WARNING:Xst:647 - Input <rst> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+    Summary:
+	no macro.
+Unit <buttons_3> synthesized.
+
+Synthesizing Unit <edge_detector_13>.
+    Related source file is "C:/Users/dorette_ong/Documents/mojo/Comstruct/work/planAhead/Comstruct/Comstruct.srcs/sources_1/imports/verilog/edge_detector_13.v".
+    Found 1-bit register for signal <M_last_q>.
+    Summary:
+	inferred   1 D-type flip-flop(s).
+Unit <edge_detector_13> synthesized.
+
+Synthesizing Unit <button_conditioner_14>.
+    Related source file is "C:/Users/dorette_ong/Documents/mojo/Comstruct/work/planAhead/Comstruct/Comstruct.srcs/sources_1/imports/verilog/button_conditioner_14.v".
+    Found 20-bit register for signal <M_ctr_q>.
+    Found 20-bit adder for signal <M_ctr_q[19]_GND_12_o_add_2_OUT> created at line 39.
+    Summary:
+	inferred   1 Adder/Subtractor(s).
+	inferred  20 D-type flip-flop(s).
+Unit <button_conditioner_14> synthesized.
+
+Synthesizing Unit <pipeline_39>.
+    Related source file is "C:/Users/dorette_ong/Documents/mojo/Comstruct/work/planAhead/Comstruct/Comstruct.srcs/sources_1/imports/verilog/pipeline_39.v".
+    Found 2-bit register for signal <M_pipe_q>.
+    Summary:
+	inferred   2 D-type flip-flop(s).
+Unit <pipeline_39> synthesized.
+
+Synthesizing Unit <start_4>.
+    Related source file is "C:/Users/dorette_ong/Documents/mojo/Comstruct/work/planAhead/Comstruct/Comstruct.srcs/sources_1/imports/verilog/start_4.v".
+    Summary:
+	no macro.
+Unit <start_4> synthesized.
+
+Synthesizing Unit <select_5>.
+    Related source file is "C:/Users/dorette_ong/Documents/mojo/Comstruct/work/planAhead/Comstruct/Comstruct.srcs/sources_1/imports/verilog/select_5.v".
+    Summary:
+	inferred   5 Multiplexer(s).
+Unit <select_5> synthesized.
+
+Synthesizing Unit <adjacencymat_35>.
+    Related source file is "C:/Users/dorette_ong/Documents/mojo/Comstruct/work/planAhead/Comstruct/Comstruct.srcs/sources_1/imports/verilog/adjacencymat_35.v".
+    Found 49-bit register for signal <M_current_q>.
+    Found 5-bit register for signal <M_state_q>.
+    Found finite state machine <FSM_1> for signal <M_state_q>.
+    -----------------------------------------------------------------------
+    | States             | 21                                             |
+    | Transitions        | 525                                            |
+    | Inputs             | 25                                             |
+    | Outputs            | 27                                             |
+    | Clock              | clk (rising_edge)                              |
+    | Reset              | rst (positive)                                 |
+    | Reset type         | synchronous                                    |
+    | Reset State        | 00000                                          |
+    | Power Up State     | 00000                                          |
+    | Encoding           | auto                                           |
+    | Implementation     | LUT                                            |
+    -----------------------------------------------------------------------
+    Found 1-bit 23-to-1 multiplexer for signal <M_state_q[4]_GND_16_o_Mux_423_o> created at line 133.
+    Found 1-bit 24-to-1 multiplexer for signal <M_state_q[4]_GND_16_o_Mux_425_o> created at line 133.
+    Found 1-bit 24-to-1 multiplexer for signal <M_state_q[4]_GND_16_o_Mux_427_o> created at line 133.
+    Found 1-bit 24-to-1 multiplexer for signal <M_state_q[4]_GND_16_o_Mux_429_o> created at line 133.
+    Found 1-bit 24-to-1 multiplexer for signal <M_state_q[4]_GND_16_o_Mux_431_o> created at line 133.
+    Found 1-bit 24-to-1 multiplexer for signal <M_state_q[4]_GND_16_o_Mux_433_o> created at line 133.
+    Found 1-bit 24-to-1 multiplexer for signal <M_state_q[4]_GND_16_o_Mux_435_o> created at line 133.
+    Found 1-bit 24-to-1 multiplexer for signal <M_state_q[4]_GND_16_o_Mux_437_o> created at line 133.
+    Found 1-bit 24-to-1 multiplexer for signal <M_state_q[4]_GND_16_o_Mux_439_o> created at line 133.
+    Found 1-bit 24-to-1 multiplexer for signal <M_state_q[4]_GND_16_o_Mux_441_o> created at line 133.
+    Found 1-bit 24-to-1 multiplexer for signal <M_state_q[4]_GND_16_o_Mux_443_o> created at line 133.
+    Found 1-bit 24-to-1 multiplexer for signal <M_state_q[4]_GND_16_o_Mux_445_o> created at line 133.
+    Found 1-bit 24-to-1 multiplexer for signal <M_state_q[4]_GND_16_o_Mux_447_o> created at line 133.
+    Found 1-bit 24-to-1 multiplexer for signal <M_state_q[4]_GND_16_o_Mux_449_o> created at line 133.
+    Found 1-bit 24-to-1 multiplexer for signal <M_state_q[4]_GND_16_o_Mux_451_o> created at line 133.
+    Found 1-bit 24-to-1 multiplexer for signal <M_state_q[4]_GND_16_o_Mux_453_o> created at line 133.
+    Found 1-bit 24-to-1 multiplexer for signal <M_state_q[4]_GND_16_o_Mux_455_o> created at line 133.
+    Found 1-bit 24-to-1 multiplexer for signal <M_state_q[4]_GND_16_o_Mux_457_o> created at line 133.
+    Found 1-bit 24-to-1 multiplexer for signal <M_state_q[4]_GND_16_o_Mux_459_o> created at line 133.
+    Found 1-bit 24-to-1 multiplexer for signal <M_state_q[4]_GND_16_o_Mux_461_o> created at line 133.
+    Found 1-bit 24-to-1 multiplexer for signal <M_state_q[4]_GND_16_o_Mux_463_o> created at line 133.
+    Found 1-bit 24-to-1 multiplexer for signal <M_state_q[4]_GND_16_o_Mux_465_o> created at line 133.
+    Found 1-bit 24-to-1 multiplexer for signal <M_state_q[4]_GND_16_o_Mux_467_o> created at line 133.
+    Found 1-bit 24-to-1 multiplexer for signal <M_state_q[4]_GND_16_o_Mux_469_o> created at line 133.
+    Found 1-bit 24-to-1 multiplexer for signal <M_state_q[4]_GND_16_o_Mux_471_o> created at line 133.
+    Found 1-bit 24-to-1 multiplexer for signal <M_state_q[4]_GND_16_o_Mux_473_o> created at line 133.
+    Found 1-bit 24-to-1 multiplexer for signal <M_state_q[4]_GND_16_o_Mux_475_o> created at line 133.
+    Found 1-bit 24-to-1 multiplexer for signal <M_state_q[4]_GND_16_o_Mux_477_o> created at line 133.
+    Found 1-bit 24-to-1 multiplexer for signal <M_state_q[4]_GND_16_o_Mux_479_o> created at line 133.
+    Found 1-bit 24-to-1 multiplexer for signal <M_state_q[4]_GND_16_o_Mux_481_o> created at line 133.
+    Found 1-bit 24-to-1 multiplexer for signal <M_state_q[4]_GND_16_o_Mux_483_o> created at line 133.
+    Found 1-bit 24-to-1 multiplexer for signal <M_state_q[4]_GND_16_o_Mux_485_o> created at line 133.
+    Found 1-bit 24-to-1 multiplexer for signal <M_state_q[4]_GND_16_o_Mux_487_o> created at line 133.
+    Found 1-bit 24-to-1 multiplexer for signal <M_state_q[4]_GND_16_o_Mux_489_o> created at line 133.
+    Found 1-bit 24-to-1 multiplexer for signal <M_state_q[4]_GND_16_o_Mux_491_o> created at line 133.
+    Found 1-bit 24-to-1 multiplexer for signal <M_state_q[4]_GND_16_o_Mux_493_o> created at line 133.
+    Found 1-bit 24-to-1 multiplexer for signal <M_state_q[4]_GND_16_o_Mux_495_o> created at line 133.
+    Found 1-bit 24-to-1 multiplexer for signal <M_state_q[4]_GND_16_o_Mux_497_o> created at line 133.
+    Found 1-bit 24-to-1 multiplexer for signal <M_state_q[4]_GND_16_o_Mux_499_o> created at line 133.
+    Found 1-bit 24-to-1 multiplexer for signal <M_state_q[4]_GND_16_o_Mux_501_o> created at line 133.
+    Found 1-bit 24-to-1 multiplexer for signal <M_state_q[4]_GND_16_o_Mux_503_o> created at line 133.
+    Found 1-bit 24-to-1 multiplexer for signal <M_state_q[4]_GND_16_o_Mux_505_o> created at line 133.
+    Found 1-bit 24-to-1 multiplexer for signal <M_state_q[4]_GND_16_o_Mux_507_o> created at line 133.
+    Found 1-bit 24-to-1 multiplexer for signal <M_state_q[4]_GND_16_o_Mux_509_o> created at line 133.
+    Found 1-bit 24-to-1 multiplexer for signal <M_state_q[4]_GND_16_o_Mux_511_o> created at line 133.
+    Found 1-bit 24-to-1 multiplexer for signal <M_state_q[4]_GND_16_o_Mux_513_o> created at line 133.
+    Found 1-bit 24-to-1 multiplexer for signal <M_state_q[4]_GND_16_o_Mux_515_o> created at line 133.
+    Found 1-bit 24-to-1 multiplexer for signal <M_state_q[4]_GND_16_o_Mux_517_o> created at line 133.
+    Found 1-bit 24-to-1 multiplexer for signal <M_state_q[4]_GND_16_o_Mux_519_o> created at line 133.
+    Found 1-bit 4-to-1 multiplexer for signal <_n5832> created at line 769.
+    Found 1-bit 4-to-1 multiplexer for signal <_n5834> created at line 769.
+    Found 1-bit 4-to-1 multiplexer for signal <_n5836> created at line 769.
+    Found 1-bit 4-to-1 multiplexer for signal <_n5838> created at line 769.
+    Found 1-bit 4-to-1 multiplexer for signal <_n5840> created at line 769.
+    Found 1-bit 4-to-1 multiplexer for signal <_n5842> created at line 769.
+    Found 1-bit 4-to-1 multiplexer for signal <_n5844> created at line 769.
+    Found 1-bit 4-to-1 multiplexer for signal <_n5847> created at line 591.
+    Found 1-bit 4-to-1 multiplexer for signal <_n5849> created at line 769.
+    Found 1-bit 4-to-1 multiplexer for signal <_n5852> created at line 591.
+    Found 1-bit 4-to-1 multiplexer for signal <_n5854> created at line 553.
+    Found 1-bit 4-to-1 multiplexer for signal <_n5856> created at line 515.
+    Found 1-bit 4-to-1 multiplexer for signal <_n5858> created at line 769.
+    Found 1-bit 4-to-1 multiplexer for signal <_n5861> created at line 591.
+    Found 1-bit 4-to-1 multiplexer for signal <_n5863> created at line 553.
+    Found 1-bit 4-to-1 multiplexer for signal <_n5865> created at line 515.
+    Found 1-bit 4-to-1 multiplexer for signal <_n5867> created at line 769.
+    Found 1-bit 4-to-1 multiplexer for signal <_n5870> created at line 591.
+    Found 1-bit 4-to-1 multiplexer for signal <_n5872> created at line 553.
+    Found 1-bit 4-to-1 multiplexer for signal <_n5874> created at line 515.
+    Found 1-bit 4-to-1 multiplexer for signal <_n5876> created at line 769.
+    Found 1-bit 4-to-1 multiplexer for signal <_n5879> created at line 591.
+    Found 1-bit 4-to-1 multiplexer for signal <_n5881> created at line 553.
+    Found 1-bit 4-to-1 multiplexer for signal <_n5883> created at line 515.
+    Found 1-bit 4-to-1 multiplexer for signal <_n5885> created at line 769.
+    Found 1-bit 4-to-1 multiplexer for signal <_n5888> created at line 591.
+    Found 1-bit 4-to-1 multiplexer for signal <_n5890> created at line 553.
+    Found 1-bit 4-to-1 multiplexer for signal <_n5892> created at line 515.
+    Found 1-bit 4-to-1 multiplexer for signal <_n5894> created at line 769.
+    Found 1-bit 4-to-1 multiplexer for signal <_n5897> created at line 591.
+    Found 1-bit 4-to-1 multiplexer for signal <_n5899> created at line 553.
+    Found 1-bit 4-to-1 multiplexer for signal <_n5901> created at line 515.
+    Found 1-bit 4-to-1 multiplexer for signal <_n5903> created at line 769.
+    Found 1-bit 4-to-1 multiplexer for signal <_n5906> created at line 591.
+    Found 1-bit 4-to-1 multiplexer for signal <_n5908> created at line 553.
+    Found 1-bit 4-to-1 multiplexer for signal <_n5910> created at line 515.
+    Found 1-bit 4-to-1 multiplexer for signal <_n5912> created at line 769.
+    Found 1-bit 4-to-1 multiplexer for signal <_n5914> created at line 697.
+    Found 1-bit 4-to-1 multiplexer for signal <_n5916> created at line 591.
+    Found 1-bit 4-to-1 multiplexer for signal <_n5918> created at line 553.
+    Found 1-bit 4-to-1 multiplexer for signal <_n5920> created at line 515.
+    Found 1-bit 4-to-1 multiplexer for signal <_n5922> created at line 769.
+    Found 1-bit 4-to-1 multiplexer for signal <_n5924> created at line 697.
+    Found 1-bit 4-to-1 multiplexer for signal <_n5926> created at line 591.
+    Found 1-bit 4-to-1 multiplexer for signal <_n5928> created at line 553.
+    Found 1-bit 4-to-1 multiplexer for signal <_n5930> created at line 515.
+    Found 1-bit 4-to-1 multiplexer for signal <_n5932> created at line 769.
+    Found 1-bit 4-to-1 multiplexer for signal <_n5934> created at line 697.
+    Found 1-bit 4-to-1 multiplexer for signal <_n5936> created at line 591.
+    Found 1-bit 4-to-1 multiplexer for signal <_n5938> created at line 553.
+    Found 1-bit 4-to-1 multiplexer for signal <_n5940> created at line 515.
+    Found 1-bit 4-to-1 multiplexer for signal <_n5942> created at line 769.
+    Found 1-bit 4-to-1 multiplexer for signal <_n5944> created at line 697.
+    Found 1-bit 4-to-1 multiplexer for signal <_n5946> created at line 591.
+    Found 1-bit 4-to-1 multiplexer for signal <_n5948> created at line 553.
+    Found 1-bit 4-to-1 multiplexer for signal <_n5950> created at line 515.
+    Found 1-bit 4-to-1 multiplexer for signal <_n5952> created at line 769.
+    Found 1-bit 4-to-1 multiplexer for signal <_n5954> created at line 697.
+    Found 1-bit 4-to-1 multiplexer for signal <_n5956> created at line 591.
+    Found 1-bit 4-to-1 multiplexer for signal <_n5958> created at line 553.
+    Found 1-bit 4-to-1 multiplexer for signal <_n5960> created at line 515.
+    Found 1-bit 4-to-1 multiplexer for signal <_n5962> created at line 769.
+    Found 1-bit 4-to-1 multiplexer for signal <_n5964> created at line 697.
+    Found 1-bit 4-to-1 multiplexer for signal <_n5966> created at line 591.
+    Found 1-bit 4-to-1 multiplexer for signal <_n5968> created at line 553.
+    Found 1-bit 4-to-1 multiplexer for signal <_n5970> created at line 515.
+    Found 1-bit 4-to-1 multiplexer for signal <_n5972> created at line 769.
+    Found 1-bit 4-to-1 multiplexer for signal <_n5974> created at line 697.
+    Found 1-bit 4-to-1 multiplexer for signal <_n5976> created at line 591.
+    Found 1-bit 4-to-1 multiplexer for signal <_n5978> created at line 553.
+    Found 1-bit 4-to-1 multiplexer for signal <_n5980> created at line 515.
+    Found 1-bit 4-to-1 multiplexer for signal <_n5982> created at line 769.
+    Found 1-bit 4-to-1 multiplexer for signal <_n5984> created at line 697.
+    Found 1-bit 4-to-1 multiplexer for signal <_n5986> created at line 591.
+    Found 1-bit 4-to-1 multiplexer for signal <_n5988> created at line 553.
+    Found 1-bit 4-to-1 multiplexer for signal <_n5990> created at line 515.
+    Found 1-bit 4-to-1 multiplexer for signal <_n5992> created at line 769.
+    Found 1-bit 4-to-1 multiplexer for signal <_n5994> created at line 697.
+    Found 1-bit 4-to-1 multiplexer for signal <_n5996> created at line 591.
+    Found 1-bit 4-to-1 multiplexer for signal <_n5998> created at line 553.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6000> created at line 515.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6002> created at line 769.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6004> created at line 697.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6006> created at line 591.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6008> created at line 553.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6010> created at line 515.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6012> created at line 769.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6014> created at line 697.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6016> created at line 591.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6018> created at line 553.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6020> created at line 515.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6022> created at line 769.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6024> created at line 697.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6026> created at line 591.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6028> created at line 553.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6030> created at line 515.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6032> created at line 769.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6034> created at line 697.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6036> created at line 591.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6038> created at line 553.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6040> created at line 515.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6042> created at line 769.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6044> created at line 697.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6046> created at line 591.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6048> created at line 553.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6050> created at line 515.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6052> created at line 769.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6054> created at line 697.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6056> created at line 591.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6058> created at line 553.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6060> created at line 515.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6062> created at line 769.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6064> created at line 697.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6066> created at line 591.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6068> created at line 553.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6070> created at line 515.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6072> created at line 769.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6074> created at line 697.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6076> created at line 591.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6078> created at line 553.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6080> created at line 515.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6082> created at line 769.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6084> created at line 697.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6086> created at line 591.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6088> created at line 553.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6090> created at line 515.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6092> created at line 769.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6094> created at line 697.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6096> created at line 591.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6098> created at line 553.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6100> created at line 515.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6102> created at line 769.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6104> created at line 697.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6106> created at line 591.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6108> created at line 553.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6110> created at line 515.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6112> created at line 769.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6114> created at line 697.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6116> created at line 591.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6118> created at line 553.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6120> created at line 515.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6123> created at line 697.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6125> created at line 591.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6127> created at line 553.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6129> created at line 515.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6132> created at line 697.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6134> created at line 591.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6136> created at line 553.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6138> created at line 515.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6141> created at line 697.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6143> created at line 591.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6145> created at line 553.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6147> created at line 515.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6150> created at line 697.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6152> created at line 591.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6154> created at line 553.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6156> created at line 515.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6159> created at line 697.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6161> created at line 591.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6163> created at line 553.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6165> created at line 515.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6168> created at line 697.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6170> created at line 591.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6172> created at line 553.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6174> created at line 515.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6176> created at line 769.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6178> created at line 697.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6180> created at line 591.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6182> created at line 553.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6184> created at line 515.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6186> created at line 769.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6188> created at line 697.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6190> created at line 591.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6192> created at line 553.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6194> created at line 515.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6198> created at line 697.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6200> created at line 591.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6202> created at line 553.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6204> created at line 515.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6208> created at line 697.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6210> created at line 591.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6212> created at line 553.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6214> created at line 515.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6218> created at line 697.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6220> created at line 591.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6222> created at line 553.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6224> created at line 515.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6228> created at line 697.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6230> created at line 591.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6232> created at line 553.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6234> created at line 515.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6238> created at line 697.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6240> created at line 591.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6242> created at line 553.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6244> created at line 515.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6248> created at line 697.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6250> created at line 591.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6252> created at line 553.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6254> created at line 515.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6256> created at line 290.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6258> created at line 290.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6260> created at line 290.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6262> created at line 290.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6264> created at line 290.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6266> created at line 290.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6268> created at line 290.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6270> created at line 290.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6272> created at line 290.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6274> created at line 290.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6276> created at line 290.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6278> created at line 290.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6280> created at line 290.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6282> created at line 290.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6284> created at line 290.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6286> created at line 290.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6288> created at line 433.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6290> created at line 433.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6292> created at line 433.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6294> created at line 433.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6296> created at line 433.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6298> created at line 433.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6300> created at line 433.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6302> created at line 433.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6304> created at line 433.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6306> created at line 433.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6308> created at line 433.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6310> created at line 433.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6312> created at line 433.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6314> created at line 433.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6316> created at line 433.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6318> created at line 433.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6320> created at line 433.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6322> created at line 433.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6324> created at line 433.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6326> created at line 433.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6328> created at line 433.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6330> created at line 433.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6332> created at line 433.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6334> created at line 433.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6336> created at line 433.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6338> created at line 433.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6340> created at line 433.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6342> created at line 433.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6344> created at line 433.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6346> created at line 433.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6348> created at line 433.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6350> created at line 433.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6352> created at line 433.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6354> created at line 433.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6356> created at line 433.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6358> created at line 433.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6360> created at line 433.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6362> created at line 433.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6364> created at line 433.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6366> created at line 433.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6368> created at line 433.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6370> created at line 433.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6372> created at line 397.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6374> created at line 397.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6376> created at line 623.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6378> created at line 623.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6380> created at line 623.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6382> created at line 623.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6384> created at line 623.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6386> created at line 623.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6388> created at line 623.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6390> created at line 623.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6392> created at line 623.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6394> created at line 623.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6396> created at line 623.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6398> created at line 623.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6400> created at line 623.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6402> created at line 623.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6404> created at line 623.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6406> created at line 623.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6408> created at line 623.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6410> created at line 623.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6412> created at line 623.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6414> created at line 623.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6416> created at line 623.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6418> created at line 623.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6420> created at line 623.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6422> created at line 623.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6424> created at line 623.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6426> created at line 623.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6428> created at line 623.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6430> created at line 623.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6432> created at line 623.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6434> created at line 623.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6436> created at line 623.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6438> created at line 623.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6440> created at line 623.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6442> created at line 623.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6444> created at line 623.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6446> created at line 623.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6448> created at line 623.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6450> created at line 623.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6452> created at line 623.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6454> created at line 623.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6456> created at line 623.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6458> created at line 623.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6460> created at line 623.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6462> created at line 623.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6464> created at line 623.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6466> created at line 623.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6468> created at line 623.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6470> created at line 623.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6472> created at line 623.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6474> created at line 623.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6476> created at line 623.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6478> created at line 623.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6480> created at line 623.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6482> created at line 623.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6484> created at line 623.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6486> created at line 623.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6488> created at line 623.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6490> created at line 623.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6492> created at line 623.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6494> created at line 623.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6496> created at line 623.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6498> created at line 623.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6500> created at line 623.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6502> created at line 623.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6504> created at line 623.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6506> created at line 623.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6508> created at line 623.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6510> created at line 623.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6512> created at line 623.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6514> created at line 623.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6516> created at line 623.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6518> created at line 623.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6520> created at line 623.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6522> created at line 623.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6524> created at line 623.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6526> created at line 623.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6528> created at line 623.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6530> created at line 623.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6532> created at line 623.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6534> created at line 623.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6536> created at line 623.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6538> created at line 623.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6540> created at line 623.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6542> created at line 623.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6544> created at line 623.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6546> created at line 623.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6548> created at line 623.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6550> created at line 623.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6552> created at line 623.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6554> created at line 623.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6556> created at line 623.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6558> created at line 623.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6560> created at line 623.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6562> created at line 623.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6564> created at line 623.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6566> created at line 623.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6568> created at line 657.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6570> created at line 657.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6572> created at line 657.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6574> created at line 657.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6576> created at line 657.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6578> created at line 657.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6580> created at line 657.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6582> created at line 657.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6584> created at line 657.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6586> created at line 657.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6588> created at line 657.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6590> created at line 657.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6592> created at line 729.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6594> created at line 729.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6596> created at line 729.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6598> created at line 729.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6600> created at line 729.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6602> created at line 729.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6604> created at line 729.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6606> created at line 729.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6608> created at line 729.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6610> created at line 729.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6612> created at line 729.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6614> created at line 729.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6616> created at line 729.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6618> created at line 363.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6620> created at line 363.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6622> created at line 363.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6624> created at line 363.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6626> created at line 363.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6628> created at line 363.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6630> created at line 363.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6632> created at line 363.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6634> created at line 363.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6636> created at line 363.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6638> created at line 363.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6640> created at line 363.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6642> created at line 511.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6644> created at line 511.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6646> created at line 511.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6648> created at line 511.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6650> created at line 511.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6652> created at line 511.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6654> created at line 511.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6656> created at line 511.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6658> created at line 511.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6660> created at line 511.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6662> created at line 511.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6664> created at line 511.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6666> created at line 511.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6668> created at line 511.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6670> created at line 511.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6672> created at line 511.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6674> created at line 511.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6676> created at line 511.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6678> created at line 511.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6680> created at line 511.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6682> created at line 511.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6684> created at line 511.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6686> created at line 511.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6688> created at line 511.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6690> created at line 511.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6692> created at line 511.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6694> created at line 511.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6696> created at line 511.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6698> created at line 511.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6700> created at line 511.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6702> created at line 511.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6704> created at line 511.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6706> created at line 511.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6708> created at line 511.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6710> created at line 511.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6712> created at line 511.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6714> created at line 511.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6716> created at line 511.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6718> created at line 511.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6720> created at line 511.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6722> created at line 511.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6724> created at line 511.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6726> created at line 549.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6728> created at line 549.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6730> created at line 549.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6732> created at line 549.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6734> created at line 549.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6736> created at line 549.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6738> created at line 549.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6740> created at line 549.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6742> created at line 549.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6744> created at line 549.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6746> created at line 549.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6748> created at line 549.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6750> created at line 549.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6752> created at line 549.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6754> created at line 549.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6756> created at line 549.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6758> created at line 549.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6760> created at line 549.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6762> created at line 549.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6764> created at line 549.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6766> created at line 549.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6768> created at line 549.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6770> created at line 549.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6772> created at line 549.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6774> created at line 549.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6776> created at line 549.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6778> created at line 549.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6780> created at line 549.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6782> created at line 549.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6784> created at line 549.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6786> created at line 549.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6788> created at line 549.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6790> created at line 549.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6792> created at line 549.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6794> created at line 549.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6796> created at line 549.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6798> created at line 549.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6800> created at line 549.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6802> created at line 549.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6804> created at line 549.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6806> created at line 549.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6808> created at line 549.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6810> created at line 587.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6812> created at line 587.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6814> created at line 587.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6816> created at line 587.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6818> created at line 587.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6820> created at line 587.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6822> created at line 587.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6824> created at line 587.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6826> created at line 587.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6828> created at line 587.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6830> created at line 587.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6832> created at line 587.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6834> created at line 587.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6836> created at line 587.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6838> created at line 587.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6840> created at line 587.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6842> created at line 587.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6844> created at line 587.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6846> created at line 587.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6848> created at line 587.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6850> created at line 587.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6852> created at line 587.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6854> created at line 587.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6856> created at line 587.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6858> created at line 587.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6860> created at line 587.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6862> created at line 587.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6864> created at line 587.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6866> created at line 587.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6868> created at line 587.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6870> created at line 587.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6872> created at line 587.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6874> created at line 587.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6876> created at line 587.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6878> created at line 587.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6880> created at line 587.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6882> created at line 587.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6884> created at line 587.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6886> created at line 587.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6888> created at line 587.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6890> created at line 587.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6892> created at line 587.
+    Found 1-bit 4-to-1 multiplexer for signal <_n6894> created at line 587.
+    Found 1-bit 7-to-1 multiplexer for signal <currentposition[48]_M_current_q[41]_mux_323_OUT<41>> created at line 693.
+    Found 1-bit 7-to-1 multiplexer for signal <currentposition[48]_M_current_q[41]_mux_323_OUT<40>> created at line 693.
+    Found 1-bit 7-to-1 multiplexer for signal <currentposition[48]_M_current_q[41]_mux_323_OUT<39>> created at line 693.
+    Found 1-bit 7-to-1 multiplexer for signal <currentposition[48]_M_current_q[41]_mux_323_OUT<38>> created at line 693.
+    Found 1-bit 7-to-1 multiplexer for signal <currentposition[48]_M_current_q[41]_mux_323_OUT<37>> created at line 693.
+    Found 1-bit 7-to-1 multiplexer for signal <currentposition[48]_M_current_q[41]_mux_323_OUT<36>> created at line 693.
+    Found 1-bit 7-to-1 multiplexer for signal <currentposition[48]_M_current_q[41]_mux_323_OUT<35>> created at line 693.
+    Found 1-bit 7-to-1 multiplexer for signal <currentposition[48]_M_current_q[41]_mux_323_OUT<34>> created at line 693.
+    Found 1-bit 7-to-1 multiplexer for signal <currentposition[48]_M_current_q[41]_mux_323_OUT<33>> created at line 693.
+    Found 1-bit 7-to-1 multiplexer for signal <currentposition[48]_M_current_q[41]_mux_323_OUT<32>> created at line 693.
+    Found 1-bit 7-to-1 multiplexer for signal <currentposition[48]_M_current_q[41]_mux_323_OUT<31>> created at line 693.
+    Found 1-bit 7-to-1 multiplexer for signal <currentposition[48]_M_current_q[41]_mux_323_OUT<30>> created at line 693.
+    Found 1-bit 7-to-1 multiplexer for signal <currentposition[48]_M_current_q[41]_mux_323_OUT<29>> created at line 693.
+    Found 1-bit 7-to-1 multiplexer for signal <currentposition[48]_M_current_q[41]_mux_323_OUT<28>> created at line 693.
+    Found 1-bit 7-to-1 multiplexer for signal <currentposition[48]_M_current_q[41]_mux_323_OUT<27>> created at line 693.
+    Found 1-bit 7-to-1 multiplexer for signal <currentposition[48]_M_current_q[41]_mux_323_OUT<26>> created at line 693.
+    Found 1-bit 7-to-1 multiplexer for signal <currentposition[48]_M_current_q[41]_mux_323_OUT<25>> created at line 693.
+    Found 1-bit 7-to-1 multiplexer for signal <currentposition[48]_M_current_q[41]_mux_323_OUT<24>> created at line 693.
+    Found 1-bit 7-to-1 multiplexer for signal <currentposition[48]_M_current_q[41]_mux_323_OUT<23>> created at line 693.
+    Found 1-bit 7-to-1 multiplexer for signal <currentposition[48]_M_current_q[41]_mux_323_OUT<22>> created at line 693.
+    Found 1-bit 7-to-1 multiplexer for signal <currentposition[48]_M_current_q[41]_mux_323_OUT<21>> created at line 693.
+    Found 1-bit 7-to-1 multiplexer for signal <currentposition[48]_M_current_q[41]_mux_323_OUT<20>> created at line 693.
+    Found 1-bit 7-to-1 multiplexer for signal <currentposition[48]_M_current_q[41]_mux_323_OUT<19>> created at line 693.
+    Found 1-bit 7-to-1 multiplexer for signal <currentposition[48]_M_current_q[41]_mux_323_OUT<18>> created at line 693.
+    Found 1-bit 7-to-1 multiplexer for signal <currentposition[48]_M_current_q[41]_mux_323_OUT<17>> created at line 693.
+    Found 1-bit 7-to-1 multiplexer for signal <currentposition[48]_M_current_q[41]_mux_323_OUT<16>> created at line 693.
+    Found 1-bit 7-to-1 multiplexer for signal <currentposition[48]_M_current_q[41]_mux_323_OUT<15>> created at line 693.
+    Found 1-bit 7-to-1 multiplexer for signal <currentposition[48]_M_current_q[41]_mux_323_OUT<14>> created at line 693.
+    Found 1-bit 7-to-1 multiplexer for signal <currentposition[48]_M_current_q[41]_mux_323_OUT<13>> created at line 693.
+    Found 1-bit 7-to-1 multiplexer for signal <currentposition[48]_M_current_q[41]_mux_323_OUT<12>> created at line 693.
+    Found 1-bit 7-to-1 multiplexer for signal <currentposition[48]_M_current_q[41]_mux_323_OUT<11>> created at line 693.
+    Found 1-bit 7-to-1 multiplexer for signal <currentposition[48]_M_current_q[41]_mux_323_OUT<10>> created at line 693.
+    Found 1-bit 7-to-1 multiplexer for signal <currentposition[48]_M_current_q[41]_mux_323_OUT<9>> created at line 693.
+    Found 1-bit 7-to-1 multiplexer for signal <currentposition[48]_M_current_q[41]_mux_323_OUT<8>> created at line 693.
+    Found 1-bit 7-to-1 multiplexer for signal <currentposition[48]_M_current_q[41]_mux_323_OUT<7>> created at line 693.
+    Found 1-bit 7-to-1 multiplexer for signal <currentposition[48]_M_current_q[41]_mux_323_OUT<6>> created at line 693.
+    Found 1-bit 7-to-1 multiplexer for signal <currentposition[48]_M_current_q[41]_mux_323_OUT<5>> created at line 693.
+    Found 1-bit 7-to-1 multiplexer for signal <currentposition[48]_M_current_q[41]_mux_323_OUT<4>> created at line 693.
+    Found 1-bit 7-to-1 multiplexer for signal <currentposition[48]_M_current_q[41]_mux_323_OUT<3>> created at line 693.
+    Found 1-bit 7-to-1 multiplexer for signal <currentposition[48]_M_current_q[41]_mux_323_OUT<2>> created at line 693.
+    Found 1-bit 7-to-1 multiplexer for signal <currentposition[48]_M_current_q[41]_mux_323_OUT<1>> created at line 693.
+    Found 1-bit 7-to-1 multiplexer for signal <currentposition[48]_M_current_q[41]_mux_323_OUT<0>> created at line 693.
+    Found 1-bit 7-to-1 multiplexer for signal <currentposition[48]_M_current_q[41]_mux_359_OUT<48>> created at line 765.
+    Found 1-bit 7-to-1 multiplexer for signal <currentposition[48]_M_current_q[41]_mux_359_OUT<47>> created at line 765.
+    Found 1-bit 7-to-1 multiplexer for signal <currentposition[48]_M_current_q[41]_mux_359_OUT<46>> created at line 765.
+    Found 1-bit 7-to-1 multiplexer for signal <currentposition[48]_M_current_q[41]_mux_359_OUT<45>> created at line 765.
+    Found 1-bit 7-to-1 multiplexer for signal <currentposition[48]_M_current_q[41]_mux_359_OUT<44>> created at line 765.
+    Found 1-bit 7-to-1 multiplexer for signal <currentposition[48]_M_current_q[41]_mux_359_OUT<43>> created at line 765.
+    Found 1-bit 7-to-1 multiplexer for signal <currentposition[48]_M_current_q[41]_mux_359_OUT<42>> created at line 765.
+    Found 1-bit 7-to-1 multiplexer for signal <currentposition[48]_M_current_q[41]_mux_359_OUT<41>> created at line 765.
+    Found 1-bit 7-to-1 multiplexer for signal <currentposition[48]_M_current_q[41]_mux_359_OUT<40>> created at line 765.
+    Found 1-bit 7-to-1 multiplexer for signal <currentposition[48]_M_current_q[41]_mux_359_OUT<39>> created at line 765.
+    Found 1-bit 7-to-1 multiplexer for signal <currentposition[48]_M_current_q[41]_mux_359_OUT<38>> created at line 765.
+    Found 1-bit 7-to-1 multiplexer for signal <currentposition[48]_M_current_q[41]_mux_359_OUT<37>> created at line 765.
+    Found 1-bit 7-to-1 multiplexer for signal <currentposition[48]_M_current_q[41]_mux_359_OUT<36>> created at line 765.
+    Found 1-bit 7-to-1 multiplexer for signal <currentposition[48]_M_current_q[41]_mux_359_OUT<35>> created at line 765.
+    Found 1-bit 7-to-1 multiplexer for signal <currentposition[48]_M_current_q[41]_mux_359_OUT<34>> created at line 765.
+    Found 1-bit 7-to-1 multiplexer for signal <currentposition[48]_M_current_q[41]_mux_359_OUT<33>> created at line 765.
+    Found 1-bit 7-to-1 multiplexer for signal <currentposition[48]_M_current_q[41]_mux_359_OUT<32>> created at line 765.
+    Found 1-bit 7-to-1 multiplexer for signal <currentposition[48]_M_current_q[41]_mux_359_OUT<31>> created at line 765.
+    Found 1-bit 7-to-1 multiplexer for signal <currentposition[48]_M_current_q[41]_mux_359_OUT<30>> created at line 765.
+    Found 1-bit 7-to-1 multiplexer for signal <currentposition[48]_M_current_q[41]_mux_359_OUT<29>> created at line 765.
+    Found 1-bit 7-to-1 multiplexer for signal <currentposition[48]_M_current_q[41]_mux_359_OUT<28>> created at line 765.
+    Found 1-bit 7-to-1 multiplexer for signal <currentposition[48]_M_current_q[41]_mux_359_OUT<27>> created at line 765.
+    Found 1-bit 7-to-1 multiplexer for signal <currentposition[48]_M_current_q[41]_mux_359_OUT<26>> created at line 765.
+    Found 1-bit 7-to-1 multiplexer for signal <currentposition[48]_M_current_q[41]_mux_359_OUT<25>> created at line 765.
+    Found 1-bit 7-to-1 multiplexer for signal <currentposition[48]_M_current_q[41]_mux_359_OUT<24>> created at line 765.
+    Found 1-bit 7-to-1 multiplexer for signal <currentposition[48]_M_current_q[41]_mux_359_OUT<23>> created at line 765.
+    Found 1-bit 7-to-1 multiplexer for signal <currentposition[48]_M_current_q[41]_mux_359_OUT<22>> created at line 765.
+    Found 1-bit 7-to-1 multiplexer for signal <currentposition[48]_M_current_q[41]_mux_359_OUT<21>> created at line 765.
+    Found 1-bit 7-to-1 multiplexer for signal <currentposition[48]_M_current_q[41]_mux_359_OUT<20>> created at line 765.
+    Found 1-bit 7-to-1 multiplexer for signal <currentposition[48]_M_current_q[41]_mux_359_OUT<19>> created at line 765.
+    Found 1-bit 7-to-1 multiplexer for signal <currentposition[48]_M_current_q[41]_mux_359_OUT<18>> created at line 765.
+    Found 1-bit 7-to-1 multiplexer for signal <currentposition[48]_M_current_q[41]_mux_359_OUT<17>> created at line 765.
+    Found 1-bit 7-to-1 multiplexer for signal <currentposition[48]_M_current_q[41]_mux_359_OUT<16>> created at line 765.
+    Found 1-bit 7-to-1 multiplexer for signal <currentposition[48]_M_current_q[41]_mux_359_OUT<15>> created at line 765.
+    Found 1-bit 7-to-1 multiplexer for signal <currentposition[48]_M_current_q[41]_mux_359_OUT<14>> created at line 765.
+    Found 1-bit 7-to-1 multiplexer for signal <currentposition[48]_M_current_q[41]_mux_359_OUT<13>> created at line 765.
+    Found 1-bit 7-to-1 multiplexer for signal <currentposition[48]_M_current_q[41]_mux_359_OUT<12>> created at line 765.
+    Found 1-bit 7-to-1 multiplexer for signal <currentposition[48]_M_current_q[41]_mux_359_OUT<11>> created at line 765.
+    Found 1-bit 7-to-1 multiplexer for signal <currentposition[48]_M_current_q[41]_mux_359_OUT<10>> created at line 765.
+    Found 1-bit 7-to-1 multiplexer for signal <currentposition[48]_M_current_q[41]_mux_359_OUT<9>> created at line 765.
+    Found 1-bit 7-to-1 multiplexer for signal <currentposition[48]_M_current_q[41]_mux_359_OUT<8>> created at line 765.
+    Found 1-bit 7-to-1 multiplexer for signal <currentposition[48]_M_current_q[41]_mux_359_OUT<7>> created at line 765.
+WARNING:Xst:737 - Found 1-bit latch for signal <currentposition<47>>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
+WARNING:Xst:737 - Found 1-bit latch for signal <currentposition<46>>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
+WARNING:Xst:737 - Found 1-bit latch for signal <currentposition<45>>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
+WARNING:Xst:737 - Found 1-bit latch for signal <currentposition<44>>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
+WARNING:Xst:737 - Found 1-bit latch for signal <currentposition<43>>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
+WARNING:Xst:737 - Found 1-bit latch for signal <currentposition<42>>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
+WARNING:Xst:737 - Found 1-bit latch for signal <currentposition<41>>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
+WARNING:Xst:737 - Found 1-bit latch for signal <currentposition<40>>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
+WARNING:Xst:737 - Found 1-bit latch for signal <currentposition<39>>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
+WARNING:Xst:737 - Found 1-bit latch for signal <currentposition<38>>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
+WARNING:Xst:737 - Found 1-bit latch for signal <currentposition<37>>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
+WARNING:Xst:737 - Found 1-bit latch for signal <currentposition<36>>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
+WARNING:Xst:737 - Found 1-bit latch for signal <currentposition<35>>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
+WARNING:Xst:737 - Found 1-bit latch for signal <currentposition<34>>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
+WARNING:Xst:737 - Found 1-bit latch for signal <currentposition<33>>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
+WARNING:Xst:737 - Found 1-bit latch for signal <currentposition<32>>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
+WARNING:Xst:737 - Found 1-bit latch for signal <currentposition<31>>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
+WARNING:Xst:737 - Found 1-bit latch for signal <currentposition<30>>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
+WARNING:Xst:737 - Found 1-bit latch for signal <currentposition<29>>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
+WARNING:Xst:737 - Found 1-bit latch for signal <currentposition<28>>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
+WARNING:Xst:737 - Found 1-bit latch for signal <currentposition<27>>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
+WARNING:Xst:737 - Found 1-bit latch for signal <currentposition<26>>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
+WARNING:Xst:737 - Found 1-bit latch for signal <currentposition<25>>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
+WARNING:Xst:737 - Found 1-bit latch for signal <currentposition<24>>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
+WARNING:Xst:737 - Found 1-bit latch for signal <currentposition<23>>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
+WARNING:Xst:737 - Found 1-bit latch for signal <currentposition<22>>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
+WARNING:Xst:737 - Found 1-bit latch for signal <currentposition<21>>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
+WARNING:Xst:737 - Found 1-bit latch for signal <currentposition<20>>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
+WARNING:Xst:737 - Found 1-bit latch for signal <currentposition<19>>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
+WARNING:Xst:737 - Found 1-bit latch for signal <currentposition<18>>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
+WARNING:Xst:737 - Found 1-bit latch for signal <currentposition<17>>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
+WARNING:Xst:737 - Found 1-bit latch for signal <currentposition<16>>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
+WARNING:Xst:737 - Found 1-bit latch for signal <currentposition<15>>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
+WARNING:Xst:737 - Found 1-bit latch for signal <currentposition<14>>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
+WARNING:Xst:737 - Found 1-bit latch for signal <currentposition<13>>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
+WARNING:Xst:737 - Found 1-bit latch for signal <currentposition<12>>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
+WARNING:Xst:737 - Found 1-bit latch for signal <currentposition<11>>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
+WARNING:Xst:737 - Found 1-bit latch for signal <currentposition<10>>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
+WARNING:Xst:737 - Found 1-bit latch for signal <currentposition<9>>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
+WARNING:Xst:737 - Found 1-bit latch for signal <currentposition<8>>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
+WARNING:Xst:737 - Found 1-bit latch for signal <currentposition<7>>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
+WARNING:Xst:737 - Found 1-bit latch for signal <currentposition<6>>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
+WARNING:Xst:737 - Found 1-bit latch for signal <currentposition<5>>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
+WARNING:Xst:737 - Found 1-bit latch for signal <currentposition<4>>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
+WARNING:Xst:737 - Found 1-bit latch for signal <currentposition<3>>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
+WARNING:Xst:737 - Found 1-bit latch for signal <currentposition<2>>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
+WARNING:Xst:737 - Found 1-bit latch for signal <currentposition<1>>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
+WARNING:Xst:737 - Found 1-bit latch for signal <currentposition<0>>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
+WARNING:Xst:737 - Found 1-bit latch for signal <currentposition<48>>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
+    Summary:
+	inferred  49 D-type flip-flop(s).
+	inferred  49 Latch(s).
+	inferred 6252 Multiplexer(s).
+	inferred   1 Finite State Machine(s).
+Unit <adjacencymat_35> synthesized.
+
+Synthesizing Unit <move_6>.
+    Related source file is "C:/Users/dorette_ong/Documents/mojo/Comstruct/work/planAhead/Comstruct/Comstruct.srcs/sources_1/imports/verilog/move_6.v".
+INFO:Xst:3210 - "C:/Users/dorette_ong/Documents/mojo/Comstruct/work/planAhead/Comstruct/Comstruct.srcs/sources_1/imports/verilog/move_6.v" line 29: Output port <adjmatrix> of the instance <adjacencymat> is unconnected or connected to loadless signal.
+    Summary:
+	inferred   4 Multiplexer(s).
+Unit <move_6> synthesized.
+
+Synthesizing Unit <lightupbeforemove_37>.
+    Related source file is "C:/Users/dorette_ong/Documents/mojo/Comstruct/work/planAhead/Comstruct/Comstruct.srcs/sources_1/imports/verilog/lightupbeforemove_37.v".
+INFO:Xst:3210 - "C:/Users/dorette_ong/Documents/mojo/Comstruct/work/planAhead/Comstruct/Comstruct.srcs/sources_1/imports/verilog/lightupbeforemove_37.v" line 24: Output port <currentposition> of the instance <adjacencymat> is unconnected or connected to loadless signal.
+    Summary:
+	no macro.
+Unit <lightupbeforemove_37> synthesized.
+
+Synthesizing Unit <check_7>.
+    Related source file is "C:/Users/dorette_ong/Documents/mojo/Comstruct/work/planAhead/Comstruct/Comstruct.srcs/sources_1/imports/verilog/check_7.v".
+INFO:Xst:3210 - "C:/Users/dorette_ong/Documents/mojo/Comstruct/work/planAhead/Comstruct/Comstruct.srcs/sources_1/imports/verilog/check_7.v" line 42: Output port <currentposition> of the instance <adjacencymat> is unconnected or connected to loadless signal.
+    Found 4-bit adder for signal <n1997[3:0]> created at line 91.
+    Found 5-bit adder for signal <n2000[4:0]> created at line 93.
+    Found 4-bit adder for signal <n2143[3:0]> created at line 190.
+    Found 5-bit adder for signal <n2146[4:0]> created at line 192.
+    Found 6-bit adder for signal <_n2295> created at line 26.
+    Found 6-bit adder for signal <_n2296> created at line 26.
+    Found 6-bit adder for signal <_n2297> created at line 26.
+    Found 6-bit adder for signal <_n2298> created at line 26.
+    Found 6-bit adder for signal <_n2299> created at line 26.
+    Found 6-bit adder for signal <_n2300> created at line 26.
+    Found 6-bit adder for signal <_n2301> created at line 26.
+    Found 6-bit adder for signal <_n2302> created at line 26.
+    Found 6-bit adder for signal <_n2303> created at line 26.
+    Found 6-bit adder for signal <_n2304> created at line 26.
+    Found 6-bit adder for signal <_n2305> created at line 26.
+    Found 6-bit adder for signal <_n2306> created at line 26.
+    Found 6-bit adder for signal <_n2307> created at line 26.
+    Found 6-bit adder for signal <_n2308> created at line 26.
+    Found 6-bit adder for signal <_n2309> created at line 26.
+    Found 6-bit adder for signal <_n2310> created at line 26.
+    Found 6-bit adder for signal <_n2311> created at line 26.
+    Found 6-bit adder for signal <_n2312> created at line 26.
+    Found 6-bit adder for signal <_n2313> created at line 26.
+    Found 6-bit adder for signal <_n2314> created at line 26.
+    Found 6-bit adder for signal <_n2315> created at line 26.
+    Found 6-bit adder for signal <_n2316> created at line 26.
+    Found 6-bit adder for signal <_n2317> created at line 26.
+    Found 6-bit adder for signal <_n2318> created at line 26.
+    Found 6-bit adder for signal <_n2319> created at line 26.
+    Found 6-bit adder for signal <_n2320> created at line 26.
+    Found 6-bit adder for signal <_n2321> created at line 26.
+    Found 6-bit adder for signal <_n2322> created at line 26.
+    Found 6-bit adder for signal <_n2323> created at line 26.
+    Found 6-bit adder for signal <_n2324> created at line 26.
+    Found 6-bit adder for signal <_n2325> created at line 26.
+    Found 6-bit adder for signal <_n2326> created at line 26.
+    Found 6-bit adder for signal <_n2327> created at line 26.
+    Found 6-bit adder for signal <_n2328> created at line 26.
+    Found 6-bit adder for signal <_n2329> created at line 26.
+    Found 6-bit adder for signal <_n2330> created at line 26.
+    Found 6-bit adder for signal <_n2331> created at line 26.
+    Found 6-bit adder for signal <_n2332> created at line 26.
+    Found 6-bit adder for signal <_n2333> created at line 26.
+    Found 6-bit adder for signal <_n2334> created at line 26.
+    Found 6-bit adder for signal <_n2335> created at line 26.
+    Found 6-bit adder for signal <_n2336> created at line 26.
+    Found 6-bit adder for signal <_n2337> created at line 26.
+    Found 6-bit adder for signal <_n2338> created at line 26.
+    Found 6-bit adder for signal <_n2339> created at line 26.
+    Found 6-bit adder for signal <_n2340> created at line 26.
+    Found 6-bit adder for signal <player2sum> created at line 26.
+    Found 6-bit adder for signal <_n2342> created at line 24.
+    Found 6-bit adder for signal <_n2343> created at line 24.
+    Found 6-bit adder for signal <_n2344> created at line 24.
+    Found 6-bit adder for signal <_n2345> created at line 24.
+    Found 6-bit adder for signal <_n2346> created at line 24.
+    Found 6-bit adder for signal <_n2347> created at line 24.
+    Found 6-bit adder for signal <_n2348> created at line 24.
+    Found 6-bit adder for signal <_n2349> created at line 24.
+    Found 6-bit adder for signal <_n2350> created at line 24.
+    Found 6-bit adder for signal <_n2351> created at line 24.
+    Found 6-bit adder for signal <_n2352> created at line 24.
+    Found 6-bit adder for signal <_n2353> created at line 24.
+    Found 6-bit adder for signal <_n2354> created at line 24.
+    Found 6-bit adder for signal <_n2355> created at line 24.
+    Found 6-bit adder for signal <_n2356> created at line 24.
+    Found 6-bit adder for signal <_n2357> created at line 24.
+    Found 6-bit adder for signal <_n2358> created at line 24.
+    Found 6-bit adder for signal <_n2359> created at line 24.
+    Found 6-bit adder for signal <_n2360> created at line 24.
+    Found 6-bit adder for signal <_n2361> created at line 24.
+    Found 6-bit adder for signal <_n2362> created at line 24.
+    Found 6-bit adder for signal <_n2363> created at line 24.
+    Found 6-bit adder for signal <_n2364> created at line 24.
+    Found 6-bit adder for signal <_n2365> created at line 24.
+    Found 6-bit adder for signal <_n2366> created at line 24.
+    Found 6-bit adder for signal <_n2367> created at line 24.
+    Found 6-bit adder for signal <_n2368> created at line 24.
+    Found 6-bit adder for signal <_n2369> created at line 24.
+    Found 6-bit adder for signal <_n2370> created at line 24.
+    Found 6-bit adder for signal <_n2371> created at line 24.
+    Found 6-bit adder for signal <_n2372> created at line 24.
+    Found 6-bit adder for signal <_n2373> created at line 24.
+    Found 6-bit adder for signal <_n2374> created at line 24.
+    Found 6-bit adder for signal <_n2375> created at line 24.
+    Found 6-bit adder for signal <_n2376> created at line 24.
+    Found 6-bit adder for signal <_n2377> created at line 24.
+    Found 6-bit adder for signal <_n2378> created at line 24.
+    Found 6-bit adder for signal <_n2379> created at line 24.
+    Found 6-bit adder for signal <_n2380> created at line 24.
+    Found 6-bit adder for signal <_n2381> created at line 24.
+    Found 6-bit adder for signal <_n2382> created at line 24.
+    Found 6-bit adder for signal <_n2383> created at line 24.
+    Found 6-bit adder for signal <_n2384> created at line 24.
+    Found 6-bit adder for signal <_n2385> created at line 24.
+    Found 6-bit adder for signal <_n2386> created at line 24.
+    Found 6-bit adder for signal <_n2387> created at line 24.
+    Found 6-bit adder for signal <player1sum> created at line 24.
+    Found 6-bit comparator lessequal for signal <n0897> created at line 289
+    Found 6-bit comparator lessequal for signal <n0899> created at line 292
+    Summary:
+	inferred  98 Adder/Subtractor(s).
+	inferred   2 Comparator(s).
+	inferred 395 Multiplexer(s).
+Unit <check_7> synthesized.
+
+=========================================================================
+HDL Synthesis Report
+
+Macro Statistics
+# RAMs                                                 : 1
+ 8x7-bit single-port Read Only RAM                     : 1
+# Multipliers                                          : 1
+ 3x3-bit multiplier                                    : 1
+# Adders/Subtractors                                   : 117
+ 19-bit adder                                          : 1
+ 20-bit adder                                          : 11
+ 25-bit adder                                          : 1
+ 4-bit adder                                           : 2
+ 5-bit adder                                           : 2
+ 6-bit adder                                           : 100
+# Registers                                            : 45
+ 1-bit register                                        : 12
+ 19-bit register                                       : 1
+ 2-bit register                                        : 11
+ 20-bit register                                       : 11
+ 25-bit register                                       : 1
+ 4-bit register                                        : 1
+ 49-bit register                                       : 8
+# Latches                                              : 196
+ 1-bit latch                                           : 196
+# Comparators                                          : 2
+ 6-bit comparator lessequal                            : 2
+# Multiplexers                                         : 25574
+ 1-bit 2-to-1 multiplexer                              : 22534
+ 1-bit 23-to-1 multiplexer                             : 4
+ 1-bit 24-to-1 multiplexer                             : 192
+ 1-bit 4-to-1 multiplexer                              : 2076
+ 1-bit 7-to-1 multiplexer                              : 336
+ 19-bit 2-to-1 multiplexer                             : 1
+ 3-bit 2-to-1 multiplexer                              : 9
+ 49-bit 2-to-1 multiplexer                             : 422
+# Logic shifters                                       : 28
+ 97-bit shifter logical right                          : 28
+# Tristates                                            : 6
+ 1-bit tristate buffer                                 : 6
+# FSMs                                                 : 5
+# Xors                                                 : 3
+ 49-bit xor2                                           : 3
+
+=========================================================================
+
+=========================================================================
+*                       Advanced HDL Synthesis                          *
+=========================================================================
+
+
+Synthesizing (advanced) Unit <blinker_9>.
+The following registers are absorbed into counter <M_counter_q>: 1 register on signal <M_counter_q>.
+Unit <blinker_9> synthesized (advanced).
+
+Synthesizing (advanced) Unit <button_conditioner_14>.
+The following registers are absorbed into counter <M_ctr_q>: 1 register on signal <M_ctr_q>.
+Unit <button_conditioner_14> synthesized (advanced).
+
+Synthesizing (advanced) Unit <check_7>.
+	The following adders/subtractors are grouped into adder tree <Madd_player1sum_Madd1> :
+ 	<Madd__n2343> in block <check_7>, 	<Madd__n2344_Madd> in block <check_7>, 	<Madd__n2346> in block <check_7>, 	<Madd__n2347_Madd> in block <check_7>, 	<Madd__n2350> in block <check_7>, 	<Madd__n2351_Madd> in block <check_7>, 	<Madd__n2353> in block <check_7>, 	<Madd__n2354_Madd> in block <check_7>, 	<Madd__n2360> in block <check_7>, 	<Madd__n2361_Madd> in block <check_7>, 	<Madd__n2357> in block <check_7>, 	<Madd__n2362_Madd> in block <check_7>, 	<Madd__n2364> in block <check_7>, 	<Madd__n2365_Madd> in block <check_7>, 	<Madd__n2367> in block <check_7>, 	<Madd__n2368_Madd> in block <check_7>, 	<Madd__n2372> in block <check_7>, 	<Madd__n2373_Madd> in block <check_7>, 	<Madd__n2375> in block <check_7>, 	<Madd__n2376_Madd> in block <check_7>, 	<Madd__n2379> in block <check_7>, 	<Madd__n2380_Madd> in block <check_7>, 	<Madd__n2382> in block <check_7>, 	<Madd__n2383_Madd> in block <check_7>, 	<Madd_n1997[3:0]> in block <check_7>, 	<Madd_player1sum_Madd> in block <check_7>.
+	The following adders/subtractors are grouped into adder tree <Madd_player2sum_Madd1> :
+ 	<Madd__n2296> in block <check_7>, 	<Madd__n2297_Madd> in block <check_7>, 	<Madd__n2299> in block <check_7>, 	<Madd__n2300_Madd> in block <check_7>, 	<Madd__n2303> in block <check_7>, 	<Madd__n2304_Madd> in block <check_7>, 	<Madd__n2306> in block <check_7>, 	<Madd__n2307_Madd> in block <check_7>, 	<Madd__n2313> in block <check_7>, 	<Madd__n2314_Madd> in block <check_7>, 	<Madd__n2310> in block <check_7>, 	<Madd__n2315_Madd> in block <check_7>, 	<Madd__n2317> in block <check_7>, 	<Madd__n2318_Madd> in block <check_7>, 	<Madd__n2320> in block <check_7>, 	<Madd__n2321_Madd> in block <check_7>, 	<Madd__n2325> in block <check_7>, 	<Madd__n2326_Madd> in block <check_7>, 	<Madd__n2328> in block <check_7>, 	<Madd__n2329_Madd> in block <check_7>, 	<Madd__n2332> in block <check_7>, 	<Madd__n2333_Madd> in block <check_7>, 	<Madd__n2335> in block <check_7>, 	<Madd__n2336_Madd> in block <check_7>, 	<Madd_n2143[3:0]> in block <check_7>, 	<Madd_player2sum_Madd> in block <check_7>.
+	The following adders/subtractors are grouped into adder tree <Madd__n23871> :
+ 	<Madd__n2348> in block <check_7>, 	<Madd__n2355> in block <check_7>, 	<Madd__n2370> in block <check_7>, 	<Madd__n2369> in block <check_7>, 	<Madd__n2377> in block <check_7>, 	<Madd__n2384> in block <check_7>.
+	The following adders/subtractors are grouped into adder tree <Madd__n23401> :
+ 	<Madd__n2301> in block <check_7>, 	<Madd__n2308> in block <check_7>, 	<Madd__n2323> in block <check_7>, 	<Madd__n2322> in block <check_7>, 	<Madd__n2330> in block <check_7>, 	<Madd__n2337> in block <check_7>.
+Unit <check_7> synthesized (advanced).
+
+Synthesizing (advanced) Unit <counter_8>.
+The following registers are absorbed into counter <M_ctr_q>: 1 register on signal <M_ctr_q>.
+Unit <counter_8> synthesized (advanced).
+
+Synthesizing (advanced) Unit <myDigitsDecoder_11>.
+INFO:Xst:3218 - HDL ADVISOR - The RAM <Mram_out> will be implemented on LUTs either because you have described an asynchronous read or because of currently unsupported block RAM features. If you have described an asynchronous read, making it synchronous would allow you to take advantage of available block RAM resources, for optimized device usage and improved timings. Please refer to your documentation for coding guidelines.
+    -----------------------------------------------------------------------
+    | ram_type           | Distributed                         |          |
+    -----------------------------------------------------------------------
+    | Port A                                                              |
+    |     aspect ratio   | 8-word x 7-bit                      |          |
+    |     weA            | connected to signal <GND>           | high     |
+    |     addrA          | connected to signal <in>            |          |
+    |     diA            | connected to signal <GND>           |          |
+    |     doA            | connected to signal <out>           |          |
+    -----------------------------------------------------------------------
+Unit <myDigitsDecoder_11> synthesized (advanced).
+
+=========================================================================
+Advanced HDL Synthesis Report
+
+Macro Statistics
+# RAMs                                                 : 1
+ 8x7-bit single-port distributed Read Only RAM         : 1
+# Multipliers                                          : 1
+ 3x3-bit multiplier                                    : 1
+# Adders/Subtractors                                   : 6
+ 6-bit adder                                           : 6
+# Adder Trees                                          : 2
+ 6-bit / 36-inputs adder tree                          : 2
+# Counters                                             : 13
+ 19-bit up counter                                     : 1
+ 20-bit up counter                                     : 11
+ 25-bit up counter                                     : 1
+# Registers                                            : 430
+ Flip-Flops                                            : 430
+# Comparators                                          : 2
+ 6-bit comparator lessequal                            : 2
+# Multiplexers                                         : 25573
+ 1-bit 2-to-1 multiplexer                              : 22534
+ 1-bit 23-to-1 multiplexer                             : 4
+ 1-bit 24-to-1 multiplexer                             : 192
+ 1-bit 4-to-1 multiplexer                              : 2076
+ 1-bit 7-to-1 multiplexer                              : 336
+ 3-bit 2-to-1 multiplexer                              : 9
+ 49-bit 2-to-1 multiplexer                             : 422
+# Logic shifters                                       : 28
+ 97-bit shifter logical right                          : 28
+# FSMs                                                 : 5
+# Xors                                                 : 3
+ 49-bit xor2                                           : 3
+
+=========================================================================
+
+=========================================================================
+*                         Low Level Synthesis                           *
+=========================================================================
+Analyzing FSM <MFsm> for best encoding.
+Optimizing FSM <FSM_0> on signal <M_state_q[1:3]> with gray encoding.
+-------------------
+ State | Encoding
+-------------------
+ 000   | 000
+ 001   | 001
+ 010   | 011
+ 011   | 010
+ 101   | 110
+ 110   | 111
+ 111   | 101
+-------------------
+Analyzing FSM <MFsm> for best encoding.
+Optimizing FSM <select/adjacencymat/FSM_1> on signal <M_state_q[1:5]> with gray encoding.
+Optimizing FSM <move/adjacencymat/FSM_1> on signal <M_state_q[1:5]> with gray encoding.
+Optimizing FSM <move/lightupbeforemove/adjacencymat/FSM_1> on signal <M_state_q[1:5]> with gray encoding.
+Optimizing FSM <check/adjacencymat/FSM_1> on signal <M_state_q[1:5]> with gray encoding.
+-------------------
+ State | Encoding
+-------------------
+ 00000 | 00000
+ 10100 | 00001
+ 10011 | 00011
+ 10010 | 00010
+ 10001 | 00110
+ 10000 | 00111
+ 01111 | 00101
+ 01110 | 00100
+ 01101 | 01100
+ 01100 | 01101
+ 01011 | 01111
+ 01010 | 01110
+ 01001 | 01010
+ 01000 | 01011
+ 00111 | 01001
+ 00110 | 01000
+ 00101 | 11000
+ 00100 | 11001
+ 00011 | 11011
+ 00010 | 11010
+ 00001 | 11110
+-------------------
+
+Optimizing unit <mojo_top_0> ...
+
+Optimizing unit <ledmatrix_2> ...
+
+Optimizing unit <buttons_3> ...
+
+Optimizing unit <select_5> ...
+
+Optimizing unit <adjacencymat_35> ...
+
+Optimizing unit <move_6> ...
+
+Optimizing unit <lightupbeforemove_37> ...
+
+Optimizing unit <check_7> ...
+WARNING:Xst:2677 - Node <buttons/confirmbutton_1cond/M_ctr_q_19> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <buttons/confirmbutton_1cond/M_ctr_q_18> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <buttons/confirmbutton_1cond/M_ctr_q_17> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <buttons/confirmbutton_1cond/M_ctr_q_16> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <buttons/confirmbutton_1cond/M_ctr_q_15> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <buttons/confirmbutton_1cond/M_ctr_q_14> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <buttons/confirmbutton_1cond/M_ctr_q_13> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <buttons/confirmbutton_1cond/M_ctr_q_12> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <buttons/confirmbutton_1cond/M_ctr_q_11> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <buttons/confirmbutton_1cond/M_ctr_q_10> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <buttons/confirmbutton_1cond/M_ctr_q_9> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <buttons/confirmbutton_1cond/M_ctr_q_8> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <buttons/confirmbutton_1cond/M_ctr_q_7> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <buttons/confirmbutton_1cond/M_ctr_q_6> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <buttons/confirmbutton_1cond/M_ctr_q_5> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <buttons/confirmbutton_1cond/M_ctr_q_4> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <buttons/confirmbutton_1cond/M_ctr_q_3> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <buttons/confirmbutton_1cond/M_ctr_q_2> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <buttons/confirmbutton_1cond/M_ctr_q_1> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <buttons/confirmbutton_1cond/M_ctr_q_0> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <buttons/confirmbutton_2cond/M_ctr_q_19> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <buttons/confirmbutton_2cond/M_ctr_q_18> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <buttons/confirmbutton_2cond/M_ctr_q_17> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <buttons/confirmbutton_2cond/M_ctr_q_16> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <buttons/confirmbutton_2cond/M_ctr_q_15> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <buttons/confirmbutton_2cond/M_ctr_q_14> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <buttons/confirmbutton_2cond/M_ctr_q_13> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <buttons/confirmbutton_2cond/M_ctr_q_12> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <buttons/confirmbutton_2cond/M_ctr_q_11> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <buttons/confirmbutton_2cond/M_ctr_q_10> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <buttons/confirmbutton_2cond/M_ctr_q_9> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <buttons/confirmbutton_2cond/M_ctr_q_8> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <buttons/confirmbutton_2cond/M_ctr_q_7> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <buttons/confirmbutton_2cond/M_ctr_q_6> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <buttons/confirmbutton_2cond/M_ctr_q_5> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <buttons/confirmbutton_2cond/M_ctr_q_4> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <buttons/confirmbutton_2cond/M_ctr_q_3> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <buttons/confirmbutton_2cond/M_ctr_q_2> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <buttons/confirmbutton_2cond/M_ctr_q_1> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <buttons/confirmbutton_2cond/M_ctr_q_0> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <buttons/confirmbutton_2cond/sync/M_pipe_q_0> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <buttons/confirmbutton_2cond/sync/M_pipe_q_1> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <buttons/confirmbutton_1cond/sync/M_pipe_q_0> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <buttons/confirmbutton_1cond/sync/M_pipe_q_1> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <buttons/edgeconfirm1/M_last_q> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <buttons/edgeconfirm2/M_last_q> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <move/lightupbeforemove/adjacencymat/M_current_q_0> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <move/lightupbeforemove/adjacencymat/M_current_q_1> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <move/lightupbeforemove/adjacencymat/M_current_q_2> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <move/lightupbeforemove/adjacencymat/M_current_q_3> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <move/lightupbeforemove/adjacencymat/M_current_q_4> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <move/lightupbeforemove/adjacencymat/M_current_q_5> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <move/lightupbeforemove/adjacencymat/M_current_q_6> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <move/lightupbeforemove/adjacencymat/M_current_q_7> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <move/lightupbeforemove/adjacencymat/M_current_q_8> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <move/lightupbeforemove/adjacencymat/M_current_q_9> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <move/lightupbeforemove/adjacencymat/M_current_q_10> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <move/lightupbeforemove/adjacencymat/M_current_q_11> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <move/lightupbeforemove/adjacencymat/M_current_q_12> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <move/lightupbeforemove/adjacencymat/M_current_q_13> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <move/lightupbeforemove/adjacencymat/M_current_q_14> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <move/lightupbeforemove/adjacencymat/M_current_q_15> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <move/lightupbeforemove/adjacencymat/M_current_q_16> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <move/lightupbeforemove/adjacencymat/M_current_q_17> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <move/lightupbeforemove/adjacencymat/M_current_q_18> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <move/lightupbeforemove/adjacencymat/M_current_q_19> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <move/lightupbeforemove/adjacencymat/M_current_q_20> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <move/lightupbeforemove/adjacencymat/M_current_q_21> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <move/lightupbeforemove/adjacencymat/M_current_q_22> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <move/lightupbeforemove/adjacencymat/M_current_q_23> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <move/lightupbeforemove/adjacencymat/M_current_q_24> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <move/lightupbeforemove/adjacencymat/M_current_q_25> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <move/lightupbeforemove/adjacencymat/M_current_q_26> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <move/lightupbeforemove/adjacencymat/M_current_q_27> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <move/lightupbeforemove/adjacencymat/M_current_q_28> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <move/lightupbeforemove/adjacencymat/M_current_q_29> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <move/lightupbeforemove/adjacencymat/M_current_q_30> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <move/lightupbeforemove/adjacencymat/M_current_q_31> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <move/lightupbeforemove/adjacencymat/M_current_q_32> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <move/lightupbeforemove/adjacencymat/M_current_q_33> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <move/lightupbeforemove/adjacencymat/M_current_q_34> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <move/lightupbeforemove/adjacencymat/M_current_q_35> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <move/lightupbeforemove/adjacencymat/M_current_q_36> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <move/lightupbeforemove/adjacencymat/M_current_q_37> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <move/lightupbeforemove/adjacencymat/M_current_q_38> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <move/lightupbeforemove/adjacencymat/M_current_q_39> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <move/lightupbeforemove/adjacencymat/M_current_q_40> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <move/lightupbeforemove/adjacencymat/M_current_q_41> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <move/lightupbeforemove/adjacencymat/M_current_q_42> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <move/lightupbeforemove/adjacencymat/M_current_q_43> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <move/lightupbeforemove/adjacencymat/M_current_q_44> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <move/lightupbeforemove/adjacencymat/M_current_q_45> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <move/lightupbeforemove/adjacencymat/M_current_q_46> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <move/lightupbeforemove/adjacencymat/M_current_q_47> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <move/lightupbeforemove/adjacencymat/M_current_q_48> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <move/lightupbeforemove/adjacencymat/currentposition_41> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <move/lightupbeforemove/adjacencymat/currentposition_38> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <move/lightupbeforemove/adjacencymat/currentposition_40> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <move/lightupbeforemove/adjacencymat/currentposition_39> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <move/lightupbeforemove/adjacencymat/currentposition_35> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <move/lightupbeforemove/adjacencymat/currentposition_37> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <move/lightupbeforemove/adjacencymat/currentposition_36> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <move/lightupbeforemove/adjacencymat/currentposition_32> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <move/lightupbeforemove/adjacencymat/currentposition_34> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <move/lightupbeforemove/adjacencymat/currentposition_33> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <move/lightupbeforemove/adjacencymat/currentposition_29> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <move/lightupbeforemove/adjacencymat/currentposition_31> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <move/lightupbeforemove/adjacencymat/currentposition_30> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <move/lightupbeforemove/adjacencymat/currentposition_26> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <move/lightupbeforemove/adjacencymat/currentposition_28> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <move/lightupbeforemove/adjacencymat/currentposition_27> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <move/lightupbeforemove/adjacencymat/currentposition_23> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <move/lightupbeforemove/adjacencymat/currentposition_25> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <move/lightupbeforemove/adjacencymat/currentposition_24> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <move/lightupbeforemove/adjacencymat/currentposition_20> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <move/lightupbeforemove/adjacencymat/currentposition_22> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <move/lightupbeforemove/adjacencymat/currentposition_21> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <move/lightupbeforemove/adjacencymat/currentposition_17> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <move/lightupbeforemove/adjacencymat/currentposition_19> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <move/lightupbeforemove/adjacencymat/currentposition_18> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <move/lightupbeforemove/adjacencymat/currentposition_14> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <move/lightupbeforemove/adjacencymat/currentposition_16> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <move/lightupbeforemove/adjacencymat/currentposition_15> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <move/lightupbeforemove/adjacencymat/currentposition_11> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <move/lightupbeforemove/adjacencymat/currentposition_13> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <move/lightupbeforemove/adjacencymat/currentposition_12> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <move/lightupbeforemove/adjacencymat/currentposition_8> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <move/lightupbeforemove/adjacencymat/currentposition_10> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <move/lightupbeforemove/adjacencymat/currentposition_9> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <move/lightupbeforemove/adjacencymat/currentposition_5> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <move/lightupbeforemove/adjacencymat/currentposition_7> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <move/lightupbeforemove/adjacencymat/currentposition_6> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <move/lightupbeforemove/adjacencymat/currentposition_2> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <move/lightupbeforemove/adjacencymat/currentposition_4> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <move/lightupbeforemove/adjacencymat/currentposition_3> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <move/lightupbeforemove/adjacencymat/currentposition_1> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <move/lightupbeforemove/adjacencymat/currentposition_0> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <move/lightupbeforemove/adjacencymat/currentposition_48> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <move/lightupbeforemove/adjacencymat/currentposition_47> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <move/lightupbeforemove/adjacencymat/currentposition_46> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <move/lightupbeforemove/adjacencymat/currentposition_45> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <move/lightupbeforemove/adjacencymat/currentposition_44> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <move/lightupbeforemove/adjacencymat/currentposition_43> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <move/lightupbeforemove/adjacencymat/currentposition_42> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <check/adjacencymat/M_current_q_0> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <check/adjacencymat/M_current_q_1> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <check/adjacencymat/M_current_q_2> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <check/adjacencymat/M_current_q_3> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <check/adjacencymat/M_current_q_4> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <check/adjacencymat/M_current_q_5> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <check/adjacencymat/M_current_q_6> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <check/adjacencymat/M_current_q_7> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <check/adjacencymat/M_current_q_8> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <check/adjacencymat/M_current_q_9> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <check/adjacencymat/M_current_q_10> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <check/adjacencymat/M_current_q_11> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <check/adjacencymat/M_current_q_12> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <check/adjacencymat/M_current_q_13> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <check/adjacencymat/M_current_q_14> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <check/adjacencymat/M_current_q_15> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <check/adjacencymat/M_current_q_16> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <check/adjacencymat/M_current_q_17> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <check/adjacencymat/M_current_q_18> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <check/adjacencymat/M_current_q_19> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <check/adjacencymat/M_current_q_20> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <check/adjacencymat/M_current_q_21> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <check/adjacencymat/M_current_q_22> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <check/adjacencymat/M_current_q_23> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <check/adjacencymat/M_current_q_24> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <check/adjacencymat/M_current_q_25> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <check/adjacencymat/M_current_q_26> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <check/adjacencymat/M_current_q_27> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <check/adjacencymat/M_current_q_28> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <check/adjacencymat/M_current_q_29> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <check/adjacencymat/M_current_q_30> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <check/adjacencymat/M_current_q_31> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <check/adjacencymat/M_current_q_32> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <check/adjacencymat/M_current_q_33> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <check/adjacencymat/M_current_q_34> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <check/adjacencymat/M_current_q_35> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <check/adjacencymat/M_current_q_36> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <check/adjacencymat/M_current_q_37> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <check/adjacencymat/M_current_q_38> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <check/adjacencymat/M_current_q_39> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <check/adjacencymat/M_current_q_40> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <check/adjacencymat/M_current_q_41> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <check/adjacencymat/M_current_q_42> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <check/adjacencymat/M_current_q_43> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <check/adjacencymat/M_current_q_44> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <check/adjacencymat/M_current_q_45> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <check/adjacencymat/M_current_q_46> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <check/adjacencymat/M_current_q_47> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <check/adjacencymat/M_current_q_48> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <check/adjacencymat/currentposition_41> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <check/adjacencymat/currentposition_38> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <check/adjacencymat/currentposition_40> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <check/adjacencymat/currentposition_39> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <check/adjacencymat/currentposition_35> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <check/adjacencymat/currentposition_37> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <check/adjacencymat/currentposition_36> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <check/adjacencymat/currentposition_32> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <check/adjacencymat/currentposition_34> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <check/adjacencymat/currentposition_33> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <check/adjacencymat/currentposition_29> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <check/adjacencymat/currentposition_31> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <check/adjacencymat/currentposition_30> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <check/adjacencymat/currentposition_26> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <check/adjacencymat/currentposition_28> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <check/adjacencymat/currentposition_27> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <check/adjacencymat/currentposition_23> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <check/adjacencymat/currentposition_25> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <check/adjacencymat/currentposition_24> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <check/adjacencymat/currentposition_20> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <check/adjacencymat/currentposition_22> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <check/adjacencymat/currentposition_21> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <check/adjacencymat/currentposition_17> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <check/adjacencymat/currentposition_19> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <check/adjacencymat/currentposition_18> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <check/adjacencymat/currentposition_14> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <check/adjacencymat/currentposition_16> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <check/adjacencymat/currentposition_15> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <check/adjacencymat/currentposition_11> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <check/adjacencymat/currentposition_13> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <check/adjacencymat/currentposition_12> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <check/adjacencymat/currentposition_8> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <check/adjacencymat/currentposition_10> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <check/adjacencymat/currentposition_9> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <check/adjacencymat/currentposition_5> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <check/adjacencymat/currentposition_7> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <check/adjacencymat/currentposition_6> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <check/adjacencymat/currentposition_2> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <check/adjacencymat/currentposition_4> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <check/adjacencymat/currentposition_3> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <check/adjacencymat/currentposition_1> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <check/adjacencymat/currentposition_0> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <check/adjacencymat/currentposition_48> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <check/adjacencymat/currentposition_47> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <check/adjacencymat/currentposition_46> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <check/adjacencymat/currentposition_45> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <check/adjacencymat/currentposition_44> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <check/adjacencymat/currentposition_43> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:2677 - Node <check/adjacencymat/currentposition_42> of sequential type is unconnected in block <mojo_top_0>.
+WARNING:Xst:1293 - FF/Latch <check/adjacencymat/M_state_q_FSM_FFd3> has a constant value of 0 in block <mojo_top_0>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <check/adjacencymat/M_state_q_FSM_FFd4> has a constant value of 0 in block <mojo_top_0>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <check/adjacencymat/M_state_q_FSM_FFd5> has a constant value of 0 in block <mojo_top_0>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <check/adjacencymat/M_state_q_FSM_FFd1> has a constant value of 0 in block <mojo_top_0>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <check/adjacencymat/M_state_q_FSM_FFd2> has a constant value of 0 in block <mojo_top_0>. This FF/Latch will be trimmed during the optimization process.
+INFO:Xst:2261 - The FF/Latch <matrix/myBlinker/M_counter_q_10> in Unit <mojo_top_0> is equivalent to the following FF/Latch, which will be removed : <matrix/ctr/M_ctr_q_10> 
+INFO:Xst:2261 - The FF/Latch <matrix/myBlinker/M_counter_q_11> in Unit <mojo_top_0> is equivalent to the following FF/Latch, which will be removed : <matrix/ctr/M_ctr_q_11> 
+INFO:Xst:2261 - The FF/Latch <matrix/myBlinker/M_counter_q_12> in Unit <mojo_top_0> is equivalent to the following FF/Latch, which will be removed : <matrix/ctr/M_ctr_q_12> 
+INFO:Xst:2261 - The FF/Latch <matrix/myBlinker/M_counter_q_13> in Unit <mojo_top_0> is equivalent to the following FF/Latch, which will be removed : <matrix/ctr/M_ctr_q_13> 
+INFO:Xst:2261 - The FF/Latch <matrix/myBlinker/M_counter_q_14> in Unit <mojo_top_0> is equivalent to the following FF/Latch, which will be removed : <matrix/ctr/M_ctr_q_14> 
+INFO:Xst:2261 - The FF/Latch <matrix/myBlinker/M_counter_q_15> in Unit <mojo_top_0> is equivalent to the following FF/Latch, which will be removed : <matrix/ctr/M_ctr_q_15> 
+INFO:Xst:2261 - The FF/Latch <matrix/myBlinker/M_counter_q_0> in Unit <mojo_top_0> is equivalent to the following FF/Latch, which will be removed : <matrix/ctr/M_ctr_q_0> 
+INFO:Xst:2261 - The FF/Latch <matrix/myBlinker/M_counter_q_1> in Unit <mojo_top_0> is equivalent to the following FF/Latch, which will be removed : <matrix/ctr/M_ctr_q_1> 
+INFO:Xst:2261 - The FF/Latch <matrix/myBlinker/M_counter_q_2> in Unit <mojo_top_0> is equivalent to the following FF/Latch, which will be removed : <matrix/ctr/M_ctr_q_2> 
+INFO:Xst:2261 - The FF/Latch <matrix/myBlinker/M_counter_q_3> in Unit <mojo_top_0> is equivalent to the following FF/Latch, which will be removed : <matrix/ctr/M_ctr_q_3> 
+INFO:Xst:2261 - The FF/Latch <matrix/myBlinker/M_counter_q_4> in Unit <mojo_top_0> is equivalent to the following FF/Latch, which will be removed : <matrix/ctr/M_ctr_q_4> 
+INFO:Xst:2261 - The FF/Latch <matrix/myBlinker/M_counter_q_5> in Unit <mojo_top_0> is equivalent to the following FF/Latch, which will be removed : <matrix/ctr/M_ctr_q_5> 
+INFO:Xst:2261 - The FF/Latch <matrix/myBlinker/M_counter_q_6> in Unit <mojo_top_0> is equivalent to the following FF/Latch, which will be removed : <matrix/ctr/M_ctr_q_6> 
+INFO:Xst:2261 - The FF/Latch <matrix/myBlinker/M_counter_q_7> in Unit <mojo_top_0> is equivalent to the following FF/Latch, which will be removed : <matrix/ctr/M_ctr_q_7> 
+INFO:Xst:2261 - The FF/Latch <matrix/myBlinker/M_counter_q_8> in Unit <mojo_top_0> is equivalent to the following FF/Latch, which will be removed : <matrix/ctr/M_ctr_q_8> 
+INFO:Xst:2261 - The FF/Latch <matrix/myBlinker/M_counter_q_9> in Unit <mojo_top_0> is equivalent to the following FF/Latch, which will be removed : <matrix/ctr/M_ctr_q_9> 
+
+Mapping all equations...
+Building and optimizing final netlist ...
+Found area constraint ratio of 100 (+ 0) on block mojo_top_0, actual ratio is 149.
+Optimizing block <mojo_top_0> to meet ratio 100 (+ 0) of 1430 slices :
+WARNING:Xst:2254 - Area constraint could not be met for block <mojo_top_0>, final ratio is 159.
+FlipFlop M_playerinvolved_q has been replicated 3 time(s)
+FlipFlop M_state_q_FSM_FFd1 has been replicated 6 time(s)
+FlipFlop M_state_q_FSM_FFd2 has been replicated 5 time(s)
+FlipFlop M_state_q_FSM_FFd3 has been replicated 9 time(s)
+
+Final Macro Processing ...
+
+Processing Unit <mojo_top_0> :
+	Found 2-bit shift register for signal <buttons/resetbuttoncond/sync/M_pipe_q_1>.
+	Found 2-bit shift register for signal <buttons/rightbutton_2cond/sync/M_pipe_q_1>.
+	Found 2-bit shift register for signal <buttons/rightbutton_1cond/sync/M_pipe_q_1>.
+	Found 2-bit shift register for signal <buttons/leftbutton_2cond/sync/M_pipe_q_1>.
+	Found 2-bit shift register for signal <buttons/leftbutton_1cond/sync/M_pipe_q_1>.
+	Found 2-bit shift register for signal <buttons/downbutton_2cond/sync/M_pipe_q_1>.
+	Found 2-bit shift register for signal <buttons/downbutton_1cond/sync/M_pipe_q_1>.
+	Found 2-bit shift register for signal <buttons/upbutton_2cond/sync/M_pipe_q_1>.
+	Found 2-bit shift register for signal <buttons/upbutton_1cond/sync/M_pipe_q_1>.
+INFO:Xst:741 - HDL ADVISOR - A 4-bit shift register was found for signal <reset_cond/M_stage_q_3> and currently occupies 4 logic cells (2 slices). Removing the set/reset logic would take advantage of SRL32 (and derived) primitives and reduce this to 1 logic cells (1 slices). Evaluate if the set/reset can be removed for this simple shift register. The majority of simple pipeline structures do not need to be set/reset operationally.
+Unit <mojo_top_0> processed.
+
+=========================================================================
+Final Register Report
+
+Macro Statistics
+# Registers                                            : 557
+ Flip-Flops                                            : 557
+# Shift Registers                                      : 9
+ 2-bit shift register                                  : 9
+
+=========================================================================
+
+=========================================================================
+*                           Partition Report                            *
+=========================================================================
+
+Partition Implementation Status
+-------------------------------
+
+  No Partitions were found in this design.
+
+-------------------------------
+
+=========================================================================
+*                            Design Summary                             *
+=========================================================================
+
+Top Level Output File Name         : mojo_top_0.ngc
+
+Primitive and Black Box Usage:
+------------------------------
+# BELS                             : 6881
+#      GND                         : 24
+#      INV                         : 22
+#      LUT1                        : 213
+#      LUT2                        : 20
+#      LUT3                        : 156
+#      LUT4                        : 339
+#      LUT5                        : 1316
+#      LUT6                        : 4188
+#      MUXCY                       : 213
+#      MUXF7                       : 160
+#      VCC                         : 22
+#      XORCY                       : 208
+# FlipFlops/Latches                : 664
+#      FD                          : 9
+#      FDE                         : 9
+#      FDR                         : 168
+#      FDRE                        : 376
+#      FDS                         : 4
+#      LD                          : 98
+# Shift Registers                  : 9
+#      SRLC16E                     : 9
+# Clock Buffers                    : 3
+#      BUFG                        : 2
+#      BUFGP                       : 1
+# IO Buffers                       : 90
+#      IBUF                        : 12
+#      OBUF                        : 72
+#      OBUFT                       : 6
+
+Device utilization summary:
+---------------------------
+
+Selected Device : 6slx9tqg144-2 
+
+
+Slice Logic Utilization: 
+ Number of Slice Registers:             664  out of  11440     5%  
+ Number of Slice LUTs:                 6263  out of   5720   109% (*) 
+    Number used as Logic:              6254  out of   5720   109% (*) 
+    Number used as Memory:                9  out of   1440     0%  
+       Number used as SRL:                9
+
+Slice Logic Distribution: 
+ Number of LUT Flip Flop pairs used:   6484
+   Number with an unused Flip Flop:    5820  out of   6484    89%  
+   Number with an unused LUT:           221  out of   6484     3%  
+   Number of fully used LUT-FF pairs:   443  out of   6484     6%  
+   Number of unique control sets:        42
+
+IO Utilization: 
+ Number of IOs:                         102
+ Number of bonded IOBs:                  91  out of    102    89%  
+
+Specific Feature Utilization:
+ Number of BUFG/BUFGCTRLs:                3  out of     16    18%  
+
+WARNING:Xst:1336 -  (*) More than 100% of Device resources are used
+
+---------------------------
+Partition Resource Summary:
+---------------------------
+
+  No Partitions were found in this design.
+
+---------------------------
+
+
+=========================================================================
+Timing Report
+
+NOTE: THESE TIMING NUMBERS ARE ONLY A SYNTHESIS ESTIMATE.
+      FOR ACCURATE TIMING INFORMATION PLEASE REFER TO THE TRACE REPORT
+      GENERATED AFTER PLACE-and-ROUTE.
+
+Clock Information:
+------------------
+-----------------------------------------------------------------------------------------------------------------+------------------------------------------------+-------+
+Clock Signal                                                                                                     | Clock buffer(FF name)                          | Load  |
+-----------------------------------------------------------------------------------------------------------------+------------------------------------------------+-------+
+clk                                                                                                              | BUFGP                                          | 575   |
+select/adjacencymat/M_state_q[4]_PWR_16_o_Mux_424_o(select/adjacencymat/Mmux_M_state_q[4]_PWR_16_o_Mux_424_o12:O)| BUFG(*)(select/adjacencymat/currentposition_42)| 49    |
+move/adjacencymat/M_state_q[4]_PWR_16_o_Mux_424_o(move/adjacencymat/Mmux_M_state_q[4]_PWR_16_o_Mux_424_o12:O)    | BUFG(*)(move/adjacencymat/currentposition_41)  | 49    |
+-----------------------------------------------------------------------------------------------------------------+------------------------------------------------+-------+
+(*) These 2 clock signal(s) are generated by combinatorial logic,
+and XST is not able to identify which are the primary clock signals.
+Please use the CLOCK_SIGNAL constraint to specify the clock signal(s) generated by combinatorial logic.
+
+Asynchronous Control Signals Information:
+----------------------------------------
+No asynchronous control signals found in this design
+
+Timing Summary:
+---------------
+Speed Grade: -2
+
+   Minimum period: 13.845ns (Maximum Frequency: 72.228MHz)
+   Minimum input arrival time before clock: 6.509ns
+   Maximum output required time after clock: 18.711ns
+   Maximum combinational path delay: No path found
+
+Timing Details:
+---------------
+All values displayed in nanoseconds (ns)
+
+=========================================================================
+Timing constraint: Default period analysis for Clock 'clk'
+  Clock period: 13.845ns (frequency: 72.228MHz)
+  Total number of paths / destination ports: 4072707 / 1485
+-------------------------------------------------------------------------
+Delay:               13.845ns (Levels of Logic = 13)
+  Source:            M_state_q_FSM_FFd1_1 (FF)
+  Destination:       M_playerinvolved_q (FF)
+  Source Clock:      clk rising
+  Destination Clock: clk rising
+
+  Data Path: M_state_q_FSM_FFd1_1 to M_playerinvolved_q
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FDR:C->Q              6   0.525   0.984  M_state_q_FSM_FFd1_1 (M_state_q_FSM_FFd1_1)
+     LUT3:I1->O           17   0.250   1.209  M_matrix_values<0>11_1 (M_matrix_values<0>11)
+     begin scope: 'move:M_matrix_values<0>11'
+     LUT5:I4->O            4   0.254   1.032  Mmux_player2moved61 (player2moved<14>)
+     end scope: 'move:player2moved<14>'
+     begin scope: 'check:M_move_player2moved<14>'
+     LUT6:I3->O            9   0.235   0.976  Mmux_player1new1 (player1new<0>)
+     LUT5:I4->O            3   0.254   0.766  ADDERTREE_INTERNAL_Madd67_lut<0>1 (ADDERTREE_INTERNAL_Madd67_lut<0>)
+     LUT5:I4->O           11   0.254   1.039  ADDERTREE_INTERNAL_Madd682 (ADDERTREE_INTERNAL_Madd68)
+     LUT4:I3->O           15   0.254   1.155  ADDERTREE_INTERNAL_Madd68_lut<0>11 (ADDERTREE_INTERNAL_Madd68_lut<0>1)
+     LUT6:I5->O            1   0.254   1.112  ADDERTREE_INTERNAL_Madd69_lut<0>221_SW1 (N461)
+     LUT6:I1->O            1   0.254   0.682  ADDERTREE_INTERNAL_Madd69_cy<0>31 (ADDERTREE_INTERNAL_Madd69_cy<0>2)
+     LUT6:I5->O            4   0.254   0.803  Mmux_endgame13 (Mmux_endgame12)
+     MUXF7:S->O            1   0.185   0.790  Mmux_endgame14_SW1 (N327)
+     end scope: 'check:N327'
+     LUT6:I4->O            4   0.250   0.000  M_playerinvolved_q_rstpot (M_playerinvolved_q_rstpot)
+     FDR:D                     0.074          M_playerinvolved_q
+    ----------------------------------------
+    Total                     13.845ns (3.297ns logic, 10.548ns route)
+                                       (23.8% logic, 76.2% route)
+
+=========================================================================
+Timing constraint: Default period analysis for Clock 'select/adjacencymat/M_state_q[4]_PWR_16_o_Mux_424_o'
+  Clock period: 7.752ns (frequency: 128.999MHz)
+  Total number of paths / destination ports: 442 / 49
+-------------------------------------------------------------------------
+Delay:               7.752ns (Levels of Logic = 6)
+  Source:            select/adjacencymat/currentposition_38 (LATCH)
+  Destination:       select/adjacencymat/currentposition_38 (LATCH)
+  Source Clock:      select/adjacencymat/M_state_q[4]_PWR_16_o_Mux_424_o falling
+  Destination Clock: select/adjacencymat/M_state_q[4]_PWR_16_o_Mux_424_o falling
+
+  Data Path: select/adjacencymat/currentposition_38 to select/adjacencymat/currentposition_38
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     LD:G->Q               7   0.581   1.340  currentposition_38 (currentposition_38)
+     LUT5:I0->O            3   0.254   1.221  Mmux_currentposition[48]_GND_16_o_mux_269_OUT[38]12 (currentposition[48]_GND_16_o_mux_269_OUT[38])
+     LUT6:I0->O            2   0.254   1.181  Mmux_currentposition[48]_currentposition[48]_MUX_2049_o111 (Mmux_currentposition[48]_currentposition[48]_MUX_2049_o11)
+     LUT6:I0->O            2   0.254   1.002  Mmux_currentposition[48]_currentposition[48]_MUX_2049_o1 (currentposition[48]_currentposition[48]_MUX_2049_o)
+     LUT6:I2->O            1   0.254   0.958  Mmux_M_state_q[4]_GND_16_o_Mux_443_o_91 (Mmux_M_state_q[4]_GND_16_o_Mux_443_o_91)
+     LUT6:I2->O            1   0.254   0.000  Mmux_M_state_q[4]_GND_16_o_Mux_443_o_41 (Mmux_M_state_q[4]_GND_16_o_Mux_443_o_4)
+     MUXF7:I0->O           1   0.163   0.000  Mmux_M_state_q[4]_GND_16_o_Mux_443_o_2_f7 (M_state_q[4]_GND_16_o_Mux_443_o)
+     LD:D                      0.036          currentposition_38
+    ----------------------------------------
+    Total                      7.752ns (2.050ns logic, 5.702ns route)
+                                       (26.4% logic, 73.6% route)
+
+=========================================================================
+Timing constraint: Default period analysis for Clock 'move/adjacencymat/M_state_q[4]_PWR_16_o_Mux_424_o'
+  Clock period: 7.786ns (frequency: 128.436MHz)
+  Total number of paths / destination ports: 442 / 49
+-------------------------------------------------------------------------
+Delay:               7.786ns (Levels of Logic = 6)
+  Source:            move/adjacencymat/currentposition_37 (LATCH)
+  Destination:       move/adjacencymat/currentposition_37 (LATCH)
+  Source Clock:      move/adjacencymat/M_state_q[4]_PWR_16_o_Mux_424_o falling
+  Destination Clock: move/adjacencymat/M_state_q[4]_PWR_16_o_Mux_424_o falling
+
+  Data Path: move/adjacencymat/currentposition_37 to move/adjacencymat/currentposition_37
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     LD:G->Q               8   0.581   1.374  currentposition_37 (currentposition_37)
+     LUT5:I0->O            3   0.254   1.221  Mmux_currentposition[48]_GND_16_o_mux_269_OUT[37]12 (currentposition[48]_GND_16_o_mux_269_OUT[37])
+     LUT6:I0->O            2   0.254   1.181  Mmux_currentposition[48]_currentposition[48]_MUX_2168_o111 (Mmux_currentposition[48]_currentposition[48]_MUX_2168_o11)
+     LUT6:I0->O            2   0.254   1.002  Mmux_currentposition[48]_currentposition[48]_MUX_2168_o1 (currentposition[48]_currentposition[48]_MUX_2168_o)
+     LUT6:I2->O            1   0.254   0.958  Mmux_M_state_q[4]_GND_16_o_Mux_445_o_91 (Mmux_M_state_q[4]_GND_16_o_Mux_445_o_91)
+     LUT6:I2->O            1   0.254   0.000  Mmux_M_state_q[4]_GND_16_o_Mux_445_o_41 (Mmux_M_state_q[4]_GND_16_o_Mux_445_o_4)
+     MUXF7:I0->O           1   0.163   0.000  Mmux_M_state_q[4]_GND_16_o_Mux_445_o_2_f7 (M_state_q[4]_GND_16_o_Mux_445_o)
+     LD:D                      0.036          currentposition_37
+    ----------------------------------------
+    Total                      7.786ns (2.050ns logic, 5.736ns route)
+                                       (26.3% logic, 73.7% route)
+
+=========================================================================
+Timing constraint: Default OFFSET IN BEFORE for Clock 'clk'
+  Total number of paths / destination ports: 253 / 89
+-------------------------------------------------------------------------
+Offset:              6.509ns (Levels of Logic = 6)
+  Source:            confirmbutton_1 (PAD)
+  Destination:       M_playerinvolved_q (FF)
+  Destination Clock: clk rising
+
+  Data Path: confirmbutton_1 to M_playerinvolved_q
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     IBUF:I->O             9   1.328   1.406  confirmbutton_1_IBUF (confirmbutton_1_IBUF)
+     begin scope: 'check:confirmbutton_1_IBUF'
+     LUT5:I0->O            1   0.254   0.910  Mmux_endgame14_SW0_SW2_SW0 (N495)
+     LUT6:I3->O            1   0.235   1.112  Mmux_endgame14_SW0_SW2 (N474)
+     end scope: 'check:N474'
+     LUT6:I1->O            1   0.254   0.682  M_playerinvolved_q_rstpot_SW3 (N466)
+     LUT6:I5->O            4   0.254   0.000  M_playerinvolved_q_rstpot (M_playerinvolved_q_rstpot)
+     FDR:D                     0.074          M_playerinvolved_q
+    ----------------------------------------
+    Total                      6.509ns (2.399ns logic, 4.110ns route)
+                                       (36.9% logic, 63.1% route)
+
+=========================================================================
+Timing constraint: Default OFFSET OUT AFTER for Clock 'clk'
+  Total number of paths / destination ports: 131710 / 35
+-------------------------------------------------------------------------
+Offset:              18.711ns (Levels of Logic = 13)
+  Source:            M_state_q_FSM_FFd2_5 (FF)
+  Destination:       blue<6> (PAD)
+  Source Clock:      clk rising
+
+  Data Path: M_state_q_FSM_FFd2_5 to blue<6>
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FDR:C->Q             13   0.525   1.326  M_state_q_FSM_FFd2_5 (M_state_q_FSM_FFd2_5)
+     LUT3:I0->O          591   0.235   2.482  Mmux_M_cursor_d1411 (Mmux_M_cursor_d141)
+     begin scope: 'select:Mmux_M_cursor_d141'
+     LUT5:I4->O            1   0.254   0.910  Mmux_successfulselect115 (Mmux_successfulselect114)
+     LUT5:I2->O            1   0.235   0.682  Mmux_successfulselect121_SW0 (N32)
+     LUT6:I5->O            1   0.254   0.682  Mmux_successfulselect121 (Mmux_successfulselect120)
+     LUT6:I5->O            1   0.254   0.790  Mmux_successfulselect191_SW0 (N74)
+     LUT6:I4->O           51   0.250   1.937  Mmux_successfulselect191 (successfulselect)
+     end scope: 'select:successfulselect'
+     LUT6:I4->O            3   0.250   1.196  M_matrix_values<7>1 (M_matrix_values<139>)
+     begin scope: 'matrix:M_matrix_values<139>'
+     LUT5:I0->O            1   0.254   0.958  columnblue<6>1 (columnblue<6>)
+     LUT6:I2->O            1   0.254   1.137  columnblue<6>4 (columnblue<6>3)
+     LUT6:I0->O            1   0.254   0.681  columnblue<6>10 (blue_6_OBUF)
+     end scope: 'matrix:columnblue<6>'
+     OBUF:I->O                 2.912          blue_6_OBUF (blue<6>)
+    ----------------------------------------
+    Total                     18.711ns (5.931ns logic, 12.780ns route)
+                                       (31.7% logic, 68.3% route)
+
+=========================================================================
+
+Cross Clock Domains Report:
+--------------------------
+
+Clock to Setup on destination clock clk
+---------------------------------------------------+---------+---------+---------+---------+
+                                                   | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
+Source Clock                                       |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
+---------------------------------------------------+---------+---------+---------+---------+
+clk                                                |   13.845|         |         |         |
+move/adjacencymat/M_state_q[4]_PWR_16_o_Mux_424_o  |         |   13.806|         |         |
+select/adjacencymat/M_state_q[4]_PWR_16_o_Mux_424_o|         |   13.952|         |         |
+---------------------------------------------------+---------+---------+---------+---------+
+
+Clock to Setup on destination clock move/adjacencymat/M_state_q[4]_PWR_16_o_Mux_424_o
+-------------------------------------------------+---------+---------+---------+---------+
+                                                 | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
+Source Clock                                     |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
+-------------------------------------------------+---------+---------+---------+---------+
+clk                                              |         |         |   18.929|         |
+move/adjacencymat/M_state_q[4]_PWR_16_o_Mux_424_o|         |         |    7.786|         |
+-------------------------------------------------+---------+---------+---------+---------+
+
+Clock to Setup on destination clock select/adjacencymat/M_state_q[4]_PWR_16_o_Mux_424_o
+---------------------------------------------------+---------+---------+---------+---------+
+                                                   | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
+Source Clock                                       |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
+---------------------------------------------------+---------+---------+---------+---------+
+clk                                                |         |         |   18.938|         |
+select/adjacencymat/M_state_q[4]_PWR_16_o_Mux_424_o|         |         |    7.752|         |
+---------------------------------------------------+---------+---------+---------+---------+
+
+=========================================================================
+
+
+Total REAL time to Xst completion: 95.00 secs
+Total CPU time to Xst completion: 95.18 secs
+ 
+--> 
+
+Total memory usage is 475588 kilobytes
+
+Number of errors   :    0 (   0 filtered)
+Number of warnings :  312 (   0 filtered)
+Number of infos    :   23 (   0 filtered)
+

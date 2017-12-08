@@ -1,0 +1,18 @@
+module myDigitsDecoder (
+    input in[3],
+    output out[7]
+  ) {
+
+  always {
+    case (in){
+      0: out = 7b0000001;
+      1: out = 7b0000010;
+      2: out = 7b0000100;
+      3: out = 7b0001000;
+      4: out = 7b0010000;
+      5: out = 7b0100000;
+      6: out = 7b1000000;
+      default: out = 7b0000000;
+      }
+  }
+}

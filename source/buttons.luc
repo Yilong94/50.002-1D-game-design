@@ -1,0 +1,136 @@
+module buttons (
+    input clk,       // clock
+    input rst,       // reset
+   input confirmbutton_1,
+   input upbutton_1,
+   input downbutton_1,
+   input rightbutton_1,
+   input leftbutton_1,
+   input confirmbutton_2,
+   input upbutton_2,
+   input downbutton_2,
+   input rightbutton_2,
+   input leftbutton_2,
+   input resetbutton,
+   
+    output confirmbutton_1new,
+    output upbutton_1new,
+    output downbutton_1new,
+    output rightbutton_1new,
+    output leftbutton_1new,
+    output confirmbutton_2new,
+    output upbutton_2new,
+    output downbutton_2new,
+    output rightbutton_2new,
+    output leftbutton_2new,
+    output resetbutton_new
+  ) {
+   
+  .clk(clk) {
+    edge_detector edgeconfirm1(#RISE(1), #FALL(0)); // detect rising edges     
+    button_conditioner confirmbutton_1cond;     // button input conditioner
+    
+    edge_detector edgeconfirm2(#RISE(1), #FALL(0)); // detect rising edges     
+    button_conditioner confirmbutton_2cond;     // button input conditioner
+    
+    edge_detector edgeupbutton1(#RISE(1), #FALL(0)); // detect rising edges     
+    button_conditioner upbutton_1cond;     // button input conditioner
+    
+    edge_detector edgeupbutton2(#RISE(1), #FALL(0)); // detect rising edges     
+    button_conditioner upbutton_2cond;     // button input conditioner
+    
+    edge_detector edgedownbutton1(#RISE(1), #FALL(0)); // detect rising edges     
+    button_conditioner downbutton_1cond;     // button input conditioner
+    
+    edge_detector edgedownbutton2(#RISE(1), #FALL(0)); // detect rising edges     
+    button_conditioner downbutton_2cond;     // button input conditioner
+    
+    edge_detector edgeleftbutton1(#RISE(1), #FALL(0)); // detect rising edges     
+    button_conditioner leftbutton_1cond;     // button input conditioner
+    
+    edge_detector edgeleftbutton2(#RISE(1), #FALL(0)); // detect rising edges     
+    button_conditioner leftbutton_2cond;     // button input conditioner
+    
+    edge_detector edgerightbutton1(#RISE(1), #FALL(0)); // detect rising edges     
+    button_conditioner rightbutton_1cond;     // button input conditioner
+    
+    edge_detector edgerightbutton2(#RISE(1), #FALL(0)); // detect rising edges     
+    button_conditioner rightbutton_2cond;     // button input conditioner
+    
+    edge_detector edgeresetbutton(#RISE(1), #FALL(0)); // detect rising edges     
+    button_conditioner resetbuttoncond;     // button input conditioner
+     
+     
+    .rst(rst) {
+    }
+  }
+ 
+  always {
+    confirmbutton_1cond.in = confirmbutton_1;            // raw button input
+    edgeconfirm1.in = confirmbutton_1cond.out; // input to the edge_detector   
+    if (edgeconfirm1.out){              // if edge detected
+     confirmbutton_1new =1  ; }           // add one to the counter}
+    else{confirmbutton_1new=0;}
+    
+    confirmbutton_2cond.in = confirmbutton_2;            // raw button input
+    edgeconfirm2.in = confirmbutton_2cond.out; // input to the edge_detector   
+    if (edgeconfirm2.out){              // if edge detected
+     confirmbutton_2new =1  ; }           // add one to the counter}
+    else{confirmbutton_2new=0;}
+    
+    upbutton_1cond.in = upbutton_1;            // raw button input
+    edgeupbutton1.in = upbutton_1cond.out; // input to the edge_detector   
+    if (edgeupbutton1.out){              // if edge detected
+     upbutton_1new =1  ; }           // add one to the counter}
+    else{upbutton_1new=0;}
+    
+    upbutton_2cond.in = upbutton_2;            // raw button input
+    edgeupbutton2.in = upbutton_2cond.out; // input to the edge_detector   
+    if (edgeupbutton2.out){              // if edge detected
+     upbutton_2new =1  ; }           // add one to the counter}
+    else{upbutton_2new=0;}
+    
+    leftbutton_1cond.in = leftbutton_1;            // raw button input
+    edgeleftbutton1.in = leftbutton_1cond.out; // input to the edge_detector   
+    if (edgeleftbutton1.out){              // if edge detected
+     leftbutton_1new =1  ; }           // add one to the counter}
+    else{leftbutton_1new=0;}
+    
+    leftbutton_2cond.in = leftbutton_2;            // raw button input
+    edgeleftbutton2.in = leftbutton_2cond.out; // input to the edge_detector   
+    if (edgeleftbutton2.out){              // if edge detected
+     leftbutton_2new =1  ; }           // add one to the counter}
+    else{leftbutton_2new=0;}
+    
+        
+    rightbutton_1cond.in = rightbutton_1;            // raw button input
+    edgerightbutton1.in = rightbutton_1cond.out; // input to the edge_detector   
+    if (edgerightbutton1.out){              // if edge detected
+     rightbutton_1new =1  ; }           // add one to the counter}
+    else{rightbutton_1new=0;}
+    
+    rightbutton_2cond.in = rightbutton_2;            // raw button input
+    edgerightbutton2.in = rightbutton_2cond.out; // input to the edge_detector   
+    if (edgerightbutton2.out){              // if edge detected
+     rightbutton_2new =1  ; }           // add one to the counter}
+    else{rightbutton_2new=0;}
+    
+    downbutton_1cond.in = downbutton_1;            // raw button input
+    edgedownbutton1.in = downbutton_1cond.out; // input to the edge_detector   
+    if (edgedownbutton1.out){              // if edge detected
+     downbutton_1new =1  ; }           // add one to the counter}
+    else{downbutton_1new=0;}
+    
+    downbutton_2cond.in = downbutton_2;            // raw button input
+    edgedownbutton2.in = downbutton_2cond.out; // input to the edge_detector   
+    if (edgedownbutton2.out){              // if edge detected
+     downbutton_2new =1  ; }           // add one to the counter}
+    else{downbutton_2new=0;}
+    
+    resetbuttoncond.in = resetbutton;            // raw button input
+    edgeresetbutton.in = resetbuttoncond.out; // input to the edge_detector   
+    if (edgeresetbutton.out){              // if edge detected
+      resetbutton_new =1  ; }           // add one to the counter}
+    else{resetbutton_new=0;}
+  }
+}

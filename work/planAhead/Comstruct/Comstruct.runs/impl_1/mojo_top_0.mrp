@@ -1,0 +1,235 @@
+Release 14.7 Map P.20131013 (nt64)
+Xilinx Mapping Report File for Design 'mojo_top_0'
+
+Design Information
+------------------
+Command Line   : map -intstyle pa -w -pr b -mt on mojo_top_0.ngd 
+Target Device  : xc6slx9
+Target Package : tqg144
+Target Speed   : -2
+Mapper Version : spartan6 -- $Revision: 1.55 $
+Mapped Date    : Fri Dec 08 02:47:10 2017
+
+Interim Summary
+---------------
+Slice Logic Utilization:
+  Number of Slice Registers:                   664 out of  11,440    5%
+    Number used as Flip Flops:                 566
+    Number used as Latches:                     98
+    Number used as Latch-thrus:                  0
+    Number used as AND/OR logics:                0
+  Number of Slice LUTs:                      5,881 out of   5,720  102% (OVERMAPPED)
+    Number used as logic:                    5,865 out of   5,720  102% (OVERMAPPED)
+      Number using O6 output only:           5,274
+      Number using O5 output only:             202
+      Number using O5 and O6:                  389
+      Number used as ROM:                        0
+    Number used as Memory:                       5 out of   1,440    1%
+      Number used as Dual Port RAM:              0
+      Number used as Single Port RAM:            0
+      Number used as Shift Register:             5
+        Number using O6 output only:             1
+        Number using O5 output only:             0
+        Number using O5 and O6:                  4
+    Number used exclusively as route-thrus:     11
+      Number with same-slice register load:      0
+      Number with same-slice carry load:        11
+      Number with other load:                    0
+
+Slice Logic Distribution:
+  Number of MUXCYs used:                       228 out of   2,860    7%
+  Number of LUT Flip Flop pairs used:        5,919
+    Number with an unused Flip Flop:         5,280 out of   5,919   89%
+    Number with an unused LUT:                  38 out of   5,919    1%
+    Number of fully used LUT-FF pairs:         601 out of   5,919   10%
+    Number of unique control sets:              21
+    Number of slice register sites lost
+      to control set restrictions:             103 out of  11,440    1%
+
+  A LUT Flip Flop pair for this architecture represents one LUT paired with
+  one Flip Flop within a slice.  A control set is a unique combination of
+  clock, reset, set, and enable signals for a registered element.
+  The Slice Logic Distribution report is not meaningful if the design is
+  over-mapped for a non-slice resource or if Placement fails.
+
+IO Utilization:
+  Number of bonded IOBs:                        91 out of     102   89%
+    Number of LOCed IOBs:                       75 out of      91   82%
+
+Specific Feature Utilization:
+  Number of RAMB16BWERs:                         0 out of      32    0%
+  Number of RAMB8BWERs:                          0 out of      64    0%
+  Number of BUFIO2/BUFIO2_2CLKs:                 0 out of      32    0%
+  Number of BUFIO2FB/BUFIO2FB_2CLKs:             0 out of      32    0%
+  Number of BUFG/BUFGMUXs:                       3 out of      16   18%
+    Number used as BUFGs:                        3
+    Number used as BUFGMUX:                      0
+  Number of DCM/DCM_CLKGENs:                     0 out of       4    0%
+  Number of ILOGIC2/ISERDES2s:                   0 out of     200    0%
+  Number of IODELAY2/IODRP2/IODRP2_MCBs:         0 out of     200    0%
+  Number of OLOGIC2/OSERDES2s:                   0 out of     200    0%
+  Number of BSCANs:                              0 out of       4    0%
+  Number of BUFHs:                               0 out of     128    0%
+  Number of BUFPLLs:                             0 out of       8    0%
+  Number of BUFPLL_MCBs:                         0 out of       4    0%
+  Number of DSP48A1s:                            0 out of      16    0%
+  Number of ICAPs:                               0 out of       1    0%
+  Number of MCBs:                                0 out of       2    0%
+  Number of PCILOGICSEs:                         0 out of       2    0%
+  Number of PLL_ADVs:                            0 out of       2    0%
+  Number of PMVs:                                0 out of       1    0%
+  Number of STARTUPs:                            0 out of       1    0%
+  Number of SUSPEND_SYNCs:                       0 out of       1    0%
+
+
+Design Summary
+--------------
+Number of errors   :   2
+Number of warnings :   6
+
+Section 1 - Errors
+------------------
+ERROR:Place:375 - The design does not fit in device.
+    Total LUT Utilization      : 11762 out of 11440
+    LUTs used as Logic         : 11752
+    LUTs used as Memory        : 10
+    FF Utilization             : 664 out of 11440
+
+
+ERROR:Pack:1654 - The timing-driven placement phase encountered an error.
+
+Section 2 - Warnings
+--------------------
+WARNING:MapLib:701 - Signal spi_miso connected to top level port spi_miso has
+   been removed.
+WARNING:MapLib:701 - Signal spi_channel[0] connected to top level port
+   spi_channel(0) has been removed.
+WARNING:MapLib:701 - Signal spi_channel[1] connected to top level port
+   spi_channel(1) has been removed.
+WARNING:MapLib:701 - Signal spi_channel[2] connected to top level port
+   spi_channel(2) has been removed.
+WARNING:MapLib:701 - Signal spi_channel[3] connected to top level port
+   spi_channel(3) has been removed.
+WARNING:MapLib:701 - Signal avr_rx connected to top level port avr_rx has been
+   removed.
+
+Section 3 - Informational
+-------------------------
+INFO:Map:284 - Map is running with the multi-threading option on. Map currently
+   supports the use of up to 2 processors. Based on the the user options and
+   machine load, Map will use 2 processors during this run.
+INFO:LIT:243 - Logical network io_button(4) has no load.
+INFO:LIT:395 - The above info message is repeated 10 more times for the
+   following (max. 5 shown):
+   io_button(3),
+   io_button(2),
+   io_button(1),
+   io_button(0),
+   avr_rx_busy_IBUF
+   To see the details of these info messages, please use the -detail switch.
+INFO:MapLib:562 - No environment variables are currently set.
+INFO:LIT:244 - All of the single ended outputs in this design are using slew
+   rate limited output drivers. The delay on speed critical single ended outputs
+   can be dramatically reduced by designating them as fast outputs.
+INFO:Pack:1716 - Initializing temperature to 85.000 Celsius. (default - Range:
+   0.000 to 85.000 Celsius)
+INFO:Pack:1720 - Initializing voltage to 1.140 Volts. (default - Range: 1.140 to
+   1.260 Volts)
+INFO:Map:215 - The Interim Design Summary has been generated in the MAP Report
+   (.mrp).
+INFO:Place:834 - Only a subset of IOs are locked. Out of 91 IOs, 75 are locked
+   and 16 are not locked. If you would like to print the names of these IOs,
+   please set the environment variable XIL_PAR_DESIGN_CHECK_VERBOSE to 1. 
+
+Section 4 - Removed Logic Summary
+---------------------------------
+  12 block(s) removed
+  46 block(s) optimized away
+   6 signal(s) removed
+
+Section 5 - Removed Logic
+-------------------------
+
+The trimmed logic reported below is either:
+   1. part of a cycle
+   2. part of disabled logic
+   3. a side-effect of other trimmed logic
+
+The signal "spi_miso" is unused and has been removed.
+ Unused block "spi_miso_OBUFT" (TRI) removed.
+The signal "spi_channel[0]" is unused and has been removed.
+ Unused block "spi_channel_0_OBUFT" (TRI) removed.
+The signal "spi_channel[1]" is unused and has been removed.
+ Unused block "spi_channel_1_OBUFT" (TRI) removed.
+The signal "spi_channel[2]" is unused and has been removed.
+ Unused block "spi_channel_2_OBUFT" (TRI) removed.
+The signal "spi_channel[3]" is unused and has been removed.
+ Unused block "spi_channel_3_OBUFT" (TRI) removed.
+The signal "avr_rx" is unused and has been removed.
+ Unused block "avr_rx_OBUFT" (TRI) removed.
+Unused block "avr_rx" (PAD) removed.
+Unused block "spi_channel[0]" (PAD) removed.
+Unused block "spi_channel[1]" (PAD) removed.
+Unused block "spi_channel[2]" (PAD) removed.
+Unused block "spi_channel[3]" (PAD) removed.
+Unused block "spi_miso" (PAD) removed.
+
+Optimized Block(s):
+TYPE 		BLOCK
+GND 		XST_GND
+VCC 		XST_VCC
+GND 		buttons/downbutton_1cond/XST_GND
+VCC 		buttons/downbutton_1cond/XST_VCC
+GND 		buttons/downbutton_1cond/sync/XST_GND
+VCC 		buttons/downbutton_1cond/sync/XST_VCC
+GND 		buttons/downbutton_2cond/XST_GND
+VCC 		buttons/downbutton_2cond/XST_VCC
+GND 		buttons/downbutton_2cond/sync/XST_GND
+VCC 		buttons/downbutton_2cond/sync/XST_VCC
+GND 		buttons/leftbutton_1cond/XST_GND
+VCC 		buttons/leftbutton_1cond/XST_VCC
+GND 		buttons/leftbutton_1cond/sync/XST_GND
+VCC 		buttons/leftbutton_1cond/sync/XST_VCC
+GND 		buttons/leftbutton_2cond/XST_GND
+VCC 		buttons/leftbutton_2cond/XST_VCC
+GND 		buttons/leftbutton_2cond/sync/XST_GND
+VCC 		buttons/leftbutton_2cond/sync/XST_VCC
+GND 		buttons/resetbuttoncond/XST_GND
+VCC 		buttons/resetbuttoncond/XST_VCC
+GND 		buttons/resetbuttoncond/sync/XST_GND
+VCC 		buttons/resetbuttoncond/sync/XST_VCC
+GND 		buttons/rightbutton_1cond/XST_GND
+VCC 		buttons/rightbutton_1cond/XST_VCC
+GND 		buttons/rightbutton_1cond/sync/XST_GND
+VCC 		buttons/rightbutton_1cond/sync/XST_VCC
+GND 		buttons/rightbutton_2cond/XST_GND
+VCC 		buttons/rightbutton_2cond/XST_VCC
+GND 		buttons/rightbutton_2cond/sync/XST_GND
+VCC 		buttons/rightbutton_2cond/sync/XST_VCC
+GND 		buttons/upbutton_1cond/XST_GND
+VCC 		buttons/upbutton_1cond/XST_VCC
+GND 		buttons/upbutton_1cond/sync/XST_GND
+VCC 		buttons/upbutton_1cond/sync/XST_VCC
+GND 		buttons/upbutton_2cond/XST_GND
+VCC 		buttons/upbutton_2cond/XST_VCC
+GND 		buttons/upbutton_2cond/sync/XST_GND
+VCC 		buttons/upbutton_2cond/sync/XST_VCC
+GND 		check/D
+GND 		matrix/ctr/XST_GND
+VCC 		matrix/ctr/XST_VCC
+GND 		matrix/myBlinker/XST_GND
+VCC 		matrix/myBlinker/XST_VCC
+GND 		move/lightupbeforemove/adjacencymat/XST_GND
+VCC 		move/lightupbeforemove/adjacencymat/XST_VCC
+GND 		reset_cond/XST_GND
+
+To enable printing of redundant blocks removed and signals merged, set the
+detailed map report option and rerun map.
+
+Section 12 - Configuration String Details
+-----------------------------------------
+Use the "-detail" map option to print out Configuration Strings
+
+Section 13 - Control Set Information
+------------------------------------
+Use the "-detail" map option to print out Control Set Information.

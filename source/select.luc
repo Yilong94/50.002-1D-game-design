@@ -1,0 +1,54 @@
+module select (
+    input clk,
+    input rst,
+    input player1[49],    
+    input player2[49],
+    input cursor[49],
+    input button[3],
+    input player,          
+   output successfulselect,
+    output currentposition[49]
+  ) {
+  
+  sig overall[49];
+  
+  sig check[49];
+  sig overallandadj[49];
+  sig newoverallandadj[49];
+
+  adjacencymat adjacencymat(.clk(clk), .rst(rst));
+
+  always {
+    
+    successfulselect = 0; //initialize
+    check = 49b0;
+    
+    adjacencymat.button = button; 
+    adjacencymat.player=player; //tells which player I am 
+    
+    overall = player1 | player2 ;  //check which spots are filled     
+    if (player ==0){      
+    adjacencymat.player=0;    // to set the player involved for the adjacency matrix cuz diff player diff matrix
+    check = player1 & cursor; // check if the cursor is in the list of player1
+    }
+    
+    else if (player ==1){  
+    adjacencymat.player=1;
+    check = player2 & cursor; //check if the cursor is in the list of player1   
+    }   
+   
+    adjacencymat.currentstate = cursor ; // set current state to be current cursor  -> tells adj matrx what position am i in currently, 
+                                        // and retrieve the adjacent matrix for it
+    
+    
+    if (check !=49b0) { //check if check is empty
+      overallandadj = adjacencymat.adjmatrix & overall; // check which spots in the adjacencymat are filled
+      newoverallandadj = overallandadj^adjacencymat.adjmatrix;  // xor(adjacencymat, spots which are filled in the adjacencymat)
+      if (newoverallandadj !=49b0 ){ //if overallandadj == adjacencymat (can potentially change to using the comparator)
+      successfulselect =1;}
+      
+  
+}
+    currentposition = adjacencymat.currentposition;
+}
+}

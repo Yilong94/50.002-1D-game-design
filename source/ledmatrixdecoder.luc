@@ -1,0 +1,40 @@
+module ledmatrixdecoder
+  (
+    input in[3][49],
+    output outred[7][7],
+    output outgreen[7][7],
+    output outblue[7][7]
+  ) {
+
+  always {
+    //converts the 49 bits of each colour into 7 sets of 7 bits (7 x 7)
+    //out[0] = in[6:0];
+    outred[0] = in[0][6:0];
+    outgreen[0] = in[1][6:0];
+    outblue[0] = in[2][6:0];
+    //out[1] = in[13:7];
+    outred[1] = in[0][13:7];
+    outgreen[1] = in[1][13:7];
+    outblue[1] = in[2][13:7];
+    //out[2] = in[20:14];
+    outred[2] = in[0][20:14];
+    outgreen[2] = in[1][20:14];
+    outblue[2] = in[2][20:14];
+    //out[3] = in[27:21];
+    outred[3] = in[0][27:21];
+    outgreen[3] = in[1][27:21];
+    outblue[3] = in[2][27:21];
+    //out[4] = in[34:28];
+    outred[4] = in[0][34:28];
+    outgreen[4] = in[1][34:28];
+    outblue[4] = in[2][34:28];
+    //out[5] = in[41:35];
+    outred[5] = in[0][41:35];
+    outgreen[5] = in[1][41:35];
+    outblue[5] = in[2][41:35];
+    //out[6] = in[48:42];  
+    outred[6] = in[0][48:42];
+    outgreen[6] = in[1][48:42];
+    outblue[6] = in[2][48:42];
+  }
+}

@@ -1,0 +1,23 @@
+module lightupbeforemove (
+    input clk,
+    input rst,
+    input selectedposition[49],
+    input player1[49],
+    input player2[49],
+    input player, 
+    output positionstolightup[49]
+  ) {
+ 
+  adjacencymat adjacencymat(.clk(clk), .rst(rst));
+
+  
+  always {
+  
+    adjacencymat.player =player;
+    adjacencymat.button = 000;
+    adjacencymat.currentstate = selectedposition;
+    positionstolightup = ~(player1 | player2) & adjacencymat.adjmatrix; 
+    
+    
+  }
+}

@@ -1,0 +1,13 @@
+module start (
+    output player1[49],
+    output player2[49]
+  ) {
+  const PLAYER1 = 49b0000100000000000000010000011000000100000000000100;//positions 29,35,45,46,47,39
+  const PLAYER2 = 49b0010000000000010000001100000100000000000000010000; //positions 3,4,5,11,15,21
+ 
+  always {
+    player1 = PLAYER1;
+    player2 = PLAYER2;
+    
+  }
+}

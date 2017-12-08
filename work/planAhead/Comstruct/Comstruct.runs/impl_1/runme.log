@@ -1,0 +1,133 @@
+
+*** Running ngdbuild
+    with args -intstyle ise -p xc6slx9tqg144-2 -dd _ngo -uc "mojo_top_0.ucf" "mojo_top_0.edf"
+
+
+Command Line: C:\Xilinx\14.7\ISE_DS\ISE\bin\nt64\unwrapped\ngdbuild.exe
+-intstyle ise -p xc6slx9tqg144-2 -dd _ngo -uc mojo_top_0.ucf mojo_top_0.edf
+
+Executing edif2ngd -quiet "mojo_top_0.edf" "_ngo\mojo_top_0.ngo"
+Release 14.7 - edif2ngd P.20131013 (nt64)
+Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
+Reading NGO file
+"C:/Users/dorette_ong/Documents/mojo/Comstruct/work/planAhead/Comstruct/Comstruc
+t.runs/impl_1/_ngo/mojo_top_0.ngo" ...
+Gathering constraint information from source properties...
+Done.
+
+Annotating constraints to design from ucf file "mojo_top_0.ucf" ...
+Resolving constraint associations...
+Checking Constraint Associations...
+WARNING:ConstraintSystem:119 - Constraint <NET "io_button[0]" IOSTANDARD =
+   LVTTL;> [mojo_top_0.ucf(163)]: This constraint cannot be distributed from the
+   design objects matching 'NET "io_button[0]"' because those design objects do
+   not contain or drive any instances of the correct type.
+
+WARNING:ConstraintSystem:119 - Constraint <NET "io_button[1]" IOSTANDARD =
+   LVTTL;> [mojo_top_0.ucf(165)]: This constraint cannot be distributed from the
+   design objects matching 'NET "io_button[1]"' because those design objects do
+   not contain or drive any instances of the correct type.
+
+WARNING:ConstraintSystem:119 - Constraint <NET "io_button[2]" IOSTANDARD =
+   LVTTL;> [mojo_top_0.ucf(167)]: This constraint cannot be distributed from the
+   design objects matching 'NET "io_button[2]"' because those design objects do
+   not contain or drive any instances of the correct type.
+
+WARNING:ConstraintSystem:119 - Constraint <NET "io_button[3]" IOSTANDARD =
+   LVTTL;> [mojo_top_0.ucf(169)]: This constraint cannot be distributed from the
+   design objects matching 'NET "io_button[3]"' because those design objects do
+   not contain or drive any instances of the correct type.
+
+WARNING:ConstraintSystem:119 - Constraint <NET "io_button[4]" IOSTANDARD =
+   LVTTL;> [mojo_top_0.ucf(171)]: This constraint cannot be distributed from the
+   design objects matching 'NET "io_button[4]"' because those design objects do
+   not contain or drive any instances of the correct type.
+
+Done...
+
+Checking expanded design ...
+
+Partition Implementation Status
+-------------------------------
+
+  No Partitions were found in this design.
+
+-------------------------------
+
+NGDBUILD Design Results Summary:
+  Number of errors:     0
+  Number of warnings:   5
+
+Writing NGD file "mojo_top_0.ngd" ...
+Total REAL time to NGDBUILD completion:  15 sec
+Total CPU time to NGDBUILD completion:   5 sec
+
+Writing NGDBUILD log file "mojo_top_0.bld"...
+
+NGDBUILD done.
+
+*** Running map
+    with args -intstyle pa -w -pr b -mt on "mojo_top_0.ngd"
+
+Using target part "6slx9tqg144-2".
+INFO:Map:284 - Map is running with the multi-threading option on. Map currently
+   supports the use of up to 2 processors. Based on the the user options and
+   machine load, Map will use 2 processors during this run.
+Mapping design into LUTs...
+WARNING:MapLib:701 - Signal spi_miso connected to top level port spi_miso has
+   been removed.
+WARNING:MapLib:701 - Signal spi_channel[0] connected to top level port
+   spi_channel(0) has been removed.
+WARNING:MapLib:701 - Signal spi_channel[1] connected to top level port
+   spi_channel(1) has been removed.
+WARNING:MapLib:701 - Signal spi_channel[2] connected to top level port
+   spi_channel(2) has been removed.
+WARNING:MapLib:701 - Signal spi_channel[3] connected to top level port
+   spi_channel(3) has been removed.
+WARNING:MapLib:701 - Signal avr_rx connected to top level port avr_rx has been
+   removed.
+Running directed packing...
+Running delay-based LUT packing...
+Updating timing models...
+INFO:Map:215 - The Interim Design Summary has been generated in the MAP Report
+   (.mrp).
+Running timing-driven placement...
+Total REAL time at the beginning of Placer: 10 secs 
+Total CPU  time at the beginning of Placer: 9 secs 
+
+Phase 1.1  Initial Placement Analysis
+Phase 1.1  Initial Placement Analysis (Checksum:f9b3ef26) REAL time: 10 secs 
+
+Phase 2.7  Design Feasibility Check
+INFO:Place:834 - Only a subset of IOs are locked. Out of 91 IOs, 75 are locked
+   and 16 are not locked. If you would like to print the names of these IOs,
+   please set the environment variable XIL_PAR_DESIGN_CHECK_VERBOSE to 1. 
+ERROR:Place:375 - The design does not fit in device.
+    Total LUT Utilization      : 11762 out of 11440
+    LUTs used as Logic         : 11752
+    LUTs used as Memory        : 10
+    FF Utilization             : 664 out of 11440
+
+
+Phase 2.7  Design Feasibility Check (Checksum:f9b3ef26) REAL time: 11 secs 
+
+Total REAL time to Placer completion: 11 secs 
+Total CPU  time to Placer completion: 10 secs 
+ERROR:Pack:1654 - The timing-driven placement phase encountered an error.
+
+Mapping completed.
+See MAP report file "mojo_top_0.mrp" for details.
+Problem encountered during the packing phase.
+
+Design Summary
+--------------
+Number of errors   :   2
+Number of warnings :   6
+
+*** Running par
+    with args -intstyle pa "mojo_top_0.ncd" -w "mojo_top_0_routed.ncd" -mt on
+
+
+
+ERROR:Par:73 - Cannot find Input file "mojo_top_0.ncd".  Please verify that your paths and permissions are properly set
+   for this file. 

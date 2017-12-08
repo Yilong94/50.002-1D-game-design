@@ -1,0 +1,18 @@
+module blinkingdecoder
+  (
+    input in[49],
+    output out[7][7]
+  ) {
+
+  always {
+    //a decoder for the blinking register
+    //converts 49 bits into 7 sets of 7 bits
+    out[0] = in[6:0];
+    out[1] = in[13:7];
+    out[2] = in[20:14];
+    out[3] = in[27:21];
+    out[4] = in[34:28];
+    out[5] = in[41:35];
+    out[6] = in[48:42];  
+  }
+}
