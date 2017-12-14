@@ -49,13 +49,20 @@ module mojo_top_0 (
     .in(M_reset_cond_in),
     .out(M_reset_cond_out)
   );
+  wire [1-1:0] M_edgefinish_out;
+  reg [1-1:0] M_edgefinish_in;
+  edge_detector_2 edgefinish (
+    .clk(clk),
+    .in(M_edgefinish_in),
+    .out(M_edgefinish_out)
+  );
   wire [7-1:0] M_matrix_row;
   wire [7-1:0] M_matrix_columnred;
   wire [7-1:0] M_matrix_columngreen;
   wire [7-1:0] M_matrix_columnblue;
   reg [147-1:0] M_matrix_values;
   reg [49-1:0] M_matrix_blinking;
-  ledmatrix_2 matrix (
+  ledmatrix_3 matrix (
     .clk(clk),
     .rst(rst),
     .values(M_matrix_values),
@@ -70,16 +77,35 @@ module mojo_top_0 (
   reg [48:0] M_player2_d, M_player2_q = 1'h0;
   reg [48:0] M_cursor_d, M_cursor_q = 1'h0;
   reg [48:0] M_newcursor_d, M_newcursor_q = 1'h0;
-  localparam INITIAL_state = 3'd0;
-  localparam START_state = 3'd1;
-  localparam SELECTINITIAL_state = 3'd2;
-  localparam SELECT_state = 3'd3;
-  localparam SELECTMOVE_state = 3'd4;
-  localparam MOVE_state = 3'd5;
-  localparam CHECK_state = 3'd6;
-  localparam END_state = 3'd7;
+  reg [48:0] M_newplayer1_d, M_newplayer1_q = 1'h0;
+  reg [48:0] M_newplayer2_d, M_newplayer2_q = 1'h0;
+  reg [3:0] M_newplayer1count_d, M_newplayer1count_q = 1'h0;
+  reg [3:0] M_newplayer2count_d, M_newplayer2count_q = 1'h0;
+  reg [29:0] M_counter_d, M_counter_q = 1'h0;
+  reg [3:0] M_player1count_d, M_player1count_q = 1'h0;
+  reg [3:0] M_player2count_d, M_player2count_q = 1'h0;
+  localparam INITIAL_state = 4'd0;
+  localparam START_state = 4'd1;
+  localparam SELECTINITIAL_state = 4'd2;
+  localparam SELECT_state = 4'd3;
+  localparam SELECTMOVE_state = 4'd4;
+  localparam MOVE_state = 4'd5;
+  localparam CHECK_state = 4'd6;
+  localparam DIE_state = 4'd7;
+  localparam END_state = 4'd8;
   
-  reg [2:0] M_state_d, M_state_q = INITIAL_state;
+  reg [3:0] M_state_d, M_state_q = INITIAL_state;
+  
+  wire [49-1:0] M_alu1_alu_output;
+  reg [6-1:0] M_alu1_alufn;
+  reg [49-1:0] M_alu1_a;
+  reg [49-1:0] M_alu1_b;
+  alu_4 alu1 (
+    .alufn(M_alu1_alufn),
+    .a(M_alu1_a),
+    .b(M_alu1_b),
+    .alu_output(M_alu1_alu_output)
+  );
   
   wire [1-1:0] M_buttons_confirmbutton_1new;
   wire [1-1:0] M_buttons_upbutton_1new;
@@ -103,7 +129,7 @@ module mojo_top_0 (
   reg [1-1:0] M_buttons_rightbutton_2;
   reg [1-1:0] M_buttons_leftbutton_2;
   reg [1-1:0] M_buttons_resetbutton;
-  buttons_3 buttons (
+  buttons_5 buttons (
     .clk(clk),
     .rst(rst),
     .confirmbutton_1(M_buttons_confirmbutton_1),
@@ -132,7 +158,7 @@ module mojo_top_0 (
   
   wire [49-1:0] M_start_player1;
   wire [49-1:0] M_start_player2;
-  start_4 start (
+  start_6 start (
     .player1(M_start_player1),
     .player2(M_start_player2)
   );
@@ -144,7 +170,7 @@ module mojo_top_0 (
   reg [49-1:0] M_select_cursor;
   reg [3-1:0] M_select_button;
   reg [1-1:0] M_select_player;
-  select_5 select (
+  select_7 select (
     .clk(clk),
     .rst(rst),
     .player1(M_select_player1),
@@ -157,16 +183,16 @@ module mojo_top_0 (
   );
   
   wire [49-1:0] M_move_positionmovedto;
-  wire [1-1:0] M_move_movesuccess;
-  wire [49-1:0] M_move_player1moved;
-  wire [49-1:0] M_move_player2moved;
-  wire [49-1:0] M_move_lightupbeforemovepos;
+  wire [49-1:0] M_move_newplayer1;
+  wire [49-1:0] M_move_newplayer2;
+  wire [49-1:0] M_move_test;
   reg [49-1:0] M_move_selectedpositionfromselect;
   reg [49-1:0] M_move_player1;
   reg [49-1:0] M_move_player2;
   reg [1-1:0] M_move_player;
   reg [3-1:0] M_move_buttons;
-  move_6 move (
+  reg [1-1:0] M_move_confirmbutton;
+  move_8 move (
     .clk(clk),
     .rst(rst),
     .selectedpositionfromselect(M_move_selectedpositionfromselect),
@@ -174,39 +200,66 @@ module mojo_top_0 (
     .player2(M_move_player2),
     .player(M_move_player),
     .buttons(M_move_buttons),
+    .confirmbutton(M_move_confirmbutton),
     .positionmovedto(M_move_positionmovedto),
-    .movesuccess(M_move_movesuccess),
-    .player1moved(M_move_player1moved),
-    .player2moved(M_move_player2moved),
-    .lightupbeforemovepos(M_move_lightupbeforemovepos)
+    .newplayer1(M_move_newplayer1),
+    .newplayer2(M_move_newplayer2),
+    .test(M_move_test)
   );
   
-  wire [1-1:0] M_check_endgame;
   wire [49-1:0] M_check_player2new;
   wire [49-1:0] M_check_player1new;
+  wire [4-1:0] M_check_player1newcount;
+  wire [4-1:0] M_check_player2newcount;
+  wire [49-1:0] M_check_myled;
+  wire [1-1:0] M_check_finish;
   reg [49-1:0] M_check_player1;
   reg [49-1:0] M_check_player2;
+  reg [4-1:0] M_check_playercount1;
+  reg [4-1:0] M_check_playercount2;
   reg [1-1:0] M_check_player;
-  check_7 check (
+  reg [1-1:0] M_check_startcheck;
+  reg [1-1:0] M_check_nextbutton;
+  checkfinal2_9 check (
     .clk(clk),
     .rst(rst),
     .player1(M_check_player1),
     .player2(M_check_player2),
+    .playercount1(M_check_playercount1),
+    .playercount2(M_check_playercount2),
     .player(M_check_player),
-    .endgame(M_check_endgame),
+    .startcheck(M_check_startcheck),
+    .nextbutton(M_check_nextbutton),
     .player2new(M_check_player2new),
-    .player1new(M_check_player1new)
+    .player1new(M_check_player1new),
+    .player1newcount(M_check_player1newcount),
+    .player2newcount(M_check_player2newcount),
+    .myled(M_check_myled),
+    .finish(M_check_finish)
   );
   
+  reg [48:0] aluout;
+  
   reg selectstart;
+  
+  reg [0:0] startcheckstate;
+  
+  localparam X = 4'hf;
   
   always @* begin
     M_state_d = M_state_q;
     M_cursor_d = M_cursor_q;
+    M_player1count_d = M_player1count_q;
     M_newcursor_d = M_newcursor_q;
+    M_newplayer1_d = M_newplayer1_q;
+    M_newplayer2count_d = M_newplayer2count_q;
+    M_counter_d = M_counter_q;
+    M_newplayer2_d = M_newplayer2_q;
+    M_player2count_d = M_player2count_q;
     M_player1_d = M_player1_q;
     M_player2_d = M_player2_q;
     M_playerinvolved_d = M_playerinvolved_q;
+    M_newplayer1count_d = M_newplayer1count_q;
     
     M_buttons_rightbutton_2 = rightbutton_2;
     M_buttons_rightbutton_1 = rightbutton_1;
@@ -227,12 +280,12 @@ module mojo_top_0 (
     io_led = 24'h000000;
     io_seg = 8'hff;
     io_sel = 4'hf;
-    M_select_player = 1'h1;
-    M_check_player = 1'h1;
-    M_move_player = 1'h1;
-    M_select_button = 1'h1;
-    M_move_buttons = 1'h1;
-    selectstart = 1'h1;
+    M_select_player = 1'h0;
+    M_check_player = 1'h0;
+    M_move_player = 1'h0;
+    M_select_button = 1'h0;
+    M_move_buttons = 1'h0;
+    selectstart = 1'h0;
     M_reset_cond_in = ~rst_n;
     rst = M_reset_cond_out;
     led = 8'h00;
@@ -249,10 +302,22 @@ module mojo_top_0 (
     M_select_player2 = M_start_player2;
     M_move_player1 = M_start_player1;
     M_move_player2 = M_start_player2;
-    M_check_player1 = M_move_player1moved;
-    M_check_player2 = M_move_player2moved;
-    M_select_cursor = 1'h0;
+    M_check_player1 = M_player1_q;
+    M_check_player2 = M_player2_q;
+    M_select_cursor = 49'h0000000000000;
+    M_player1count_d = 4'h6;
+    M_player2count_d = 4'h6;
+    M_check_playercount1 = M_player1count_q;
+    M_check_playercount2 = M_player2count_q;
     M_move_selectedpositionfromselect = M_select_currentposition;
+    M_alu1_a = 49'h0000000000000;
+    M_alu1_b = 49'h0000000000000;
+    M_alu1_alufn = 6'h00;
+    M_move_confirmbutton = 1'h0;
+    startcheckstate = 1'h0;
+    M_check_startcheck = startcheckstate;
+    M_edgefinish_in = M_check_finish;
+    M_check_nextbutton = M_buttons_resetbutton_new;
     
     case (M_state_q)
       INITIAL_state: begin
@@ -263,6 +328,7 @@ module mojo_top_0 (
         M_matrix_values = {49'h0000000000000, M_player2_q, M_player1_q};
         M_matrix_blinking = 49'h0000000000000;
         M_cursor_d = 49'h0000000000000;
+        M_newcursor_d = 49'h0000000000000;
         io_led[0+0+0-:1] = 1'h1;
         if (M_buttons_resetbutton_new == 1'h1) begin
           M_state_d = START_state;
@@ -270,9 +336,6 @@ module mojo_top_0 (
       end
       START_state: begin
         M_playerinvolved_d = M_playerinvolved_q;
-        M_player1_d = M_player1_q;
-        M_player2_d = M_player2_q;
-        M_cursor_d = M_cursor_q;
         M_matrix_values = {49'h0000000000000, M_player2_q, M_player1_q};
         M_matrix_blinking = 49'h0000000000000;
         red = M_matrix_columnred;
@@ -280,9 +343,7 @@ module mojo_top_0 (
         blue = M_matrix_columnblue;
         ground = ~M_matrix_row;
         io_led[0+1+0-:1] = 1'h1;
-        if (M_buttons_resetbutton_new == 1'h1) begin
-          M_state_d = SELECTINITIAL_state;
-        end
+        M_state_d = SELECTINITIAL_state;
       end
       SELECTINITIAL_state: begin
         M_playerinvolved_d = M_playerinvolved_q;
@@ -318,13 +379,16 @@ module mojo_top_0 (
         io_led[0+7+0-:1] = 1'h1;
         if (M_select_successfulselect == 1'h1) begin
           M_matrix_values = {M_cursor_q, M_player2_q, M_player1_q};
-          if (M_playerinvolved_q == 1'h0 && confirmbutton_1 == 1'h1) begin
+          if (M_playerinvolved_q == 1'h0 && M_buttons_confirmbutton_1new == 1'h1) begin
             M_cursor_d = M_select_currentposition;
             M_state_d = MOVE_state;
+            M_newcursor_d = 49'h0000000000000;
           end else begin
-            if (M_playerinvolved_q == 1'h1 && confirmbutton_2 == 1'h1) begin
+            if (M_playerinvolved_q == 1'h1 && M_buttons_confirmbutton_2new == 1'h1) begin
               M_cursor_d = M_select_currentposition;
               M_state_d = MOVE_state;
+              M_newcursor_d = 49'h0000000000000;
+              M_matrix_blinking = M_cursor_q;
             end
           end
         end
@@ -376,74 +440,101 @@ module mojo_top_0 (
             end
           end
         end
-        M_newcursor_d = M_cursor_q;
       end
       MOVE_state: begin
-        M_playerinvolved_d = M_playerinvolved_q;
         M_move_player = M_playerinvolved_q;
         M_move_selectedpositionfromselect = M_cursor_q;
+        if (M_newcursor_q == 49'h0000000000000) begin
+          M_matrix_blinking = M_cursor_q;
+        end else begin
+          M_matrix_blinking = M_newcursor_q;
+        end
         M_move_player1 = M_player1_q;
         M_move_player2 = M_player2_q;
-        M_matrix_values = {M_newcursor_q, M_player2_q, M_player1_q};
-        M_matrix_blinking = M_move_lightupbeforemovepos;
+        M_newplayer1_d = M_move_newplayer1;
+        M_newplayer2_d = M_move_newplayer2;
+        M_matrix_values = {M_player1_q, M_newplayer2_q, M_newplayer1_q};
         red = M_matrix_columnred;
         green = M_matrix_columngreen;
         blue = M_matrix_columnblue;
         ground = ~M_matrix_row;
-        M_player1_d = M_move_player1moved;
-        M_player2_d = M_move_player2moved;
-        if (M_move_movesuccess == 1'h1) begin
-          if (confirmbutton_1 == 1'h1 && M_playerinvolved_q == 1'h0) begin
+        if (M_buttons_confirmbutton_1new == 1'h1 && M_playerinvolved_q == 1'h0) begin
+          M_move_confirmbutton = 1'h1;
+          M_player1_d = M_newplayer1_q;
+          M_newcursor_d = M_cursor_q;
+          M_state_d = CHECK_state;
+          M_matrix_values = {49'h0000000000000, M_player2_q, M_player1_q};
+          M_counter_d = 1'h0;
+        end else begin
+          if (M_buttons_confirmbutton_2new == 1'h1 && M_playerinvolved_q == 1'h1) begin
+            M_move_confirmbutton = 1'h1;
+            M_player2_d = M_newplayer2_q;
             M_state_d = CHECK_state;
-          end else begin
-            if (confirmbutton_2 == 1'h1 && M_playerinvolved_q == 1'h1) begin
-              M_state_d = CHECK_state;
-            end
+            M_matrix_values = {49'h0000000000000, M_player2_q, M_player1_q};
+            M_counter_d = 1'h0;
           end
         end
-        if (M_buttons_leftbutton_1new == 1'h1 && M_playerinvolved_q == 1'h0) begin
-          M_matrix_values = {M_newcursor_q, M_player2_q, M_player1_q};
-          M_matrix_blinking = M_cursor_q;
-          M_move_buttons = 3'h2;
-          M_cursor_d = M_move_positionmovedto;
-          M_state_d = MOVE_state;
-        end else begin
-          if (M_buttons_rightbutton_1new == 1'h1 && M_playerinvolved_q == 1'h0) begin
-            M_move_buttons = 3'h1;
-            M_cursor_d = M_move_positionmovedto;
-            M_state_d = MOVE_state;
+        if (M_playerinvolved_q == 1'h0) begin
+          if (M_buttons_leftbutton_1new == 1'h1) begin
+            M_move_buttons = 3'h2;
+            M_newcursor_d = M_move_positionmovedto;
+            M_matrix_blinking = M_newcursor_q;
+            M_newplayer1_d = M_move_newplayer1;
+            M_matrix_values = {49'h0000000000000, M_player2_q, M_newplayer1_q};
           end else begin
-            if (M_buttons_upbutton_1new == 1'h1 && M_playerinvolved_q == 1'h0) begin
-              M_move_buttons = 3'h6;
-              M_cursor_d = M_move_positionmovedto;
-              M_state_d = MOVE_state;
+            if (M_buttons_rightbutton_1new == 1'h1) begin
+              M_move_buttons = 3'h1;
+              M_newcursor_d = M_move_positionmovedto;
+              M_matrix_blinking = M_newcursor_q;
+              M_newplayer1_d = M_move_newplayer1;
+              M_matrix_values = {49'h0000000000000, M_player2_q, M_newplayer1_q};
             end else begin
-              if (M_buttons_downbutton_1new == 1'h1 && M_playerinvolved_q == 1'h0) begin
-                M_move_buttons = 3'h7;
-                M_cursor_d = M_move_positionmovedto;
-                M_state_d = MOVE_state;
+              if (M_buttons_upbutton_1new == 1'h1) begin
+                M_move_buttons = 3'h6;
+                M_newcursor_d = M_move_positionmovedto;
+                M_matrix_blinking = M_newcursor_q;
+                M_newplayer1_d = M_move_newplayer1;
+                M_matrix_values = {49'h0000000000000, M_player2_q, M_newplayer1_q};
               end else begin
-                if (M_buttons_leftbutton_2new == 1'h1 && M_playerinvolved_q == 1'h1) begin
+                if (M_buttons_downbutton_1new == 1'h1) begin
+                  M_move_buttons = 3'h7;
+                  M_newcursor_d = M_move_positionmovedto;
+                  M_matrix_blinking = M_newcursor_q;
+                  M_newplayer1_d = M_move_newplayer1;
+                  M_matrix_values = {49'h0000000000000, M_player2_q, M_newplayer1_q};
+                end
+              end
+            end
+          end
+        end else begin
+          if (M_playerinvolved_q == 1'h1) begin
+            if (M_buttons_rightbutton_2new == 1'h1) begin
+              M_move_buttons = 3'h1;
+              M_newcursor_d = M_move_positionmovedto;
+              M_matrix_blinking = M_newcursor_q;
+              M_newplayer2_d = M_move_newplayer2;
+              M_matrix_values = {49'h0000000000000, M_newplayer2_q, M_player1_q};
+            end else begin
+              if (M_buttons_upbutton_2new == 1'h1) begin
+                M_move_buttons = 3'h6;
+                M_newcursor_d = M_move_positionmovedto;
+                M_matrix_blinking = M_newcursor_q;
+                M_newplayer2_d = M_move_newplayer2;
+                M_matrix_values = {49'h0000000000000, M_newplayer2_q, M_player1_q};
+              end else begin
+                if (M_buttons_leftbutton_2new == 1'h1) begin
                   M_move_buttons = 3'h2;
-                  M_cursor_d = M_move_positionmovedto;
-                  M_state_d = MOVE_state;
+                  M_newcursor_d = M_move_positionmovedto;
+                  M_matrix_blinking = M_newcursor_q;
+                  M_newplayer2_d = M_move_newplayer2;
+                  M_matrix_values = {49'h0000000000000, M_newplayer2_q, M_player1_q};
                 end else begin
-                  if (M_buttons_rightbutton_2new == 1'h1 && M_playerinvolved_q == 1'h1) begin
-                    M_move_buttons = 3'h1;
-                    M_cursor_d = M_move_positionmovedto;
-                    M_state_d = MOVE_state;
-                  end else begin
-                    if (M_buttons_upbutton_2new == 1'h1 && M_playerinvolved_q == 1'h1) begin
-                      M_move_buttons = 3'h6;
-                      M_cursor_d = M_move_positionmovedto;
-                      M_state_d = MOVE_state;
-                    end else begin
-                      if (M_buttons_downbutton_2new == 1'h1 && M_playerinvolved_q == 1'h1) begin
-                        M_move_buttons = 3'h7;
-                        M_cursor_d = M_move_positionmovedto;
-                        M_state_d = MOVE_state;
-                      end
-                    end
+                  if (M_buttons_downbutton_2new == 1'h1) begin
+                    M_move_buttons = 3'h7;
+                    M_newcursor_d = M_move_positionmovedto;
+                    M_matrix_blinking = M_newcursor_q;
+                    M_newplayer2_d = M_move_newplayer2;
+                    M_matrix_values = {49'h0000000000000, M_newplayer2_q, M_player1_q};
                   end
                 end
               end
@@ -453,46 +544,73 @@ module mojo_top_0 (
       end
       CHECK_state: begin
         M_playerinvolved_d = M_playerinvolved_q;
-        M_cursor_d = M_cursor_q;
-        M_newcursor_d = M_newcursor_q;
+        startcheckstate = 1'h1;
+        M_check_startcheck = startcheckstate;
         M_check_player = M_playerinvolved_q;
         M_check_player1 = M_player1_q;
         M_check_player2 = M_player2_q;
-        M_matrix_values = {49'h0000000000000, M_player2_q, M_player1_q};
+        M_check_playercount1 = M_player1count_q;
+        M_check_playercount2 = M_player2count_q;
+        M_matrix_values = {M_check_myled, M_newplayer2_q, M_newplayer1_q};
         M_matrix_blinking = 49'h0000000000000;
         red = M_matrix_columnred;
         green = M_matrix_columngreen;
         blue = M_matrix_columnblue;
         ground = ~M_matrix_row;
-        io_led[0+5+0-:1] = 1'h1;
-        if (M_playerinvolved_q == 1'h0) begin
-          io_led[8+0+0-:1] = 1'h1;
-        end else begin
-          io_led[8+1+0-:1] = 1'h1;
+        M_check_nextbutton = M_buttons_resetbutton_new;
+        M_newplayer1_d = M_check_player1new;
+        M_newplayer2_d = M_check_player2new;
+        M_newplayer1count_d = M_check_player1newcount;
+        M_newplayer2count_d = M_check_player2newcount;
+        M_edgefinish_in = M_check_finish;
+        if (M_edgefinish_out == 1'h1) begin
+          M_newplayer1_d = M_check_player1new;
+          M_newplayer2_d = M_check_player2new;
+          M_newplayer1count_d = M_check_player1newcount;
+          M_newplayer2count_d = M_check_player2newcount;
+          M_player1_d = M_newplayer1_q;
+          M_player2_d = M_newplayer2_q;
+          M_player1count_d = M_newplayer1count_q;
+          M_player2count_d = M_newplayer2count_q;
+          M_state_d = DIE_state;
+          startcheckstate = 1'h0;
         end
-        if (confirmbutton_1 && M_playerinvolved_q == 1'h0) begin
-          if (M_check_endgame == 1'h0) begin
+      end
+      DIE_state: begin
+        startcheckstate = 1'h0;
+        M_check_startcheck = startcheckstate;
+        M_matrix_values = {49'h0000000000000, M_player2_q, M_player1_q};
+        M_matrix_blinking = 49'h000000000001c;
+        red = M_matrix_columnred;
+        green = M_matrix_columngreen;
+        blue = M_matrix_columnblue;
+        ground = ~M_matrix_row;
+        M_counter_d = M_counter_q + 1'h1;
+        if (M_playerinvolved_q == 1'h0 && M_counter_q[15+0-:1] == 1'h1) begin
+          M_alu1_alufn = 6'h37;
+          M_alu1_a = M_player2count_q;
+          M_alu1_b = 49'h0000000000002;
+          aluout = M_alu1_alu_output;
+          if (aluout == 49'h0000000000001) begin
+            M_state_d = END_state;
+          end else begin
             M_playerinvolved_d = 1'h1;
             M_state_d = START_state;
-          end else begin
-            if (M_check_endgame == 1'h1) begin
-              M_state_d = END_state;
-            end
           end
         end else begin
-          if (confirmbutton_2 && M_playerinvolved_q == 1'h1) begin
-            if (M_check_endgame == 1'h1) begin
+          if (M_playerinvolved_q == 1'h1 && M_counter_q[15+0-:1] == 1'h1) begin
+            M_alu1_alufn = 6'h37;
+            M_alu1_a = M_player1count_q;
+            M_alu1_b = 49'h0000000000002;
+            aluout = M_alu1_alu_output;
+            if (aluout == 49'h0000000000001) begin
+              M_state_d = END_state;
+            end else begin
               M_playerinvolved_d = 1'h0;
               M_state_d = START_state;
-            end else begin
-              if (M_check_endgame == 1'h1) begin
-                M_state_d = END_state;
-              end
             end
           end
         end
-        M_player1_d = M_check_player1new;
-        M_player2_d = M_check_player2new;
       end
       END_state: begin
         io_led[0+6+0-:1] = 1'h1;
@@ -510,6 +628,13 @@ module mojo_top_0 (
       M_player2_q <= 1'h0;
       M_cursor_q <= 1'h0;
       M_newcursor_q <= 1'h0;
+      M_newplayer1_q <= 1'h0;
+      M_newplayer2_q <= 1'h0;
+      M_newplayer1count_q <= 1'h0;
+      M_newplayer2count_q <= 1'h0;
+      M_counter_q <= 1'h0;
+      M_player1count_q <= 1'h0;
+      M_player2count_q <= 1'h0;
       M_state_q <= 1'h0;
     end else begin
       M_playerinvolved_q <= M_playerinvolved_d;
@@ -517,6 +642,13 @@ module mojo_top_0 (
       M_player2_q <= M_player2_d;
       M_cursor_q <= M_cursor_d;
       M_newcursor_q <= M_newcursor_d;
+      M_newplayer1_q <= M_newplayer1_d;
+      M_newplayer2_q <= M_newplayer2_d;
+      M_newplayer1count_q <= M_newplayer1count_d;
+      M_newplayer2count_q <= M_newplayer2count_d;
+      M_counter_q <= M_counter_d;
+      M_player1count_q <= M_player1count_d;
+      M_player2count_q <= M_player2count_d;
       M_state_q <= M_state_d;
     end
   end

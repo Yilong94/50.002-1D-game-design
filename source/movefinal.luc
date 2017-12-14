@@ -1,0 +1,341 @@
+module move (
+    input clk,
+    input rst,
+    input selectedpositionfromselect[49],
+    input player1[49],
+    input player2[49],
+    input player,
+    input buttons[3],
+    input confirmbutton[1],
+    output positionmovedto[49],
+    //output movesuccess
+    output newplayer1[49],
+    output newplayer2[49],
+    output test[49]
+  ) {
+  
+  .rst(rst), .clk(clk){
+    fsm movestates = {IDLE, UP, DOWN, LEFT, RIGHT};
+    adjacencymat adjacencymat;
+    lightupbeforemove lightupbeforemove;
+    
+    dff selectedpositiontomoveto[49];
+    dff checkposition[49];
+    
+
+    }
+  
+    sig selectedpositiontomovetoSIG[49];
+    sig checkpositionSIG[49];
+
+  always {
+    test=lightupbeforemove.positionstolightup;
+    
+    lightupbeforemove.player = player;
+    lightupbeforemove.player1 = player1;
+    lightupbeforemove.player2 = player2;
+    lightupbeforemove.selectedposition = selectedpositionfromselect;
+    
+    adjacencymat.button = buttons;
+    adjacencymat.currentstate = selectedpositionfromselect;
+    adjacencymat.player = player;
+    //selectedpositiontomoveto.d = adjacencymat.currentposition;
+    //lightupbeforemove.positionstolightup
+    
+    newplayer1 = player1;
+    newplayer2 = player2;
+    positionmovedto = selectedpositionfromselect;
+    movestates.d = movestates.IDLE;
+    
+    
+    case(movestates.q){
+      movestates.IDLE:
+       
+        //selectedpositiontomoveto.d = adjacencymat.currentposition;
+        //checkposition.d = selectedpositiontomoveto.q&lightupbeforemove.positionstolightup;
+          positionmovedto = selectedpositionfromselect;
+          newplayer1 = player1;
+          newplayer2 = player2;
+        
+            if(buttons == 3b110){
+              selectedpositiontomovetoSIG = adjacencymat.currentposition;
+              checkpositionSIG = selectedpositiontomovetoSIG&lightupbeforemove.positionstolightup;
+              positionmovedto = selectedpositionfromselect;
+              newplayer1 = player1;
+              newplayer2 = player2;
+
+              //selectedpositiontomoveto.d = adjacencymat.currentposition;
+              //checkposition.d = selectedpositiontomoveto.q&lightupbeforemove.positionstolightup; 
+              //test = selectedpositiontomovetoSIG;   
+              //if (checkposition.q==selectedpositiontomoveto.q){
+               if (checkpositionSIG==selectedpositiontomovetoSIG){
+              
+                movestates.d = movestates.UP;
+                selectedpositiontomoveto.d = adjacencymat.currentposition;//
+                //positionmovedto = selectedpositiontomoveto.q;  
+                //if (player==0){
+                //   newplayer1 = (player1 & ~selectedpositionfromselect)|selectedpositiontomoveto.q;
+         
+                //}
+                //else if(player==1){
+                //  newplayer2 = (player2 & ~selectedpositionfromselect)|selectedpositiontomoveto.q;
+                //}
+                //positionmovedto = selectedpositiontomoveto.q;            
+                }
+              
+            }
+            else if (buttons == 3b010)
+            {
+              selectedpositiontomovetoSIG = adjacencymat.currentposition;
+              checkpositionSIG = selectedpositiontomovetoSIG&lightupbeforemove.positionstolightup;
+              positionmovedto = selectedpositionfromselect;
+              newplayer1 = player1;
+              newplayer2 = player2;
+              //selectedpositiontomoveto.d = adjacencymat.currentposition;
+              //checkposition.d = selectedpositiontomoveto.q&lightupbeforemove.positionstolightup;   
+              if(checkpositionSIG==selectedpositiontomovetoSIG){
+              //if(checkposition.q==selectedpositiontomoveto.q){
+                 movestates.d = movestates.LEFT;
+                selectedpositiontomoveto.d = adjacencymat.currentposition;//
+                //positionmovedto = selectedpositiontomoveto.q;  
+                 //if (player==0){
+                 //  newplayer1 = (player1 & ~selectedpositionfromselect)|selectedpositiontomoveto.q;
+         
+                //}
+                //else if(player==1){
+                //  newplayer2 = (player2 & ~selectedpositionfromselect)|selectedpositiontomoveto.q;
+                //}
+                 //positionmovedto = selectedpositiontomoveto.q; 
+                }  
+             }
+            else if (buttons == 3b001)
+            {
+              selectedpositiontomovetoSIG = adjacencymat.currentposition;
+              checkpositionSIG = selectedpositiontomovetoSIG&lightupbeforemove.positionstolightup;
+               positionmovedto = selectedpositionfromselect;
+              newplayer1 = player1;
+              newplayer2 = player2;
+              //selectedpositiontomoveto.d = adjacencymat.currentposition;
+              //checkposition.d = selectedpositiontomoveto.q&lightupbeforemove.positionstolightup;
+              //if (checkposition.q==selectedpositiontomoveto.q){
+               if (checkpositionSIG==selectedpositiontomovetoSIG){
+                movestates.d = movestates.RIGHT;
+                selectedpositiontomoveto.d = adjacencymat.currentposition;//
+               // positionmovedto = selectedpositiontomoveto.q;  
+                //if (player==0){
+                //   newplayer1 = (player1 & ~selectedpositionfromselect)|selectedpositiontomoveto.q;
+         
+                //}
+                //else if(player==1){
+                //  newplayer2 = (player2 & ~selectedpositionfromselect)|selectedpositiontomoveto.q;
+               // }
+                //positionmovedto = selectedpositiontomoveto.q; 
+                } 
+            
+            }
+            else if (buttons == 3b111){
+              selectedpositiontomovetoSIG = adjacencymat.currentposition;
+              checkpositionSIG = selectedpositiontomovetoSIG&lightupbeforemove.positionstolightup;
+              positionmovedto = selectedpositionfromselect;
+              newplayer1 = player1;
+              newplayer2 = player2;
+              //selectedpositiontomoveto.d = adjacencymat.currentposition;
+              //checkposition.d = selectedpositiontomoveto.q&lightupbeforemove.positionstolightup;       
+              //if (checkposition.q==selectedpositiontomoveto.q){
+              if (checkpositionSIG==selectedpositiontomovetoSIG){
+                movestates.d = movestates.DOWN;
+                selectedpositiontomoveto.d = adjacencymat.currentposition;//
+                //positionmovedto = selectedpositiontomoveto.q;  
+                //if (player==0){
+                //   newplayer1 = (player1 & ~selectedpositionfromselect)|selectedpositiontomoveto.q;
+         
+                //}
+                //else if(player==1){
+                //  newplayer2 = (player2 & ~selectedpositionfromselect)|selectedpositiontomoveto.q;
+               // }
+                 
+                } 
+            }
+            else {
+              movestates.d = movestates.IDLE;
+            }
+ 
+      movestates.UP:
+        //did go into up state! yey
+        //test = 49b000000000000000000000000000000000000000000011100;
+        //test = selectedpositionfromselect;
+         positionmovedto = selectedpositiontomoveto.q;
+         
+        if (player == 0){
+          newplayer1 = (player1 & ~selectedpositionfromselect)|selectedpositiontomoveto.q;
+          newplayer2 = player2;
+          }
+        else if (player ==1 ){
+          newplayer2 = (player2 & ~selectedpositionfromselect)|selectedpositiontomoveto.q;
+          newplayer1 = player1;
+          }
+       
+         
+        if (buttons==3b111){
+          movestates.d = movestates.IDLE;
+          positionmovedto = selectedpositionfromselect;
+          newplayer1 = player1;
+          newplayer2 = player2;
+          }
+         else if (confirmbutton==1){
+          movestates.d = movestates.IDLE;
+          } 
+        
+        else{
+          movestates.d = movestates.UP;
+         positionmovedto = selectedpositiontomoveto.q;
+        if (player == 0){
+          newplayer1 = (player1 & ~selectedpositionfromselect)|selectedpositiontomoveto.q;
+          newplayer2 = player2;
+          }
+        else if (player ==1 ){
+          newplayer2 = (player2 & ~selectedpositionfromselect)|selectedpositiontomoveto.q;
+          newplayer1 = player1;
+          }  
+        }
+       // if (confirmbutton==1){
+       //   if (player==0){
+       //       newplayer1 = (player1 & ~selectedpositionfromselect)|selectedpositiontomoveto.q;
+       //       positionmovedto=49b0;
+       //     }
+       //    if (player==1){
+       //       newplayer2 = (player2 & ~selectedpositionfromselect)|selectedpositiontomoveto.q;
+       //       positionmovedto=49b0;
+       //   }
+       //}
+      
+      movestates.LEFT:
+       positionmovedto = selectedpositiontomoveto.q;
+        if (player == 0){
+          newplayer1 = (player1 & ~selectedpositionfromselect)|selectedpositiontomoveto.q;
+          newplayer2 = player2;
+          }
+        else if (player ==1 ){
+          newplayer2 = (player2 & ~selectedpositionfromselect)|selectedpositiontomoveto.q;
+          newplayer1 = player1;
+          }
+  
+        if (buttons == 3b001){
+          movestates.d = movestates.IDLE;
+          positionmovedto = selectedpositionfromselect;
+          newplayer1 = player1;
+          newplayer2 = player2;
+          }
+        else if (confirmbutton==1){
+          movestates.d = movestates.IDLE;
+          } 
+        else{
+          movestates.d = movestates.LEFT;
+          positionmovedto = selectedpositiontomoveto.q;
+        if (player == 0){
+          newplayer1 = (player1 & ~selectedpositionfromselect)|selectedpositiontomoveto.q;
+          newplayer2 = player2;
+          }
+        else if (player ==1 ){
+          newplayer2 = (player2 & ~selectedpositionfromselect)|selectedpositiontomoveto.q;
+          newplayer1 = player1;
+          }  
+          }
+       // if (confirmbutton==1){
+       //   if (player==0){
+       //       newplayer1 = (player1 & ~selectedpositionfromselect)|selectedpositiontomoveto.q;
+       //       positionmovedto=49b0;
+       //     }
+       //    if (player==1){
+       //       newplayer2 = (player2 & ~selectedpositionfromselect)|selectedpositiontomoveto.q;
+       //       positionmovedto=49b0;
+       //   }
+       // }
+      
+      movestates.DOWN:
+       positionmovedto = selectedpositiontomoveto.q;
+        if (player == 0){
+          newplayer1 = (player1 & ~selectedpositionfromselect)|selectedpositiontomoveto.q;
+          newplayer2 = player2;
+          }
+        else if (player ==1 ){
+          newplayer2 = (player2 & ~selectedpositionfromselect)|selectedpositiontomoveto.q;
+          newplayer1 = player1;
+          }
+   
+        if (buttons == 3b110){
+          movestates.d = movestates.IDLE;
+          positionmovedto = selectedpositionfromselect;
+           newplayer1 = player1;
+          newplayer2 = player2;
+          }
+        else if (confirmbutton==1){
+          movestates.d = movestates.IDLE;
+          }  
+        else{
+          movestates.d = movestates.DOWN;
+          positionmovedto = selectedpositiontomoveto.q;
+        if (player == 0){
+          newplayer1 = (player1 & ~selectedpositionfromselect)|selectedpositiontomoveto.q;
+          newplayer2 = player2;
+          }
+        else if (player ==1 ){
+          newplayer2 = (player2 & ~selectedpositionfromselect)|selectedpositiontomoveto.q;
+          newplayer1 = player1;
+          }   
+          }
+        //if (confirmbutton==1){
+        //  if (player==0){
+        //      newplayer1 = (player1 & ~selectedpositionfromselect)|selectedpositiontomoveto.q;
+        //      positionmovedto=49b0;
+        //    }
+        //   if (player==1){
+        //      newplayer2 = (player2 & ~selectedpositionfromselect)|selectedpositiontomoveto.q;
+        //      positionmovedto=49b0;
+        //  }
+       // }
+      movestates.RIGHT:
+       positionmovedto = selectedpositiontomoveto.q;
+        if (player == 0){
+          newplayer1 = (player1 & ~selectedpositionfromselect)|selectedpositiontomoveto.q;
+          newplayer2 = player2;
+          }
+        else if (player ==1 ){
+          newplayer2 = (player2 & ~selectedpositionfromselect)|selectedpositiontomoveto.q;
+          newplayer1 = player1;
+          }
+   
+        if (buttons == 3b010){
+          movestates.d = movestates.IDLE;
+          positionmovedto = selectedpositionfromselect;
+           newplayer1 = player1;
+          newplayer2 = player2;
+          }
+        else if (confirmbutton==1){
+          movestates.d = movestates.IDLE;
+          } 
+        else{
+          movestates.d = movestates.RIGHT;
+          positionmovedto = selectedpositiontomoveto.q;
+        if (player == 0){
+          newplayer1 = (player1 & ~selectedpositionfromselect)|selectedpositiontomoveto.q;
+          newplayer2 = player2;
+          }
+        else if (player ==1 ){
+          newplayer2 = (player2 & ~selectedpositionfromselect)|selectedpositiontomoveto.q;
+          newplayer1 = player1;
+          }   
+          }
+       // if (confirmbutton==1){
+       //   if (player==0){
+       //       newplayer1 = (player1 & ~selectedpositionfromselect)|selectedpositiontomoveto.q;
+       //       positionmovedto=49b0;
+       //     }
+       //    if (player==1){
+       //       newplayer2 = (player2 & ~selectedpositionfromselect)|selectedpositiontomoveto.q;
+       //       positionmovedto=49b0;
+       //   }
+       // }
+      }
+  }
+}

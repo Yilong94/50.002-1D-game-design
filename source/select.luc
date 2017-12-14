@@ -17,9 +17,11 @@ module select (
   sig newoverallandadj[49];
 
   adjacencymat adjacencymat(.clk(clk), .rst(rst));
+  alu alu;
 
   always {
-    
+    alu.alufn = 6b011000;//& function 
+    alu.b = cursor;    
     successfulselect = 0; //initialize
     check = 49b0;
     
@@ -27,14 +29,17 @@ module select (
     adjacencymat.player=player; //tells which player I am 
     
     overall = player1 | player2 ;  //check which spots are filled     
-    if (player ==0){      
+    if (player ==0){ 
+   
+    alu.a =player1;   
     adjacencymat.player=0;    // to set the player involved for the adjacency matrix cuz diff player diff matrix
-    check = player1 & cursor; // check if the cursor is in the list of player1
+    check = alu.alu_output; // check if the cursor is in the list of player1 --> player1&cursor
     }
     
-    else if (player ==1){  
+    else{  
     adjacencymat.player=1;
-    check = player2 & cursor; //check if the cursor is in the list of player1   
+    alu.a = player2;
+    check = alu.alu_output; //player2 & cursor
     }   
    
     adjacencymat.currentstate = cursor ; // set current state to be current cursor  -> tells adj matrx what position am i in currently, 

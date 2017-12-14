@@ -6,579 +6,905 @@ module checkfinal2 (
     input playercount1[4],
     input playercount2[4],
     input player,
-    //input button,
+    input startcheck[1],
+    input nextbutton,
     //output endgame,
     output player2new[49],
     output player1new[49],
     output player1newcount[4],
     output player2newcount[4],
-    output myled[49]
+    output myled[49],
+    output finish[1]
   ) {
   .clk(clk), .rst(rst){
-    fsm checkstates = {S0, S3, S4, S5, S11, S15, S18, S21, S22, S23, S24, S25, S26, S27, S28, S29, S32, S35, S39, S45, S46, END};
+    fsm checkstates = {START, S3, S4, S5, S11, S15, S18, S21, S22, S23, S24, S25, S26, S27, S28, S29, S32, S35, S39, S45, S46,S47, END};
     dff tempplayer1[49];
     dff tempplayer2[49];
     dff tempplayercount1[4];
     dff tempplayercount2[4];
     adjacencymat adjacencymat(.player(player));
+    
+    dff counter[30];
     }
+  .clk(clk){
+   edge_detector edgestart(#RISE(1), #FALL(0)); // detect rising edges    
+  }
   
   sig playerandadj;
   sig checkplayerwithadj;
   sig checkplayertoken;
   sig tempSignal;
+  sig finishsignal[1];
+  const X = 29;
 
   always {
-    tempplayer1.d = playercount1;
-    tempplayer2.d = playercount2;
-    tempplayercount1.d = playercount1;
-    tempplayercount2.d = playercount2;
+    //tempplayer1.d = player1;
+    //tempplayer2.d = player2;
+    //tempplayercount1.d = playercount1;
+    //tempplayercount2.d = playercount2;
     adjacencymat.currentstate = 49b0;
     player1new = player1;
     player2new = player2;
     player1newcount = playercount1;
     player2newcount = playercount2;
     adjacencymat.button = 000;
+    //checkstates.d = checkstates.START;
     
-    myled = 49b0000000000000000000000000000000000000000000000000;
+    finishsignal = 0;
+    finish = finishsignal;
+    edgestart.in = startcheck;
+
+    
+    
+    
+    
+    myled = 49b0000000000000000000000000000000000000000000011100;
     
     
     case(checkstates.q){
+      
+      checkstates.START:
+        edgestart.in = startcheck;
+        if (edgestart.out == 1){
+          tempplayer1.d = player1;
+          tempplayer2.d = player2;
+          checkstates.d = checkstates.S3;
+          finishsignal = 0;
+          finish = finishsignal;
+          
+          counter.d = 0;
+          }
         
-      checkstates.S0:
+      checkstates.S3:
         tempSignal = 49b0000000000000000000000000000000000000000000000100;
         adjacencymat.currentstate = tempSignal;
-        
+        counter.d = counter.q+1;
+        myled = tempSignal;
+        `
         if (player == 0){
           playerandadj = adjacencymat.adjmatrix & player1;
-          checkplayerwithadj = playerandadj^adjacencymat.adjmatrix; 
+          checkplayerwithadj = playerandadj^adjacencymat.adjmatrix; //check if the tokens in the adjacent matrix belong to player 1
           checkplayertoken = tempSignal&tempplayer2.q; 
-          if (checkplayerwithadj==49b0 && checkplayertoken==tempplayer2.q){
-            //myled = 49b1111111111111111111111111111111111111111111111111;
+          if (checkplayerwithadj==49b0 && checkplayertoken==tempSignal){ //if checkplayerwithadj ==49b0, it means that every token in the adjacent matrix is player 1's
+            
             tempplayer2.d = tempplayer2.q & ~tempSignal;
             tempplayercount2.d = tempplayercount2.q - 1;
             }
-          checkstates.d = checkstates.S3;
+          else{
+            tempplayer2.d = tempplayer2.q;
+            tempplayercount2.d = tempplayercount2.q;
+            }
+          
+          if (counter.q[X] == 1){
+
+          checkstates.d = checkstates.S4;
+            counter.d = 0;
+            }
+
+          
           }
         else {
           playerandadj = adjacencymat.adjmatrix & player2;
           checkplayerwithadj = playerandadj^adjacencymat.adjmatrix;  
           checkplayertoken = tempSignal&tempplayer1.q;
-          if (checkplayerwithadj==49b0 && checkplayertoken==tempplayer1.q){
+          if (checkplayerwithadj==49b0 && checkplayertoken==tempSignal){
             tempplayer1.d = tempplayer1.q & ~tempSignal;
             tempplayercount1.d = tempplayercount1.q - 1;
             }
-          checkstates.d = checkstates.S3;
+          else{
+            tempplayer1.d = tempplayer1.q;
+            tempplayercount1.d = tempplayercount1.q;
+            }
+          //if (nextbutton == 1){
+          checkstates.d = checkstates.S4;
+          //  }
           }
 
-      checkstates.S3:
+      checkstates.S4:
         tempSignal = 49b0000000000000000000000000000000000000000000001000;
         adjacencymat.currentstate = tempSignal;
+        myled = tempSignal;
         
         if (player == 0){
           playerandadj = adjacencymat.adjmatrix & player1;
           checkplayerwithadj = playerandadj^adjacencymat.adjmatrix; 
           checkplayertoken = tempSignal&tempplayer2.q; 
-          if (checkplayerwithadj==49b0 && checkplayertoken==tempplayer2.q){
+          if (checkplayerwithadj==49b0 && checkplayertoken==tempSignal){
             tempplayer2.d = tempplayer2.q & ~tempSignal;
             tempplayercount2.d = tempplayercount2.q - 1;
             }
-          checkstates.d = checkstates.S4;
+          else{
+            tempplayer2.d = tempplayer2.q;
+            tempplayercount2.d = tempplayercount2.q;
+            }
+          //if (nextbutton == 1){
+          checkstates.d = checkstates.S5;
+          //  }
           }
         else {
           playerandadj = adjacencymat.adjmatrix & player2;
           checkplayerwithadj = playerandadj^adjacencymat.adjmatrix;  
           checkplayertoken = tempSignal&tempplayer1.q;
-          if (checkplayerwithadj==49b0 && checkplayertoken==tempplayer1.q){
+          if (checkplayerwithadj==49b0 && checkplayertoken==tempSignal){
             tempplayer1.d = tempplayer1.q & ~tempSignal;
             tempplayercount1.d = tempplayercount1.q - 1;
             }
-          checkstates.d = checkstates.S4;
+          else{
+            tempplayer1.d = tempplayer1.q;
+            tempplayercount1.d = tempplayercount1.q;
+            }
+          //if (nextbutton == 1){
+          checkstates.d = checkstates.S5;
+          //  }
           }
-      checkstates.S4:
+      checkstates.S5:
         tempSignal = 49b0000000000000000000000000000000000000000000010000;
         adjacencymat.currentstate = tempSignal;
+        myled = tempSignal;
         
         if (player == 0){
           playerandadj = adjacencymat.adjmatrix & player1;
           checkplayerwithadj = playerandadj^adjacencymat.adjmatrix; 
           checkplayertoken = tempSignal&tempplayer2.q; 
-          if (checkplayerwithadj==49b0 && checkplayertoken==tempplayer2.q){
+          if (checkplayerwithadj==49b0 && checkplayertoken==tempSignal){
             tempplayer2.d = tempplayer2.q & ~tempSignal;
             tempplayercount2.d = tempplayercount2.q - 1;
             }
-          checkstates.d = checkstates.S5;
+          else{
+            tempplayer2.d = tempplayer2.q;
+            tempplayercount2.d = tempplayercount2.q;
+            }
+          //if (nextbutton == 1){
+          checkstates.d = checkstates.S11;
+          //  }
           }
         else {
           playerandadj = adjacencymat.adjmatrix & player2;
           checkplayerwithadj = playerandadj^adjacencymat.adjmatrix;  
           checkplayertoken = tempSignal&tempplayer1.q;
-          if (checkplayerwithadj==49b0 && checkplayertoken==tempplayer1.q){
+          if (checkplayerwithadj==49b0 && checkplayertoken==tempSignal){
             tempplayer1.d = tempplayer1.q & ~tempSignal;
             tempplayercount1.d = tempplayercount1.q - 1;
             }
-          checkstates.d = checkstates.S5;
-          }
-        
-      checkstates.S5:
-        tempSignal = 49b0000000000000000000000000000000000000010000000000;
-        adjacencymat.currentstate = tempSignal;
-        
-        if (player == 0){
-          playerandadj = adjacencymat.adjmatrix & player1;
-          checkplayerwithadj = playerandadj^adjacencymat.adjmatrix; 
-          checkplayertoken = tempSignal&tempplayer2.q; 
-          if (checkplayerwithadj==49b0 && checkplayertoken==tempplayer2.q){
-            tempplayer2.d = tempplayer2.q & ~tempSignal;
-            tempplayercount2.d = tempplayercount2.q - 1;
+          else{
+            tempplayer1.d = tempplayer1.q;
+            tempplayercount1.d = tempplayercount1.q;
             }
+          //if (nextbutton == 1){
           checkstates.d = checkstates.S11;
-          }
-        else {
-          playerandadj = adjacencymat.adjmatrix & player2;
-          checkplayerwithadj = playerandadj^adjacencymat.adjmatrix;  
-          checkplayertoken = tempSignal&tempplayer1.q;
-          if (checkplayerwithadj==49b0 && checkplayertoken==tempplayer1.q){
-            tempplayer1.d = tempplayer1.q & ~tempSignal;
-            tempplayercount1.d = tempplayercount1.q - 1;
-            }
-          checkstates.d = checkstates.S11;
+          //  }
           }
         
       checkstates.S11:
-        tempSignal = 49b0000000000000000000000000000000000100000000000000;
+        tempSignal = 49b0000000000000000000000000000000000000010000000000;
         adjacencymat.currentstate = tempSignal;
+        myled = tempSignal;
         
         if (player == 0){
           playerandadj = adjacencymat.adjmatrix & player1;
           checkplayerwithadj = playerandadj^adjacencymat.adjmatrix; 
           checkplayertoken = tempSignal&tempplayer2.q; 
-          if (checkplayerwithadj==49b0 && checkplayertoken==tempplayer2.q){
+          if (checkplayerwithadj==49b0 && checkplayertoken==tempSignal){
             tempplayer2.d = tempplayer2.q & ~tempSignal;
             tempplayercount2.d = tempplayercount2.q - 1;
             }
+          else{
+            tempplayer2.d = tempplayer2.q;
+            tempplayercount2.d = tempplayercount2.q;
+            }
+          //if (nextbutton == 1){
           checkstates.d = checkstates.S15;
+          //  }
           }
         else {
           playerandadj = adjacencymat.adjmatrix & player2;
           checkplayerwithadj = playerandadj^adjacencymat.adjmatrix;  
           checkplayertoken = tempSignal&tempplayer1.q;
-          if (checkplayerwithadj==49b0 && checkplayertoken==tempplayer1.q){
+          if (checkplayerwithadj==49b0 && checkplayertoken==tempSignal){
             tempplayer1.d = tempplayer1.q & ~tempSignal;
             tempplayercount1.d = tempplayercount1.q - 1;
             }
+          else{
+            tempplayer1.d = tempplayer1.q;
+            tempplayercount1.d = tempplayercount1.q;
+            }
+          //if (nextbutton == 1){
           checkstates.d = checkstates.S15;
+          //  }
           }
         
       checkstates.S15:
-        tempSignal = 49b0000000000000000000000000000000100000000000000000;
+        tempSignal = 49b0000000000000000000000000000000000100000000000000;
         adjacencymat.currentstate = tempSignal;
+        myled = tempSignal;
         
         if (player == 0){
           playerandadj = adjacencymat.adjmatrix & player1;
           checkplayerwithadj = playerandadj^adjacencymat.adjmatrix; 
           checkplayertoken = tempSignal&tempplayer2.q; 
-          if (checkplayerwithadj==49b0 && checkplayertoken==tempplayer2.q){
+          if (checkplayerwithadj==49b0 && checkplayertoken==tempSignal){
             tempplayer2.d = tempplayer2.q & ~tempSignal;
-            tempplayercount2.d = tempplayercount2.q - 1;
+            tempplayercount2.d = tempplayercount2.q - 1;}
+          //if (nextbutton == 1){
+         else{
+            tempplayer2.d = tempplayer2.q;
+            tempplayercount2.d = tempplayercount2.q;
             }
           checkstates.d = checkstates.S18;
+          //  }
           }
         else {
           playerandadj = adjacencymat.adjmatrix & player2;
           checkplayerwithadj = playerandadj^adjacencymat.adjmatrix;  
           checkplayertoken = tempSignal&tempplayer1.q;
-          if (checkplayerwithadj==49b0 && checkplayertoken==tempplayer1.q){
+          if (checkplayerwithadj==49b0 && checkplayertoken==tempSignal){
             tempplayer1.d = tempplayer1.q & ~tempSignal;
             tempplayercount1.d = tempplayercount1.q - 1;
             }
+          else{
+            tempplayer1.d = tempplayer1.q;
+            tempplayercount1.d = tempplayercount1.q;
+            }
+          //if (nextbutton == 1){
           checkstates.d = checkstates.S18;
+          //  }
           }
         
       checkstates.S18:
-        tempSignal = 49b0000000000000000000000000000100000000000000000000;
+        tempSignal = 49b0000000000000000000000000000000100000000000000000;
         adjacencymat.currentstate = tempSignal;
+        myled = tempSignal;
         
         if (player == 0){
           playerandadj = adjacencymat.adjmatrix & player1;
           checkplayerwithadj = playerandadj^adjacencymat.adjmatrix; 
           checkplayertoken = tempSignal&tempplayer2.q; 
-          if (checkplayerwithadj==49b0 && checkplayertoken==tempplayer2.q){
+          if (checkplayerwithadj==49b0 && checkplayertoken==tempSignal){
             tempplayer2.d = tempplayer2.q & ~tempSignal;
             tempplayercount2.d = tempplayercount2.q - 1;
             }
+          else{
+            tempplayer2.d = tempplayer2.q;
+            tempplayercount2.d = tempplayercount2.q;
+            }
+          //if (nextbutton == 1){
           checkstates.d = checkstates.S21;
+          //  }
           }
         else {
           playerandadj = adjacencymat.adjmatrix & player2;
           checkplayerwithadj = playerandadj^adjacencymat.adjmatrix;  
           checkplayertoken = tempSignal&tempplayer1.q;
-          if (checkplayerwithadj==49b0 && checkplayertoken==tempplayer1.q){
+          if (checkplayerwithadj==49b0 && checkplayertoken==tempSignal){
             tempplayer1.d = tempplayer1.q & ~tempSignal;
             tempplayercount1.d = tempplayercount1.q - 1;
             }
+          else{
+            tempplayer1.d = tempplayer1.q;
+            tempplayercount1.d = tempplayercount1.q;
+            }
+          //if (nextbutton == 1){
           checkstates.d = checkstates.S21;
+          //  }
           }
         
       checkstates.S21:
-        tempSignal = 49b0000000000000000000000000001000000000000000000000;
+        tempSignal = 49b0000000000000000000000000000100000000000000000000;
         adjacencymat.currentstate = tempSignal;
+        myled = tempSignal;
         
         if (player == 0){
           playerandadj = adjacencymat.adjmatrix & player1;
           checkplayerwithadj = playerandadj^adjacencymat.adjmatrix; 
           checkplayertoken = tempSignal&tempplayer2.q; 
-          if (checkplayerwithadj==49b0 && checkplayertoken==tempplayer2.q){
+          if (checkplayerwithadj==49b0 && checkplayertoken==tempSignal){
             tempplayer2.d = tempplayer2.q & ~tempSignal;
             tempplayercount2.d = tempplayercount2.q - 1;
             }
+          else{
+            tempplayer2.d = tempplayer2.q;
+            tempplayercount2.d = tempplayercount2.q;
+            }
+          //if (nextbutton == 1){
           checkstates.d = checkstates.S22;
+         //   }
           }
         else {
           playerandadj = adjacencymat.adjmatrix & player2;
           checkplayerwithadj = playerandadj^adjacencymat.adjmatrix;  
           checkplayertoken = tempSignal&tempplayer1.q;
-          if (checkplayerwithadj==49b0 && checkplayertoken==tempplayer1.q){
+          if (checkplayerwithadj==49b0 && checkplayertoken==tempSignal){
             tempplayer1.d = tempplayer1.q & ~tempSignal;
             tempplayercount1.d = tempplayercount1.q - 1;
             }
+          else{
+            tempplayer1.d = tempplayer1.q;
+            tempplayercount1.d = tempplayercount1.q;
+            }
+          //if (nextbutton == 1){
           checkstates.d = checkstates.S22;
+          //  }
           }
         
       checkstates.S22:
-        tempSignal = 49b0000000000000000000000000010000000000000000000000;
+        tempSignal = 49b0000000000000000000000000001000000000000000000000;
         adjacencymat.currentstate = tempSignal;
+        myled = tempSignal;
         
         if (player == 0){
           playerandadj = adjacencymat.adjmatrix & player1;
           checkplayerwithadj = playerandadj^adjacencymat.adjmatrix; 
           checkplayertoken = tempSignal&tempplayer2.q; 
-          if (checkplayerwithadj==49b0 && checkplayertoken==tempplayer2.q){
+          if (checkplayerwithadj==49b0 && checkplayertoken==tempSignal){
             tempplayer2.d = tempplayer2.q & ~tempSignal;
             tempplayercount2.d = tempplayercount2.q - 1;
             }
+          else{
+            tempplayer2.d = tempplayer2.q;
+            tempplayercount2.d = tempplayercount2.q;
+            }
+         // if (nextbutton == 1){
           checkstates.d = checkstates.S23;
+         //   }
           }
         else {
           playerandadj = adjacencymat.adjmatrix & player2;
           checkplayerwithadj = playerandadj^adjacencymat.adjmatrix;  
           checkplayertoken = tempSignal&tempplayer1.q;
-          if (checkplayerwithadj==49b0 && checkplayertoken==tempplayer1.q){
+          if (checkplayerwithadj==49b0 && checkplayertoken==tempSignal){
             tempplayer1.d = tempplayer1.q & ~tempSignal;
             tempplayercount1.d = tempplayercount1.q - 1;
             }
+          else{
+            tempplayer1.d = tempplayer1.q;
+            tempplayercount1.d = tempplayercount1.q;
+            }
+          //if (nextbutton == 1){
           checkstates.d = checkstates.S23;
+          //  }
           }
         
       checkstates.S23:
-        tempSignal = 49b0000000000000000000000000100000000000000000000000;
+        tempSignal = 49b0000000000000000000000000010000000000000000000000;
         adjacencymat.currentstate = tempSignal;
+        myled = tempSignal;
         
         if (player == 0){
           playerandadj = adjacencymat.adjmatrix & player1;
           checkplayerwithadj = playerandadj^adjacencymat.adjmatrix; 
           checkplayertoken = tempSignal&tempplayer2.q; 
-          if (checkplayerwithadj==49b0 && checkplayertoken==tempplayer2.q){
+          if (checkplayerwithadj==49b0 && checkplayertoken==tempSignal){
             tempplayer2.d = tempplayer2.q & ~tempSignal;
             tempplayercount2.d = tempplayercount2.q - 1;
             }
+          else{
+            tempplayer2.d = tempplayer2.q;
+            tempplayercount2.d = tempplayercount2.q;
+            }
+          //if (nextbutton == 1){
           checkstates.d = checkstates.S24;
+          //  }
           }
         else {
           playerandadj = adjacencymat.adjmatrix & player2;
           checkplayerwithadj = playerandadj^adjacencymat.adjmatrix;  
           checkplayertoken = tempSignal&tempplayer1.q;
-          if (checkplayerwithadj==49b0 && checkplayertoken==tempplayer1.q){
+          if (checkplayerwithadj==49b0 && checkplayertoken==tempSignal){
             tempplayer1.d = tempplayer1.q & ~tempSignal;
             tempplayercount1.d = tempplayercount1.q - 1;
             }
+          else{
+            tempplayer1.d = tempplayer1.q;
+            tempplayercount1.d = tempplayercount1.q;
+            }
+          //if (nextbutton == 1){
           checkstates.d = checkstates.S24;
+          //  }
           }
         
       checkstates.S24:
-        tempSignal = 49b0000000000000000000000001000000000000000000000000;
+        tempSignal = 49b0000000000000000000000000100000000000000000000000;
         adjacencymat.currentstate = tempSignal;
+        myled = tempSignal;
         
         if (player == 0){
           playerandadj = adjacencymat.adjmatrix & player1;
           checkplayerwithadj = playerandadj^adjacencymat.adjmatrix; 
           checkplayertoken = tempSignal&tempplayer2.q; 
-          if (checkplayerwithadj==49b0 && checkplayertoken==tempplayer2.q){
+          if (checkplayerwithadj==49b0 && checkplayertoken==tempSignal){
             tempplayer2.d = tempplayer2.q & ~tempSignal;
             tempplayercount2.d = tempplayercount2.q - 1;
             }
+          else{
+            tempplayer2.d = tempplayer2.q;
+            tempplayercount2.d = tempplayercount2.q;
+            }
+          //if (nextbutton == 1){
           checkstates.d = checkstates.S25;
+          //  }
           }
         else {
           playerandadj = adjacencymat.adjmatrix & player2;
           checkplayerwithadj = playerandadj^adjacencymat.adjmatrix;  
           checkplayertoken = tempSignal&tempplayer1.q;
-          if (checkplayerwithadj==49b0 && checkplayertoken==tempplayer1.q){
+          if (checkplayerwithadj==49b0 && checkplayertoken==tempSignal){
             tempplayer1.d = tempplayer1.q & ~tempSignal;
             tempplayercount1.d = tempplayercount1.q - 1;
             }
+          else{
+            tempplayer1.d = tempplayer1.q;
+            tempplayercount1.d = tempplayercount1.q;
+            }
+          //if (nextbutton == 1){
           checkstates.d = checkstates.S25;
+          //  }
           }
         
       checkstates.S25:
-        tempSignal = 49b0000000000000000000000010000000000000000000000000;
+        tempSignal = 49b0000000000000000000000001000000000000000000000000;
         adjacencymat.currentstate = tempSignal;
+        myled = tempSignal;
         
         if (player == 0){
           playerandadj = adjacencymat.adjmatrix & player1;
           checkplayerwithadj = playerandadj^adjacencymat.adjmatrix; 
           checkplayertoken = tempSignal&tempplayer2.q; 
-          if (checkplayerwithadj==49b0 && checkplayertoken==tempplayer2.q){
+          if (checkplayerwithadj==49b0 && checkplayertoken==tempSignal){
             tempplayer2.d = tempplayer2.q & ~tempSignal;
             tempplayercount2.d = tempplayercount2.q - 1;
             }
+          else{
+            tempplayer2.d = tempplayer2.q;
+            tempplayercount2.d = tempplayercount2.q;
+            }
+          //if (nextbutton == 1){
           checkstates.d = checkstates.S26;
+          //  }
           }
         else {
           playerandadj = adjacencymat.adjmatrix & player2;
           checkplayerwithadj = playerandadj^adjacencymat.adjmatrix;  
           checkplayertoken = tempSignal&tempplayer1.q;
-          if (checkplayerwithadj==49b0 && checkplayertoken==tempplayer1.q){
+          if (checkplayerwithadj==49b0 && checkplayertoken==tempSignal){
             tempplayer1.d = tempplayer1.q & ~tempSignal;
             tempplayercount1.d = tempplayercount1.q - 1;
             }
+          else{
+            tempplayer1.d = tempplayer1.q;
+            tempplayercount1.d = tempplayercount1.q;
+            }
+
+          //if (nextbutton == 1){
           checkstates.d = checkstates.S26;
+          //  }
           }
         
       checkstates.S26:
-        tempSignal = 49b0000000000000000000000100000000000000000000000000;
+        tempSignal = 49b0000000000000000000000010000000000000000000000000;
         adjacencymat.currentstate = tempSignal;
+        myled = tempSignal;
         
         if (player == 0){
           playerandadj = adjacencymat.adjmatrix & player1;
           checkplayerwithadj = playerandadj^adjacencymat.adjmatrix; 
           checkplayertoken = tempSignal&tempplayer2.q; 
-          if (checkplayerwithadj==49b0 && checkplayertoken==tempplayer2.q){
+          if (checkplayerwithadj==49b0 && checkplayertoken==tempSignal){
             tempplayer2.d = tempplayer2.q & ~tempSignal;
             tempplayercount2.d = tempplayercount2.q - 1;
             }
+          else{
+            tempplayer2.d = tempplayer2.q;
+            tempplayercount2.d = tempplayercount2.q;
+            }
+          //if (nextbutton == 1){
           checkstates.d = checkstates.S27;
+          //  }
           }
         else {
           playerandadj = adjacencymat.adjmatrix & player2;
           checkplayerwithadj = playerandadj^adjacencymat.adjmatrix;  
           checkplayertoken = tempSignal&tempplayer1.q;
-          if (checkplayerwithadj==49b0 && checkplayertoken==tempplayer1.q){
+          if (checkplayerwithadj==49b0 && checkplayertoken==tempSignal){
             tempplayer1.d = tempplayer1.q & ~tempSignal;
             tempplayercount1.d = tempplayercount1.q - 1;
             }
+          else{
+            tempplayer1.d = tempplayer1.q;
+            tempplayercount1.d = tempplayercount1.q;
+            }
+          //if (nextbutton == 1){
           checkstates.d = checkstates.S27;
+          //  }
           }
         
       checkstates.S27:
-        tempSignal = 49b0000000000000000000001000000000000000000000000000;
+        tempSignal = 49b0000000000000000000000100000000000000000000000000;
         adjacencymat.currentstate = tempSignal;
+        myled = tempSignal;
         
         if (player == 0){
           playerandadj = adjacencymat.adjmatrix & player1;
           checkplayerwithadj = playerandadj^adjacencymat.adjmatrix; 
           checkplayertoken = tempSignal&tempplayer2.q; 
-          if (checkplayerwithadj==49b0 && checkplayertoken==tempplayer2.q){
+          if (checkplayerwithadj==49b0 && checkplayertoken==tempSignal){
             tempplayer2.d = tempplayer2.q & ~tempSignal;
             tempplayercount2.d = tempplayercount2.q - 1;
             }
+          else{
+            tempplayer2.d = tempplayer2.q;
+            tempplayercount2.d = tempplayercount2.q;
+            }
+          //if (nextbutton == 1){
           checkstates.d = checkstates.S28;
+          //  }
           }
         else {
           playerandadj = adjacencymat.adjmatrix & player2;
           checkplayerwithadj = playerandadj^adjacencymat.adjmatrix;  
           checkplayertoken = tempSignal&tempplayer1.q;
-          if (checkplayerwithadj==49b0 && checkplayertoken==tempplayer1.q){
+          if (checkplayerwithadj==49b0 && checkplayertoken==tempSignal){
             tempplayer1.d = tempplayer1.q & ~tempSignal;
             tempplayercount1.d = tempplayercount1.q - 1;
             }
+          else{
+            tempplayer1.d = tempplayer1.q;
+            tempplayercount1.d = tempplayercount1.q;
+            }
+          //if (nextbutton == 1){
           checkstates.d = checkstates.S28;
+          //  }
           }
         
       checkstates.S28:
-        tempSignal = 49b0000000000000000000010000000000000000000000000000;
+        tempSignal = 49b0000000000000000000001000000000000000000000000000;
         adjacencymat.currentstate = tempSignal;
+        myled = tempSignal;
         
         if (player == 0){
           playerandadj = adjacencymat.adjmatrix & player1;
           checkplayerwithadj = playerandadj^adjacencymat.adjmatrix; 
           checkplayertoken = tempSignal&tempplayer2.q; 
-          if (checkplayerwithadj==49b0 && checkplayertoken==tempplayer2.q){
+          if (checkplayerwithadj==49b0 && checkplayertoken==tempSignal){
             tempplayer2.d = tempplayer2.q & ~tempSignal;
             tempplayercount2.d = tempplayercount2.q - 1;
             }
+          else{
+            tempplayer2.d = tempplayer2.q;
+            tempplayercount2.d = tempplayercount2.q;
+            }
+          //if (nextbutton == 1){
           checkstates.d = checkstates.S29;
+          //  }
           }
         else {
           playerandadj = adjacencymat.adjmatrix & player2;
           checkplayerwithadj = playerandadj^adjacencymat.adjmatrix;  
           checkplayertoken = tempSignal&tempplayer1.q;
-          if (checkplayerwithadj==49b0 && checkplayertoken==tempplayer1.q){
+          if (checkplayerwithadj==49b0 && checkplayertoken==tempSignal){
             tempplayer1.d = tempplayer1.q & ~tempSignal;
             tempplayercount1.d = tempplayercount1.q - 1;
             }
+          else{
+            tempplayer1.d = tempplayer1.q;
+            tempplayercount1.d = tempplayercount1.q;
+            }
+          //if (nextbutton == 1){
           checkstates.d = checkstates.S29;
+          //  }
           }
         
       checkstates.S29:
-        tempSignal = 49b0000000000000000010000000000000000000000000000000;
+        tempSignal = 49b0000000000000000000010000000000000000000000000000;
         adjacencymat.currentstate = tempSignal;
+        myled = tempSignal;
         
         if (player == 0){
           playerandadj = adjacencymat.adjmatrix & player1;
           checkplayerwithadj = playerandadj^adjacencymat.adjmatrix; 
           checkplayertoken = tempSignal&tempplayer2.q; 
-          if (checkplayerwithadj==49b0 && checkplayertoken==tempplayer2.q){
+          if (checkplayerwithadj==49b0 && checkplayertoken==tempSignal){
             tempplayer2.d = tempplayer2.q & ~tempSignal;
             tempplayercount2.d = tempplayercount2.q - 1;
             }
+          else{
+            tempplayer2.d = tempplayer2.q;
+            tempplayercount2.d = tempplayercount2.q;
+            }
+          //if (nextbutton == 1){
           checkstates.d = checkstates.S32;
+          //  }
           }
         else {
           playerandadj = adjacencymat.adjmatrix & player2;
           checkplayerwithadj = playerandadj^adjacencymat.adjmatrix;  
           checkplayertoken = tempSignal&tempplayer1.q;
-          if (checkplayerwithadj==49b0 && checkplayertoken==tempplayer1.q){
+          if (checkplayerwithadj==49b0 && checkplayertoken==tempSignal){
             tempplayer1.d = tempplayer1.q & ~tempSignal;
             tempplayercount1.d = tempplayercount1.q - 1;
             }
+          else{
+            tempplayer1.d = tempplayer1.q;
+            tempplayercount1.d = tempplayercount1.q;
+            }
+          //if (nextbutton == 1){
           checkstates.d = checkstates.S32;
+          //  }
           }
         
       checkstates.S32:
-        tempSignal = 49b0000000000000010000000000000000000000000000000000;
+        tempSignal = 49b0000000000000000010000000000000000000000000000000;
         adjacencymat.currentstate = tempSignal;
+        myled = tempSignal;
         
         if (player == 0){
           playerandadj = adjacencymat.adjmatrix & player1;
           checkplayerwithadj = playerandadj^adjacencymat.adjmatrix; 
           checkplayertoken = tempSignal&tempplayer2.q; 
-          if (checkplayerwithadj==49b0 && checkplayertoken==tempplayer2.q){
+          if (checkplayerwithadj==49b0 && checkplayertoken==tempSignal){
             tempplayer2.d = tempplayer2.q & ~tempSignal;
             tempplayercount2.d = tempplayercount2.q - 1;
             }
+          else{
+            tempplayer2.d = tempplayer2.q;
+            tempplayercount2.d = tempplayercount2.q;
+            }
+          //if (nextbutton == 1){
           checkstates.d = checkstates.S35;
+          //  }
           }
         else {
           playerandadj = adjacencymat.adjmatrix & player2;
           checkplayerwithadj = playerandadj^adjacencymat.adjmatrix;  
           checkplayertoken = tempSignal&tempplayer1.q;
-          if (checkplayerwithadj==49b0 && checkplayertoken==tempplayer1.q){
+          if (checkplayerwithadj==49b0 && checkplayertoken==tempSignal){
             tempplayer1.d = tempplayer1.q & ~tempSignal;
             tempplayercount1.d = tempplayercount1.q - 1;
             }
+          else{
+            tempplayer1.d = tempplayer1.q;
+            tempplayercount1.d = tempplayercount1.q;
+            }
+          //if (nextbutton == 1){
           checkstates.d = checkstates.S35;
+          //  }
           }
         
       checkstates.S35:
-        tempSignal = 49b0000000000100000000000000000000000000000000000000;
+        tempSignal = 49b0000000000000010000000000000000000000000000000000;
         adjacencymat.currentstate = tempSignal;
+        myled = tempSignal;
         
         if (player == 0){
           playerandadj = adjacencymat.adjmatrix & player1;
           checkplayerwithadj = playerandadj^adjacencymat.adjmatrix; 
           checkplayertoken = tempSignal&tempplayer2.q; 
-          if (checkplayerwithadj==49b0 && checkplayertoken==tempplayer2.q){
+          if (checkplayerwithadj==49b0 && checkplayertoken==tempSignal){
             tempplayer2.d = tempplayer2.q & ~tempSignal;
             tempplayercount2.d = tempplayercount2.q - 1;
             }
+          else{
+            tempplayer2.d = tempplayer2.q;
+            tempplayercount2.d = tempplayercount2.q;
+            }
+          //if (nextbutton == 1){
           checkstates.d = checkstates.S39;
+          //  }
           }
         else {
           playerandadj = adjacencymat.adjmatrix & player2;
           checkplayerwithadj = playerandadj^adjacencymat.adjmatrix;  
           checkplayertoken = tempSignal&tempplayer1.q;
-          if (checkplayerwithadj==49b0 && checkplayertoken==tempplayer1.q){
+          if (checkplayerwithadj==49b0 && checkplayertoken==tempSignal){
             tempplayer1.d = tempplayer1.q & ~tempSignal;
             tempplayercount1.d = tempplayercount1.q - 1;
             }
+          else{
+            tempplayer1.d = tempplayer1.q;
+            tempplayercount1.d = tempplayercount1.q;
+            }
+          //if (nextbutton == 1){
           checkstates.d = checkstates.S39;
+          //  }
           }
         
       checkstates.S39:
-        tempSignal = 49b0000100000000000000000000000000000000000000000000;
+        tempSignal = 49b0000000000100000000000000000000000000000000000000;
         adjacencymat.currentstate = tempSignal;
+        myled = tempSignal;
         
         if (player == 0){
           playerandadj = adjacencymat.adjmatrix & player1;
           checkplayerwithadj = playerandadj^adjacencymat.adjmatrix; 
           checkplayertoken = tempSignal&tempplayer2.q; 
-          if (checkplayerwithadj==49b0 && checkplayertoken==tempplayer2.q){
+          if (checkplayerwithadj==49b0 && checkplayertoken==tempSignal){
             tempplayer2.d = tempplayer2.q & ~tempSignal;
             tempplayercount2.d = tempplayercount2.q - 1;
             }
+          else{
+            tempplayer2.d = tempplayer2.q;
+            tempplayercount2.d = tempplayercount2.q;
+            }
+          //if (nextbutton == 1){
           checkstates.d = checkstates.S45;
+          //  }
           }
         else {
           playerandadj = adjacencymat.adjmatrix & player2;
           checkplayerwithadj = playerandadj^adjacencymat.adjmatrix;  
           checkplayertoken = tempSignal&tempplayer1.q;
-          if (checkplayerwithadj==49b0 && checkplayertoken==tempplayer1.q){
+          if (checkplayerwithadj==49b0 && checkplayertoken==tempSignal){
             tempplayer1.d = tempplayer1.q & ~tempSignal;
             tempplayercount1.d = tempplayercount1.q - 1;
             }
+          else{
+            tempplayer1.d = tempplayer1.q;
+            tempplayercount1.d = tempplayercount1.q;
+            }
+          //if (nextbutton == 1){
           checkstates.d = checkstates.S45;
+          //  }
           }
         
       checkstates.S45:
-        tempSignal = 49b0001000000000000000000000000000000000000000000000;
+        tempSignal = 49b0000100000000000000000000000000000000000000000000;
         adjacencymat.currentstate = tempSignal;
+        myled = tempSignal;
         
         if (player == 0){
           playerandadj = adjacencymat.adjmatrix & player1;
           checkplayerwithadj = playerandadj^adjacencymat.adjmatrix; 
           checkplayertoken = tempSignal&tempplayer2.q; 
-          if (checkplayerwithadj==49b0 && checkplayertoken==tempplayer2.q){
+          if (checkplayerwithadj==49b0 && checkplayertoken==tempSignal){
             tempplayer2.d = tempplayer2.q & ~tempSignal;
             tempplayercount2.d = tempplayercount2.q - 1;
             }
+          else{
+            tempplayer2.d = tempplayer2.q;
+            tempplayercount2.d = tempplayercount2.q;
+            }
+          //if (nextbutton == 1){
           checkstates.d = checkstates.S46;
+          //  }
           }
         else {
           playerandadj = adjacencymat.adjmatrix & player2;
           checkplayerwithadj = playerandadj^adjacencymat.adjmatrix;  
           checkplayertoken = tempSignal&tempplayer1.q;
-          if (checkplayerwithadj==49b0 && checkplayertoken==tempplayer1.q){
+          if (checkplayerwithadj==49b0 && checkplayertoken==tempSignal){
             tempplayer1.d = tempplayer1.q & ~tempSignal;
             tempplayercount1.d = tempplayercount1.q - 1;
             }
+          else{
+            tempplayer1.d = tempplayer1.q;
+            tempplayercount1.d = tempplayercount1.q;
+            }
+          //if (nextbutton == 1){
           checkstates.d = checkstates.S46;
+          //  }
           }
         
       checkstates.S46:
-        tempSignal = 49b0010000000000000000000000000000000000000000000000;
+        tempSignal = 49b0001000000000000000000000000000000000000000000000;
         adjacencymat.currentstate = tempSignal;
+        myled = tempSignal;
         
         if (player == 0){
           playerandadj = adjacencymat.adjmatrix & player1;
           checkplayerwithadj = playerandadj^adjacencymat.adjmatrix; 
           checkplayertoken = tempSignal&tempplayer2.q; 
-          if (checkplayerwithadj==49b0 && checkplayertoken==tempplayer2.q){
+          if (checkplayerwithadj==49b0 && checkplayertoken==tempSignal){
             tempplayer2.d = tempplayer2.q & ~tempSignal;
             tempplayercount2.d = tempplayercount2.q - 1;
             }
-          checkstates.d = checkstates.END;
+          else{
+            tempplayer2.d = tempplayer2.q;
+            tempplayercount2.d = tempplayercount2.q;
+            }
+          //if (nextbutton == 1){
+          checkstates.d = checkstates.S47;
+          //  }
           }
         else {
           playerandadj = adjacencymat.adjmatrix & player2;
           checkplayerwithadj = playerandadj^adjacencymat.adjmatrix;  
           checkplayertoken = tempSignal&tempplayer1.q;
-          if (checkplayerwithadj==49b0 && checkplayertoken==tempplayer1.q){
+          if (checkplayerwithadj==49b0 && checkplayertoken==tempSignal){
             tempplayer1.d = tempplayer1.q & ~tempSignal;
             tempplayercount1.d = tempplayercount1.q - 1;
             }
+          else{
+            tempplayer1.d = tempplayer1.q;
+            tempplayercount1.d = tempplayercount1.q;
+            }
+          //if (nextbutton == 1){
+          checkstates.d = checkstates.S47;
+          //  }
+          }
+        
+      checkstates.S47:
+        tempSignal = 49b0010000000000000000000000000000000000000000000000;
+        adjacencymat.currentstate = tempSignal;
+        myled = tempSignal;
+        
+        if (player == 0){
+          playerandadj = adjacencymat.adjmatrix & player1;
+          checkplayerwithadj = playerandadj^adjacencymat.adjmatrix; 
+          checkplayertoken = tempSignal&tempplayer2.q; 
+          if (checkplayerwithadj==49b0 && checkplayertoken==tempSignal){
+            tempplayer2.d = tempplayer2.q & ~tempSignal;
+            tempplayercount2.d = tempplayercount2.q - 1;
+            }
+          else{
+            tempplayer2.d = tempplayer2.q;
+            tempplayercount2.d = tempplayercount2.q;
+            }
+          //if (nextbutton == 1){
           checkstates.d = checkstates.END;
+          //  }
+          }
+        else {
+          playerandadj = adjacencymat.adjmatrix & player2;
+          checkplayerwithadj = playerandadj^adjacencymat.adjmatrix;  
+          checkplayertoken = tempSignal&tempplayer1.q;
+          if (checkplayerwithadj==49b0 && checkplayertoken==tempSignal){
+            tempplayer1.d = tempplayer1.q & ~tempSignal;
+            tempplayercount1.d = tempplayercount1.q - 1;
+            }
+          else{
+            tempplayer1.d = tempplayer1.q;
+            tempplayercount1.d = tempplayercount1.q;
+            }
+          //if (nextbutton == 1){
+          checkstates.d = checkstates.END;
+          //  }
           }
         
       checkstates.END:
+        finishsignal = 1;
+        finish = finishsignal;
         if (player==0){
           player2new = tempplayer2.q;
           player2newcount = tempplayercount2.q;
+          player1new = player1;
+          player1newcount = playercount1;
           }
         else{
           player1new = tempplayer1.q;
           player1newcount = tempplayercount1.q;
+          player2new = player2;
+          player2newcount = playercount2;
           }
+        
+        checkstates.d = checkstates.START;
+        finishsignal = 0;
+        finish = finishsignal;
+        //finish = 0;
+        //if (startcheck == 0){
+        //checkstates.d = checkstates.START;
+        //  finish = 0;
+        //  }
+        
+        
             
 }
 } 

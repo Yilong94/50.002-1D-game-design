@@ -58,7 +58,7 @@ NET "ground[5]" IOSTANDARD = LVTTL;
 NET "ground[6]" LOC = P8;
 NET "ground[6]" IOSTANDARD = LVTTL;
 
-NET "upbutton_1" LOC = P78;
+NET "upbutton_1" LOC = P58;
 NET "upbutton_1" IOSTANDARD = LVTTL;
 NET "downbutton_1" LOC = P66;
 NET "downbutton_1" IOSTANDARD = LVTTL;

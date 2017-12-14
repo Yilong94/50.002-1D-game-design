@@ -41,6 +41,7 @@ module mojo_top (
     // The reset conditioner is used to synchronize the reset signal to the FPGA
     // clock. This ensures the entire FPGA comes out of reset at the same time.
     reset_conditioner reset_cond;
+    edge_detector edgefinish(#RISE(1), #FALL(0)); // detect rising edges  
     .rst(rst){
      ledmatrix matrix;
       dff playerinvolved;
@@ -49,8 +50,15 @@ module mojo_top (
       dff cursor[49]; 
       dff newcursor[49];
       
-      //added new dff to track current count of player 1 and player2
-      dff player1count[4];
+      dff newplayer1[49];
+      dff newplayer2[49];
+      dff newplayer1count[4];
+      dff newplayer2count[4];
+      
+      dff counter[30];
+      
+      //added new dff to track current count of player 1 and player player2
+      dff player1count[4];   //4 bits because there are only 6 tokens
       dff player2count[4];
       
      fsm state = {INITIAL, START, SELECTINITIAL, SELECT, SELECTMOVE, MOVE, CHECK, DIE, END};
@@ -60,18 +68,22 @@ module mojo_top (
   
  
   //initializes the alu
-//alu alu1;
+  //i initialized the alu for the 'die' state to implement CMPEQ
+  alu alu1;
   
   buttons buttons(.clk(clk), .rst(rst));
   start start; // initialiing
   select select(.clk(clk), .rst(rst)); //
   move move(.clk(clk), .rst(rst));
   
-  //changed module for check
+  //changed moduel for check
   //check check(.clk(clk), .rst(rst));
   checkfinal2 check(.clk(clk), .rst(rst));
   
+  sig aluout[49];
   sig selectstart;
+  sig startcheckstate[1];
+  const X = 15;
   
   always {
     buttons.rightbutton_2 = rightbutton_2;  
@@ -85,6 +97,7 @@ module mojo_top (
     buttons.resetbutton = resetbutton;
     buttons.confirmbutton_1 = confirmbutton_1;
     buttons.confirmbutton_2 = confirmbutton_2;
+    //move.confirmbutton=0;
   
     reset_cond.in = ~rst_n; // input raw inverted reset signal
     rst = reset_cond.out;   // conditioned reset
@@ -97,12 +110,12 @@ module mojo_top (
     io_seg = 8hff;          // turn segments off
     io_sel = 4hf;           // select no digits
                             //ADD PINS AND LED AFTER THEY ARE DONE
-    select.player =1;  // initialisation of all the different players for the different modules
-    check.player = 1;
-    move.player= 1;
-    select.button = 1;
-    move.buttons = 1;
-    selectstart =1; //to initialize the select starting configuration whenever the select state is selected
+    select.player =0;  // initialisation of all the different players for the different modules
+    check.player = 0;
+    move.player= 0;
+    select.button = 0;
+    move.buttons = 0;
+    selectstart =0; //to initialize the select starting configuration whenever the select state is selected
     
   
     reset_cond.in = ~rst_n; // input raw inverted reset signal
@@ -128,18 +141,34 @@ module mojo_top (
     select.player2 = start.player2; 
     move.player1 = start.player1;
     move.player2 = start.player2;        
-    check.player1 = move.player1moved;
-    check.player2 = move.player2moved;
-    check.playercount1 = 4d6;
-    check.playercount2 = 4d6;
-    select.cursor = 0;    
-      
-    move.selectedpositionfromselect = select.currentposition;    
     
-    //initialize token count of player 1 and 2 to 6
+    check.player1 = player1.q;
+    check.player2 = player2.q;
+    //check.player1 = move.newplayer1;
+    //check.player2 = move.newplayer2;
+    select.cursor = 49b0; 
+    
+    //initialized the count as 6
     player1count.d = 4d6;
     player2count.d = 4d6;
-
+    //link the dff to the input of check module
+    //note that later you need to link the output of the module to the dff!!!
+    check.playercount1 = player1count.q;  
+    check.playercount2 = player2count.q;
+          
+    move.selectedpositionfromselect = select.currentposition;  
+    
+    alu1.a = 49b0;
+    alu1.b = 49b0;
+    alu1.alufn = 6b0;  
+    
+    move.confirmbutton = 0;
+    startcheckstate = 0;
+    check.startcheck = startcheckstate;
+    
+    edgefinish.in = check.finish;
+    
+    check.nextbutton = buttons.resetbutton_new;
     
   case(state.q){
     
@@ -157,16 +186,15 @@ module mojo_top (
     matrix.blinking = 49b0;
     
     cursor.d = 49b0;
+    //added a new cursor for move state 
+    newcursor.d = 49b0;
      
     io_led[0][0] =1;
     if (buttons.resetbutton_new== 1){    //reset button is same as start button        
         state.d = state.START;}          
         
   state.START:
-    playerinvolved.d =playerinvolved.q; //ensure that it is the same player 
-    player1.d = player1.q;              
-    player2.d = player2.q;
-    cursor.d =cursor.q; 
+    playerinvolved.d =playerinvolved.q; //ensure that it is the same player  
         
     // sets the matrix values to remain as the registers of player1 and player2       
     matrix.values = {49b0, player2.q,player1.q};
@@ -180,8 +208,9 @@ module mojo_top (
 
     io_led[0][1] =1;
     // move to the select state if the reset button is pressed
-    if (buttons.resetbutton_new == 1){    //reset button is same as start button        
-        state.d = state.SELECTINITIAL;}
+    state.d = state.SELECTINITIAL;
+        //if (buttons.resetbutton_new == 1){    //reset button is same as start button        
+    //    state.d = state.SELECTINITIAL;}
   
   state.SELECTINITIAL:
    playerinvolved.d =playerinvolved.q; //ensure that it is the same player 
@@ -229,12 +258,18 @@ module mojo_top (
     // if the select was successful and player1 is playing and presses the confirm button, change state
  if (select.successfulselect ==1){  
      matrix.values = {cursor.q,player2.q,player1.q};   
-     if (playerinvolved.q==0 && confirmbutton_1==1){
-     cursor.d=select.currentposition;
-     state.d = state.MOVE;}
-     else if (playerinvolved.q==1 && confirmbutton_2==1){
-      cursor.d=select.currentposition;
-      state.d = state.MOVE;}
+     if (playerinvolved.q==0 && buttons.confirmbutton_1new==1){
+         cursor.d = select.currentposition;
+         state.d = state.MOVE;
+         newcursor.d = 49b0;}
+         //matrix.values = {49b0, player2.q, player1.q};
+         //matrix.blinking = cursor.q;
+     else if (playerinvolved.q==1 && buttons.confirmbutton_2new ==1){
+         cursor.d = select.currentposition; 
+         state.d = state.MOVE;
+         newcursor.d = 49b0;
+          //matrix.values = {49b0, player2.q, player1.q};
+         matrix.blinking = cursor.q;}
          } 
      
 if (buttons.leftbutton_1new == 1 && playerinvolved.q==0 ){
@@ -270,151 +305,253 @@ else if (buttons.downbutton_2new == 1 && playerinvolved.q==1 ){
         select.button = 3b111; 
         cursor.d=select.currentposition;
         state.d = state.SELECT; }
+    
           
-        newcursor.d = cursor.q;
-
+       
   state.MOVE:
      
- 
-     playerinvolved.d = playerinvolved.q;//player involved is the same 
-     move.player = playerinvolved.q;           
-     
-     move.selectedpositionfromselect = cursor.q;        
+    //select.player1 = player1.q;
+    //select.player2 = player2.q;  
+    //select.player = playerinvolved.q; 
+    //select.cursor = cursor.q;   
+        
+     move.player = playerinvolved.q;         
+     move.selectedpositionfromselect = cursor.q;
+     if (newcursor.q==49b0){
+        matrix.blinking = cursor.q;
+          }
+      else{
+          matrix.blinking = newcursor.q;
+          }
+     //matrix.blinking = newcursor.q;        
      move.player1 = player1.q;
      move.player2 = player2.q;  
      
-     matrix.values = {newcursor.q, player2.q,player1.q};
-     matrix.blinking = move.lightupbeforemovepos; 
-        
+     //added this line here...      
+     //cursor.d = move.positionmovedto;
+     newplayer1.d = move.newplayer1;
+     newplayer2.d = move.newplayer2;
+     //newcursor.d = move.positionmovedto;
+    //matrix.values = { 49b0011100000000000000000000001000000000000000000000, player2.q, player1.q};
+    matrix.values = { player1.q, newplayer2.q, newplayer1.q};    
     red = matrix.columnred;
     green = matrix.columngreen;
     blue = matrix.columnblue;
-    ground = ~matrix.row; 
+    ground = ~matrix.row;                
+    
+     if (buttons.confirmbutton_1new ==1 && playerinvolved.q==0){
+        move.confirmbutton =1;
+        //player1.d = move.newplayer1;  //to update player's register after the move has been done  
+          player1.d = newplayer1.q;
+          newcursor.d = cursor.q;
+          //
+          state.d = state.CHECK;
+          matrix.values = {49b0, player2.q, player1.q};
+          counter.d = 0;}
+     else if (buttons.confirmbutton_2new ==1  && playerinvolved.q ==1){
+        move.confirmbutton=1;
+        //player2.d = move.newplayer2;
+           player2.d = newplayer2.q; 
+          state.d = state.CHECK;
+          matrix.values = {49b0, player2.q, player1.q};
+          counter.d = 0;}           
         
-      
-     player1.d = move.player1moved;  //to update player's register after the move has been done
-     player2.d = move.player2moved;         
-     if(move.movesuccess==1){   
-      if (confirmbutton_1 ==1 && playerinvolved.q==0){
-        state.d = state.CHECK;}
-      else if (confirmbutton_2 ==1  && playerinvolved.q ==1){
-        state.d = state.CHECK;}}
-            
-    
-    if (buttons.leftbutton_1new == 1 && playerinvolved.q==0 ){
-        matrix.values = {newcursor.q, player2.q,player1.q};
-        matrix.blinking = cursor.q; 
+ //       else if (buttons.downbutton_2new == 1){
+ //         matrix.values = {49b0, move.newplayer2, player1.q};
+ //         matrix.blinking = move.positionmovedto; 
+ //         move.buttons = 3b111;          } 
+                  
+ if (playerinvolved.q==0 ){                 
+      if (buttons.leftbutton_1new == 1 ){
         move.buttons = 3b010; 
-        cursor.d=move.positionmovedto;
-        state.d = state.MOVE; }
+        //cursor.d = move.positionmovedto;
+        newcursor.d = move.positionmovedto;
+        matrix.blinking = newcursor.q;
+        //player1.d = move.newplayer1;
+        newplayer1.d = move.newplayer1;
+        matrix.values = {49b0, player2.q, newplayer1.q};}
+            //matrix.values = {49b0, player2.q, move.newplayer1};
+        //matrix.blinking = move.positionmovedto;  
+                              
+      else if (buttons.rightbutton_1new== 1){
+        //matrix.values = {49b0, player2.q, move.newplayer1};
+        //matrix.blinking = move.positionmovedto; 
+        move.buttons = 3b001;
+        //cursor.d = move.positionmovedto;
+        newcursor.d = move.positionmovedto;
+        matrix.blinking = newcursor.q;
+        //player1.d = move.newplayer1;
+        newplayer1.d = move.newplayer1;
+        matrix.values = {49b0, player2.q, newplayer1.q};       }
             
-    else if (buttons.rightbutton_1new== 1 && playerinvolved.q==0 ){
-        move.buttons = 3b001; 
-        cursor.d=move.positionmovedto;
-        state.d = state.MOVE; }
-            
-    else if (buttons.upbutton_1new== 1 && playerinvolved.q==0 ){
-        move.buttons = 3b110; 
-        cursor.d=move.positionmovedto;
-        state.d = state.MOVE; }
-    else if (buttons.downbutton_1new== 1 && playerinvolved.q==0 ){
-        move.buttons = 3b111; 
-        cursor.d=move.positionmovedto;
-        state.d = state.MOVE; }
-    else if (buttons.leftbutton_2new == 1 && playerinvolved.q==1 ){
-       move.buttons = 3b010; 
-        cursor.d=move.positionmovedto;
-        state.d = state.MOVE; }
-    else if (buttons.rightbutton_2new == 1 && playerinvolved.q==1 ){
-        move.buttons = 3b001; 
-        cursor.d=move.positionmovedto;
-        state.d = state.MOVE; }
-    else if (buttons.upbutton_2new == 1 && playerinvolved.q==1 ){
-        move.buttons = 3b110; 
-        cursor.d=move.positionmovedto;
-        state.d = state.MOVE; }
-    else if (buttons.downbutton_2new == 1 && playerinvolved.q==1 ){
-        move.buttons = 3b111; 
-        cursor.d=move.positionmovedto;
-        state.d = state.MOVE; }
+      else if (buttons.upbutton_1new== 1 ){
+         //matrix.values = {49b0, player2.q, move.newplayer1};
+        //matrix.blinking = move.positionmovedto; 
+        move.buttons = 3b110;
+        //cursor.d = move.positionmovedto;
+        newcursor.d = move.positionmovedto;
+        matrix.blinking = newcursor.q;
+        //player1.d = move.newplayer1;
+        newplayer1.d = move.newplayer1;
+        matrix.values = {49b0, player2.q, newplayer1.q}; }
+      else if (buttons.downbutton_1new== 1 ){
+         //matrix.values = {49b0, player2.q, move.newplayer1};
+         // matrix.blinking = move.positionmovedto; 
+          move.buttons = 3b111;
+          //cursor.d = move.positionmovedto;
+          newcursor.d = move.positionmovedto;
+          matrix.blinking = newcursor.q;
+        //player1.d = move.newplayer1;
+        newplayer1.d = move.newplayer1;
+          matrix.values = {49b0, player2.q, newplayer1.q};  
+        }}
+else if ( playerinvolved.q==1){
+         if (buttons.rightbutton_2new == 1 ){
+          //matrix.values = {49b0, move.newplayer2, player1.q};
+          move.buttons = 3b001;
+          //cursor.d = move.positionmovedto;
+          newcursor.d = move.positionmovedto;
+          matrix.blinking = newcursor.q;
+          //player2.d = move.newplayer2;
+          newplayer2.d = move.newplayer2;
+            matrix.values = {49b0, newplayer2.q, player1.q};
+          
+          //matrix.blinking = move.positionmovedto; 
+          }
+        else if (buttons.upbutton_2new == 1){
+           //matrix.values = {49b0, move.newplayer2, player1.q};
+           // matrix.blinking = move.positionmovedto; 
+          move.buttons = 3b110;
+            //cursor.d = move.positionmovedto;
+            newcursor.d = move.positionmovedto;
+            matrix.blinking = newcursor.q;
+            //player2.d = move.newplayer2;
+            newplayer2.d = move.newplayer2;
+            matrix.values = {49b0, newplayer2.q, player1.q}; }
+   
+        else if (buttons.leftbutton_2new == 1){
+          //matrix.values = {49b0, move.newplayer2, player1.q};
+          //matrix.blinking = move.positionmovedto; 
+          move.buttons = 3b010;
+            //cursor.d = move.positionmovedto;
+            newcursor.d = move.positionmovedto;
+            matrix.blinking = newcursor.q;
+           //player2.d = move.newplayer2;
+          newplayer2.d = move.newplayer2;
+            matrix.values = {49b0, newplayer2.q, player1.q}; } 
          
-     
+       else if (buttons.downbutton_2new == 1){
+          //matrix.values = {49b0, move.newplayer2, player1.q};
+          //matrix.blinking = move.positionmovedto; 
+          move.buttons = 3b111;
+            //cursor.d = move.positionmovedto;
+            newcursor.d = move.positionmovedto;
+            matrix.blinking = newcursor.q;
+            //player2.d = move.newplayer2;
+            newplayer2.d = move.newplayer2;
+            matrix.values = {49b0, newplayer2.q, player1.q}; } }
+        
     
-  
+
   state.CHECK:
     playerinvolved.d = playerinvolved.q;
-    cursor.d = cursor.q;
-    newcursor.d = newcursor.q;
+    //cursor.d = cursor.q;
+    //newcursor.d = newcursor.q;
+    startcheckstate = 1;
+    check.startcheck = startcheckstate;
     
     // set the inputs for the check module 
     check.player = playerinvolved.q;
     check.player1 = player1.q;
     check.player2 = player2.q;
+    //KIV:need to initalize check.playercount1?
     check.playercount1 = player1count.q;
-    check.playercount2 = player2count.q;
+    check.playercount2 = player2count.q;        
     
-    matrix.values = {49b0000000000000000000000000000000000000000000000000, player2.q,player1.q};
-    matrix.blinking = 49b0000000000000000000000000000000000000000000000000;    
+    matrix.values = {check.myled, newplayer2.q,newplayer1.q};
+    matrix.blinking = 49b0000000000000000000000000000000000000000000000000;   
+    //matrix.blinking = check.myled; 
+        
     red = matrix.columnred;
     green = matrix.columngreen;
     blue = matrix.columnblue;
     ground = ~matrix.row;        
-        
-    io_led[0][5] =1;
-     // state.d = state.START;         
-     if (playerinvolved.q ==0){
-           io_led[1][0] =1;}   
-        
-     else {io_led[1][1] =1;}
-                                        
-   //if the confirm button for player 1 is pressed and player 1 is playing, move to the start state if player 2 is not dead             
-//   if(confirmbutton_1 && playerinvolved.q==0 ){
-//        if (check.endgame ==0){
-//          playerinvolved.d =1;
-//          state.d = state.START;}
-//        else if (check.endgame ==1){
-//         state.d = state.END;}
-//        } 
-//   else if(confirmbutton_2 && playerinvolved.q==1){
-//         if (check.endgame==1){
-//           playerinvolved.d =0;
-//          state.d = state.START;}
-//         else if(check.endgame ==1){
-//          state.d =state.END;}
-//        }
+    
+    check.nextbutton = buttons.resetbutton_new;    
             
-     player1.d = check.player1new;
-     player2.d = check.player2new;
-     player1count.d = check.player1newcount;
-     player2count.d = check.player2newcount;
-     state.d = state.DIE; 
+   newplayer1.d = check.player1new;
+   newplayer2.d = check.player2new;
+   newplayer1count.d = check.player1newcount;
+   newplayer2count.d = check.player2newcount;
+   //counter.d = counter.q+1;
         
-   //create a different state for checking if a person has died     
-   state.DIE:
-     if (playerinvolved.q == 0){
-          if(player2count.q<=2){
-              state.d = state.END;
-            }
-          else{
-            playerinvolved.d = 1;
-            state.d = state.START;
-            }
-          }
-     else {
-          if(player1count.q<=2){
-            state.d = state.END;
-            }
-          else{
-            playerinvolved.d = 0;
-            state.d = state.START;
-            }
-          } 
+   edgefinish.in = check.finish;
+   if (edgefinish.out==1){
+   
+   newplayer1.d = check.player1new;
+   newplayer2.d = check.player2new;
+   newplayer1count.d = check.player1newcount;
+   newplayer2count.d = check.player2newcount;              
+          
+   player1.d = newplayer1.q;
+   player2.d = newplayer2.q;
+   player1count.d = newplayer1count.q;
+   player2count.d = newplayer2count.q;
+   state.d = state.DIE;
+   startcheckstate = 0;
+          
+   //counter.d = 0;
+        }     
+  //create a new state to check if a person has died 
+  state.DIE:
+    
+    startcheckstate = 0;
+    check.startcheck = startcheckstate;
+    matrix.values = {49b0000000000000000000000000000000000000000000000000, player2.q,player1.q};
+    matrix.blinking = 49b0000000000000000000000000000000000000000000011100;    
+    red = matrix.columnred;
+    green = matrix.columngreen;
+    blue = matrix.columnblue;
+    ground = ~matrix.row;
+    counter.d = counter.q + 1;        
+        
+    if (playerinvolved.q == 0 && counter.q[X]==1){
+          
+      alu1.alufn = 6b110111;
+      alu1.a = player2count.q;
+      alu1.b = 49b10;
+      aluout = alu1.alu_output;
+          
+      if(aluout == 49b1){
+        state.d = state.END;
+        }
+      else{
+        playerinvolved.d = 1;
+        state.d = state.START;
+        }
+    }
+    else if (playerinvolved.q ==1 && counter.q[X]==1) {
+      alu1.alufn = 6b110111;
+      alu1.a = player1count.q;
+      alu1.b = 49b10;
+      aluout = alu1.alu_output;
+          
+      if(aluout == 49b1){
+        state.d = state.END;
+        }
+      else{
+        playerinvolved.d = 0;
+        state.d = state.START;
+        }
+    }     
+          
           
   state.END:
-      io_led[0][6] =1;
+    io_led[0][6] =1;
     if (resetbutton == 1){
         state.d = state.INITIAL;}
   }
+  
 }
 }
         

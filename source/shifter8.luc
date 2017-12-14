@@ -7,11 +7,11 @@ module shifter8 (
   always {
     case(alufn[1:0]) {
       //to do left shift 
-      b00:out = a <<< b[2-:3];
+      b00:out = a <<< b[6:0];
       //to do right shift   
-      b01:out = a >>> b[2-:3];
+      b01:out = a >>> b[6:0];
       //to do right shift signed  
-      b11:out = $signed(a) >>> b[2-:3];
+      b11:out = $signed(a) >>> b[6:0];
       default:out = 0;
     }
   }
